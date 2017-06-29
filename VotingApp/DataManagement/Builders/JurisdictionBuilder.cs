@@ -14,7 +14,6 @@ namespace VotingApp.DataManagement.Builders
             {
                 JurisdictionId = jurisdiction.JurisdictionId,
                 JurisdictionName = jurisdiction.JurisdictionName,
-                BallotId = jurisdiction.BallotId
             };
         }
 
@@ -24,7 +23,6 @@ namespace VotingApp.DataManagement.Builders
             {
                 JurisdictionId = Guid.NewGuid(),
                 JurisdictionName = jurisdiction.JurisdictionName,
-                BallotId = jurisdiction.BallotId
             };
         }
     }

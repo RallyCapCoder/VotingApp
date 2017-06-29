@@ -13,10 +13,10 @@ namespace VotingApp.DataManagement.Builders
             return new Models.Canidate()
             {
                 CanidateId = canidate.CanidateId,
-                JobId = canidate.JobId,
+                JobId = canidate.Job.JobId,
+                JobName = canidate.Job.Name,
                 Name = canidate.Name,
-                Party = canidate.Party,
-                VotedFor = canidate.VotedFor
+                Party = canidate.Party
             };
         }
 
@@ -24,11 +24,10 @@ namespace VotingApp.DataManagement.Builders
         {
             return new Canidate()
             {
-                CanidateId = Guid.NewGuid(),
+                CanidateId = canidate.CanidateId,
                 JobId = canidate.JobId,
                 Name = canidate.Name,
-                Party = canidate.Party,
-                VotedFor = canidate.VotedFor
+                Party = canidate.Party
             };
         }
     }

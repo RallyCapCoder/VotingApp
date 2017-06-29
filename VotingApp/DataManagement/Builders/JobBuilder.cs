@@ -8,14 +8,14 @@ namespace VotingApp.DataManagement.Builders
 {
     public class JobBuilder
     {
+
         public Models.Job GetModel(Job job)
         {
             return new Models.Job()
             {
                 JobId = job.JobId,
-                JobTitle = job.JobTitle,
-                JurisdictionId = job.JurisdictionId,
-                Description = job.Description
+                JurisdictionId = job.Jurisdiction_Jurisdiction.JurisdictionId,
+                Name = job.Name
             };
         }
 
@@ -24,9 +24,8 @@ namespace VotingApp.DataManagement.Builders
             return new Job()
             {
                 JobId = Guid.NewGuid(),
-                JobTitle = job.JobTitle,
-                JurisdictionId = job.JurisdictionId,
-                Description = job.Description
+                Jurisdiction = job.JurisdictionId,
+                Name = job.Name
             };
         }
     }

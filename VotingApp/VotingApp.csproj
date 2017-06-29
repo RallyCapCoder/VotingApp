@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{D027119A-1281-48D2-8BD7-BB188CB160E3}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <RootNamespace>VotingApp</RootNamespace>
     <AssemblyName>VotingApp</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -50,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataManagement\Builders\VoteResultsBuilder.cs" />
     <Compile Include="Models\Ballot.cs" />
     <Compile Include="Models\Canidate.cs" />
     <Compile Include="DataManagement\Builders\BallotBuilder.cs" />
@@ -64,7 +68,7 @@
     <Compile Include="DataManagement\VotingManager.cs" />
     <Compile Include="Models\Job.cs" />
     <Compile Include="Models\Jurisdiction .cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Models\VoteResults.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

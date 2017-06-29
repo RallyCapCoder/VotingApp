@@ -14,7 +14,7 @@ namespace VotingApp.DataManagement.Builders
             {
                 BallotId = ballot.BallotId,
                 BallotName = ballot.BallotName,
-                State = ballot.State
+               
             };
         }
 
@@ -22,9 +22,7 @@ namespace VotingApp.DataManagement.Builders
         {
             return new Ballot
             {
-                BallotId = Guid.NewGuid(),
                 BallotName = ballot.BallotName,
-                State = ballot.State
             };
         }
     }

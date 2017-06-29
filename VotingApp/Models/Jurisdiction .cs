@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace VotingApp.Models
 {
@@ -6,6 +7,5 @@ namespace VotingApp.Models
     {
         public Guid JurisdictionId { get; set; }
         public string JurisdictionName { get; set; }
-        public Guid BallotId { get; set; }
     }
 }
