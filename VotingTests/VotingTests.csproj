@@ -64,7 +64,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\VotingApp2\VotingApp.csproj">
+    <ProjectReference Include="..\VotingApp\VotingApp.csproj">
       <Project>{d027119a-1281-48d2-8bd7-bb188cb160e3}</Project>
       <Name>VotingApp</Name>
     </ProjectReference>
