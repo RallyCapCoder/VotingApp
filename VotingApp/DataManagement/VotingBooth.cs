@@ -488,6 +488,7 @@ namespace VotingApp.DataManagement
 
         public Ballot()
         {
+            BallotId = System.Guid.NewGuid();
             VoteResults = new System.Collections.Generic.List<VoteResult>();
         }
     }
@@ -594,6 +595,11 @@ namespace VotingApp.DataManagement
         /// Parent Canidate pointed by [VoteResults].([CanindateId]) (FK_VoteResults_Canidate)
         /// </summary>
         public virtual Canidate Canidate { get; set; } // FK_VoteResults_Canidate
+
+        public VoteResult()
+        {
+            VoteResultsId = System.Guid.NewGuid();
+        }
     }
 
     #endregion

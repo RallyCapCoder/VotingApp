@@ -66,6 +66,7 @@
       <DependentUpon>VotingBooth.tt</DependentUpon>
     </Compile>
     <Compile Include="DataManagement\VotingManager.cs" />
+    <Compile Include="Models\CanindateParty.cs" />
     <Compile Include="Models\Job.cs" />
     <Compile Include="Models\Jurisdiction .cs" />
     <Compile Include="Models\VoteResults.cs" />

@@ -14,7 +14,7 @@ namespace VotingApp.DataManagement.Builders
             return new Models.Job()
             {
                 JobId = job.JobId,
-                JurisdictionId = job.Jurisdiction_Jurisdiction.JurisdictionId,
+                JurisdictionId = job.Jurisdiction,
                 Name = job.Name
             };
         }

@@ -8,6 +8,10 @@ namespace VotingWeb.Models
 {
     public class VotingViewModel 
     {
- 
+        public Guid BallotId { get; set; }
+        public CanindateParty DemocraticCanidates { get; set; }
+        public CanindateParty RepublicanCanidates { get; set; }
+        public CanindateParty IndependentCanidates { get; set; }
+        public CanindateParty SupremeCourt { get; set; }
     }
 }

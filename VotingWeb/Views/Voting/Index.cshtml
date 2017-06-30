@@ -1,4 +1,81 @@
-﻿@model VotingWeb.Models.VotingViewModel
+﻿@using VotingApp.Models
+@model VotingWeb.Models.VotingViewModel
 @{
     ViewBag.Title = "Index";
+}
+
+
+@using (Html.BeginForm("Vote", "Voting"))
+{
+    <h1>Federal and State</h1>
+    <h2>For Commander in Cream and Vice Ice</h2>
+    <p>(Ranked Choice Voting (Instant Runoff))</p>
+    <p>Rank candidates in order of choice. Mark your favorite candidate as first choice and then indicate your second and additional back-up choices in order of choice. You may rank as many candidates as you want.</p>
+    <form>
+        <div class="form-group">
+            @Html.DisplayFor(m => m.DemocraticCanidates.President.Name, new {@class ="form-control"})
+            <br/>
+            @Html.DisplayFor(m => m.DemocraticCanidates.VicePresident.Name, new { @class = "form-control" })
+            <br/>
+            @Html.TextBoxFor(m => m.DemocraticCanidates.President.Ranking, new { @class = "form-control" })
+            @Html.HiddenFor(m => m.DemocraticCanidates.President.CanidateId)
+            @Html.HiddenFor(m => m.DemocraticCanidates.VicePresident.CanidateId)
+        </div>
+        <div class="form-group">
+            @Html.DisplayFor(m => m.RepublicanCanidates.President.Name, new { @class = "form-control" })
+            <br/>
+            @Html.DisplayFor(m => m.RepublicanCanidates.VicePresident.Name, new { @class = "form-control" })
+            <br/>
+            @Html.TextBoxFor(m => m.RepublicanCanidates.President.Ranking, new { @class = "form-control" })
+            @Html.HiddenFor(m => m.RepublicanCanidates.President.CanidateId)
+            @Html.HiddenFor(m => m.RepublicanCanidates.VicePresident.CanidateId)
+        </div>
+        <div class="form-group">
+            @Html.DisplayFor(m => m.IndependentCanidates.President.Name, new { @class = "form-control" })
+            <br/>
+            @Html.DisplayFor(m => m.IndependentCanidates.VicePresident.Name, new { @class = "form-control" })
+            <br/>
+            @Html.TextBoxFor(m => m.IndependentCanidates.President.Ranking, new { @class = "form-control" })
+            @Html.HiddenFor(m => m.IndependentCanidates.President.CanidateId)
+            @Html.HiddenFor(m => m.IndependentCanidates.VicePresident.CanidateId)
+        </div>
+        
+        <br/>
+        
+        <h2>For Chief Dairy Queen</h2>
+        <p>UnExpired Term (Vote in One Oval)</p>
+        <p>Shall Justice Mint C. Chip of the Supreme Court of the State of Ice Cream be retained in office for another term</p>
+        <p>Fill in the oval before the word "YES" if you wish the offical to remain in office</p>
+        <p>Fill in the oval before the word "NO" if you do not wish the offical to remain in the office</p>
+
+        <div class="form-group">
+            @Html.DisplayFor(m => m.SupremeCourt.SupremeCourtJustice.Name, new { @class = "form-control" })
+            @Html.CheckBoxFor(m => m.SupremeCourt.SupremeCourtJustice.VotedFor, new {@class = "checkbox" })
+            @Html.HiddenFor(m => m.SupremeCourt.SupremeCourtJustice.CanidateId, new {@class = "form-control"})
+        </div>
+     
+        <br/>
+        
+        <h2>For State Rep.District M & M</h2>
+        <p>(Vote For Two)</p>
+        <div class="form-group">
+            @Html.DisplayFor(m => m.RepublicanCanidates.StateRep.Name, new { @class = "form-control" })
+            @Html.CheckBoxFor(m => m.RepublicanCanidates.StateRep.VotedFor, new {@class = "checkbox" })
+            @Html.HiddenFor(m => m.RepublicanCanidates.StateRep.CanidateId, new {@class = "form-control"})
+            
+            @Html.DisplayFor(m => m.DemocraticCanidates.StateRep.Name, new { @class = "form-control" })
+            @Html.CheckBoxFor(m => m.DemocraticCanidates.StateRep.VotedFor, new {@class = "checkbox" })
+            @Html.HiddenFor(m => m.DemocraticCanidates.StateRep.CanidateId, new {@class = "form-control"})
+            
+            @Html.DisplayFor(m => m.IndependentCanidates.StateRep.Name, new { @class = "form-control" })
+            @Html.CheckBoxFor(m => m.IndependentCanidates.StateRep.VotedFor, new {@class = "checkbox" })
+            @Html.HiddenFor(m => m.IndependentCanidates.StateRep.CanidateId, new {@class = "form-control"})
+        </div>
+        
+        
+        <h1>County</h1>
+                   
+        <button type="submit" class="btn-primary">Vote!</button>
+    </form>
+  
 }
