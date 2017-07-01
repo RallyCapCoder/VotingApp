@@ -13,7 +13,7 @@ namespace VotingApp.DataManagement.Builders
                 BallotId = voteResult.BallotId,
                 CanidateId = voteResult.CanindateId,
                 VoteIssueId = voteResult.VoteIssueId,
-                Ranking = (int) voteResult.Ranking,
+                Ranking =  voteResult.Ranking ?? 0,
                 VotedFor = voteResult.VotedFor
                 
             };
@@ -27,7 +27,7 @@ namespace VotingApp.DataManagement.Builders
                 BallotId = voteResult.BallotId,
                 CanindateId = voteResult.CanidateId,
                 VoteIssueId = voteResult.VoteIssueId,
-                Ranking = (int)voteResult.Ranking,
+                Ranking = voteResult.Ranking,
                 VotedFor = voteResult.VotedFor
             };
         }

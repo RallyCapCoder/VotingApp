@@ -1,0 +1,107 @@
+﻿@model VotingWeb.Models.ElectionResultsViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Ballot Results</h2>
+@*First Group for this example the results for president*@
+<div class="panel panel-default">
+    <div class="panel-heading">Commander in Cream and Vice President</div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th class="col-md-4">Name</th>
+            <th class="col-md-4">Party</th>
+            <th class="col-md-4">Ranking</th>
+        </tr>
+         @foreach (var result in Model.PreseidentResult.OrderBy(x => x.Ranking))
+         {
+             <tr>
+                 <td>
+                     @result.Name
+                 </td>
+                 <td>
+                     @result.Party
+                 </td>
+                 <td>
+                     @result.Ranking
+                 </td>
+             </tr>
+         }
+        </thead>
+        <tbody>
+        <tr>
+            
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">Chief Dairy Queen</div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="col-md-4">Name</th>
+                <th class="col-md-4">For</th>
+                <th class="col-md-4">Against</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Model.SupremeCourtResult.Name
+                </td>
+                <td>
+                    @Model.SupremeCourtResult.YesVotes
+                </td>
+                <td>
+                    @Model.SupremeCourtResult.NoVotes
+                </td>
+            </tr>
+        
+        </tbody>
+    </table>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">State Rep.District M & M</div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="col-md-4">Name</th>
+                <th class="col-md-4">Party</th>
+                <th class="col-md-4">Votes</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var result in Model.StateRepResult.OrderBy(x => x.Votes))
+        {
+            <tr>
+                <td>
+                    @result.Name
+                </td>
+                <td>
+                    @result.Party
+                </td>
+                <td>
+                    @result.Votes
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">Constitutional Initiative No. 116</div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="col-md-6">For</th>
+                <th class="col-md-6">Against</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr></tr>
+        </tbody>
+    </table>
+</div>

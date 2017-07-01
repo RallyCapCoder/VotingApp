@@ -13,6 +13,6 @@ namespace VotingApp.Models
         public Guid? CanidateId { get; set; }
         public Guid? VoteIssueId { get; set; }
         public bool VotedFor { get; set; }
-        public int Ranking { get; set; }
+        public int? Ranking { get; set; }
     }
 }

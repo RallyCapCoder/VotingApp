@@ -142,11 +142,16 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\ElectionResultsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\VotingController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ElectionResultsViewModel.cs" />
+    <Compile Include="Models\MultipleVotesResult.cs" />
+    <Compile Include="Models\RankedResults.cs" />
+    <Compile Include="Models\SingleVoteResults.cs" />
     <Compile Include="Models\VotingViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -188,6 +193,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Voting\Index.cshtml" />
+    <Content Include="Views\ElectionResults\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

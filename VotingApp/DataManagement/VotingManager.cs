@@ -36,7 +36,7 @@ namespace VotingApp.DataManagement
             return job.JobId;
         }
 
-        public Models.Job GetJob(string jobName)
+        public Models.Job GetJobByJobName(string jobName)
         {
             var _builder = new JobBuilder();
             var job = _builder.GetModel(_context.Jobs.First(x => x.Name == jobName));
@@ -103,6 +103,12 @@ namespace VotingApp.DataManagement
                 BallotName = BallotName
             });
             _context.SaveChanges();
+        }
+
+        public List<VoteResults> GetVoteResults(Guid BallotId)
+        {
+            var _builder = new VoteResultsBuilder();
+            return _context.VoteResults.Where(x => x.BallotId == BallotId).Select(_builder.GetModel).ToList();
         }
 
         public void SaveElectionResults(List<VoteResult> results)
