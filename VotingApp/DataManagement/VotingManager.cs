@@ -50,6 +50,12 @@ namespace VotingApp.DataManagement
             return jobs;
         }
 
+        public Models.VoteIssue GetIssueByOfficalName(string name)
+        {
+            var _builder = new VoteIssueBuilder();
+            return _context.VoteIssues.Where(x => x.OfficalName == name).Select(_builder.GetModel).FirstOrDefault();
+        }
+
         public Guid GetBallotByName(string ballotName)
         {
             return _context.Ballots.First(x => x.BallotName == ballotName).BallotId;

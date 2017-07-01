@@ -13,5 +13,6 @@ namespace VotingWeb.Models
         public CanindateParty RepublicanCanidates { get; set; }
         public CanindateParty IndependentCanidates { get; set; }
         public CanindateParty SupremeCourt { get; set; }
+        public VoteIssue BallotIssue { get; set; }
     }
 }

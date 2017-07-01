@@ -20,7 +20,7 @@ namespace VotingWeb.Controllers
 
             _manager.CreateBallot("National Election");
 
-
+            viewModel.BallotIssue = _manager.GetIssueByOfficalName("Constitutional Initiative No. 116");
             viewModel.DemocraticCanidates = _manager.FillCanindateParty("Democrat");
             viewModel.RepublicanCanidates = _manager.FillCanindateParty("Republican");
             viewModel.IndependentCanidates = _manager.FillCanindateParty("Independent");
@@ -97,10 +97,16 @@ namespace VotingWeb.Controllers
                 BallotId = ballotId,
                 VotedFor = viewModel.IndependentCanidates.StateRep.VotedFor
             });
+            electionResults.Add(new VoteResult
+            {
+                VoteIssueId = viewModel.BallotIssue.VoteIssueId,
+                BallotId = ballotId,
+                VotedFor = viewModel.BallotIssue.VotedFor
+            });
 
             _manager.SaveElectionResults(electionResults);
 
-            return View("Index");
+            return RedirectToAction("Index", "Home");
         }
     }
 }

@@ -74,6 +74,20 @@
         
         
         <h1>County</h1>
+        <h2>Ballot Issue</h2>
+        <h3>@Model.BallotIssue.OfficalName</h3>
+        <h3>(Vote in one oval)</h3>
+        <p>@Model.BallotIssue.Description</p>
+        <p>@Model.BallotIssue.Subtext</p>
+        <div class="form-group">
+            <label>Yes/No</label>
+            @Html.CheckBoxFor(m => m.BallotIssue.VotedFor)
+            @Html.HiddenFor(m => m.BallotIssue.VotedFor)
+            @Html.HiddenFor(m => m.BallotIssue.VoteIssueId)
+            @Html.HiddenFor(m => m.BallotIssue.OfficalName)
+            @Html.HiddenFor(m => m.BallotIssue.Description)
+            @Html.HiddenFor(m => m.BallotIssue.Subtext)
+        </div>
                    
         <button type="submit" class="btn-primary">Vote!</button>
     </form>
