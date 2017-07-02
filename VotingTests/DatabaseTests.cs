@@ -31,61 +31,76 @@ namespace VotingTests
         }
 
         [TestMethod]
-        public void TESTING()
+        public void GetCanindates()
         {
             var _context = new VotingBooth();
-            _context.VoteResults.Add(new VoteResult
-            {
-                CanindateId = Guid.Parse("6DD7FA77-3918-4F1F-A494-02540DD2D53A"),
-                BallotId = Guid.Parse("8548CCAB-B89B-4DA4-9A2B-08029DFF1494"),
-                VoteResultsId = Guid.NewGuid(),
-                Ranking = 0,
-                VotedFor = false
-            });
-            _context.SaveChanges();
+            var _manager = new VotingManager();
 
+            var canidates = _manager.GetAllCanidates();
         }
 
         [TestMethod]
-        public void Vote_CIC_DemocratWin()
+        public void GetSingleVoteItems()
         {
             var _context = new VotingBooth();
-            var _helper = new TestHelper();
+            var _manager = new VotingManager();
 
-            var ballotBuilder = new BallotBuilder();
+            var canidates = _manager.GetSingleVoteItems();
+        }
 
-            var ballot = _context.Ballots.First(x => x.BallotName == "Democrats Win the Ballot");
-            var canindates = _helper.GetCanidates();
+        [TestMethod]
+        public void GetElectionResults()
+        {
+            var _context = new VotingBooth();
+            var _manager = new VotingManager();
 
-            var job = _helper.GetJob("Commander and Cream");
+            var canidates = _manager.GetVoteResults();
 
-            var election = canindates.Where(x => x.JobId == job.JobId);
 
-            var electionResults = new List<VoteResults>();
 
-            foreach (var elCanidate in election)
+            var electionResultsForPresidents = new Dictionary<RankingVoteItem,Dictionary<int,int>>();
+
+            var presidentialCandidates = canidates.Where(x => x.RankingVoteId != null).ToList();
+
+            foreach (var presidentialCandidate in presidentialCandidates)
             {
-                elCanidate.Ranking = elCanidate.Party == "Democrat" ? 1 : 2;
-                electionResults.Add(new VoteResults()
+                if (presidentialCandidate.RankingVoteId != null &&
+                    electionResultsForPresidents.ContainsKey(presidentialCandidate.RankingVoteItem))
                 {
-                    BallotId = ballot.BallotId,
-                    CanidateId = elCanidate.CanidateId,
-                    Ranking = elCanidate.Ranking,
-                    VotedFor = elCanidate.VotedFor
-                });
+                    if (electionResultsForPresidents[presidentialCandidate.RankingVoteItem]
+                        .ContainsKey(presidentialCandidate.RankingVoteItem.Ranking))
+                    {
+                        var i = electionResultsForPresidents[presidentialCandidate.RankingVoteItem][
+                            (int)presidentialCandidate.Ranking];
+                        electionResultsForPresidents[presidentialCandidate.RankingVoteItem][
+                            (int)presidentialCandidate.Ranking] = i++;
+                        electionResultsForPresidents[presidentialCandidate.RankingVoteItem] = electionResultsForPresidents[presidentialCandidate.RankingVoteItem].OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value);
+                    }
+                    else
+                    {
+                        electionResultsForPresidents[presidentialCandidate.RankingVoteItem].Add((int)presidentialCandidate.Ranking,1);
+                        electionResultsForPresidents[presidentialCandidate.RankingVoteItem] = electionResultsForPresidents[presidentialCandidate.RankingVoteItem].OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value);
+                    }
+                }
+                else
+                {
+                    if (presidentialCandidate.RankingVoteId != null)
+                    {
+                        var firstEntry = new Dictionary<int, int>();
+                        firstEntry.Add((int)presidentialCandidate.Ranking,1);
+                        electionResultsForPresidents.Add(presidentialCandidate.RankingVoteItem,firstEntry);
+                        electionResultsForPresidents[presidentialCandidate.RankingVoteItem] = electionResultsForPresidents[presidentialCandidate.RankingVoteItem].OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value);
+
+                    }
+                }
+
             }
 
+          
+            var test = electionResultsForPresidents;
 
-            var results = _helper.CreateElectionResult(electionResults);
-            _context.VoteResults.AddRange(results.AsEnumerable());
-            _context.SaveChanges();
-
-            var finalTally = _context.VoteResults.FirstOrDefault(x => x.Ranking == 1);
-
-            var electionWinner = _context.Canidates.First(x => x.CanidateId == finalTally.CanindateId);
-
-            Assert.AreEqual(electionWinner.Party, "Democrat");
 
         }
+
     }
 }

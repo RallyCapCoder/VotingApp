@@ -10,33 +10,49 @@
     <table class="table">
         <thead>
         <tr>
-            <th class="col-md-4">Name</th>
-            <th class="col-md-4">Party</th>
-            <th class="col-md-4">Ranking</th>
+            <th>Name</th>
+            <th>Party</th>
+            @for (int i = 0; i <= Model.NumberOfRankings; i++)
+            {
+                <th>Ranking @i</th>
+            }
         </tr>
-         @foreach (var result in Model.PreseidentResult.OrderBy(x => x.Ranking))
-         {
-             <tr>
-                 <td>
-                     @result.Name
-                 </td>
-                 <td>
-                     @result.Party
-                 </td>
-                 <td>
-                     @result.Ranking
-                 </td>
-             </tr>
-         }
         </thead>
         <tbody>
-        <tr>
-            
-        </tr>
+        @foreach (var result in Model.PresidentResults)
+        {
+            <tr>
+                <td>
+                    @result.Key.PrimeCanidate.Name
+                    <br/>
+                    @result.Key.SubCanidate.Name
+                </td>
+                <td>
+                    @result.Key.PrimeCanidate.Party
+                </td>
+                @for (int i = 0; i <= Model.NumberOfRankings; i++)
+                {
+                    var defaultValue = 0;
+                    <td>
+                        @foreach (var totalOfRankings in result.Value)
+                        {
+                            if (totalOfRankings.Key == i)
+                            {
+                                @totalOfRankings.Value
+                            }
+                            else
+                            {
+                                @defaultValue
+                            }
+                        }
+                    </td>
+                }
+            </tr>
+        }
         </tbody>
     </table>
 </div>
-<div class="panel panel-default">
+@*<div class="panel panel-default">
     <div class="panel-heading">Chief Dairy Queen</div>
     <table class="table">
         <thead>
@@ -47,20 +63,20 @@
 
             </tr>
         </thead>
-        <tbody>
+        @foreach (var result in Model.VoteResults.Where(x => x.SingleVoteId != null || x.SingleVoteItem.Canidate != null))
+        {
             <tr>
                 <td>
-                    @Model.SupremeCourtResult.Name
+                    @result.SingleVoteItem.Canidate.Name
                 </td>
                 <td>
-                    @Model.SupremeCourtResult.YesVotes
+                    @result.SingleVoteItem.YesVote
                 </td>
                 <td>
-                    @Model.SupremeCourtResult.NoVotes
+                    @result.SingleVoteItem.NoVote
                 </td>
             </tr>
-        
-        </tbody>
+        }
     </table>
 </div>
 <div class="panel panel-default">
@@ -74,17 +90,17 @@
             </tr>
         </thead>
         <tbody>
-        @foreach (var result in Model.StateRepResult.OrderBy(x => x.Votes))
+        @foreach (var result in Model.VoteResults.Where(x => x.MultipleVoteId != null))
         {
             <tr>
                 <td>
-                    @result.Name
+                    @result.MultipleVoteItem.Canidate.Name
                 </td>
                 <td>
-                    @result.Party
+                    @result.MultipleVoteItem.Canidate.Party
                 </td>
                 <td>
-                    @result.Votes
+                    @result.MultipleVoteItem.VotedFor
                 </td>
             </tr>
         }
@@ -101,7 +117,20 @@
             </tr>
         </thead>
         <tbody>
-            <tr></tr>
+        @foreach (var result in Model.VoteResults.Where(x => x.SingleVoteId != null || x.SingleVoteItem.Issue != null))
+        {
+            <tr>
+                <td>
+                    @result.SingleVoteItem.Canidate.Name
+                </td>
+                <td>
+                    @result.SingleVoteItem.YesVote
+                </td>
+                <td>
+                    @result.SingleVoteItem.NoVote
+                </td>
+            </tr>
+        }
         </tbody>
-    </table>
-</div>
+    </table>*@
+@*</div>*@

@@ -39,6 +39,9 @@ namespace VotingApp.DataManagement
         System.Data.Entity.DbSet<Canidate> Canidates { get; set; } // Canidate
         System.Data.Entity.DbSet<Job> Jobs { get; set; } // Job
         System.Data.Entity.DbSet<Jurisdiction> Jurisdictions { get; set; } // Jurisdictions
+        System.Data.Entity.DbSet<MultipleVote> MultipleVotes { get; set; } // MultipleVote
+        System.Data.Entity.DbSet<RankingVote> RankingVotes { get; set; } // RankingVote
+        System.Data.Entity.DbSet<SingleVote> SingleVotes { get; set; } // SingleVote
         System.Data.Entity.DbSet<VoteIssue> VoteIssues { get; set; } // VoteIssue
         System.Data.Entity.DbSet<VoteResult> VoteResults { get; set; } // VoteResults
 
@@ -67,6 +70,9 @@ namespace VotingApp.DataManagement
         public System.Data.Entity.DbSet<Canidate> Canidates { get; set; } // Canidate
         public System.Data.Entity.DbSet<Job> Jobs { get; set; } // Job
         public System.Data.Entity.DbSet<Jurisdiction> Jurisdictions { get; set; } // Jurisdictions
+        public System.Data.Entity.DbSet<MultipleVote> MultipleVotes { get; set; } // MultipleVote
+        public System.Data.Entity.DbSet<RankingVote> RankingVotes { get; set; } // RankingVote
+        public System.Data.Entity.DbSet<SingleVote> SingleVotes { get; set; } // SingleVote
         public System.Data.Entity.DbSet<VoteIssue> VoteIssues { get; set; } // VoteIssue
         public System.Data.Entity.DbSet<VoteResult> VoteResults { get; set; } // VoteResults
 
@@ -122,6 +128,9 @@ namespace VotingApp.DataManagement
             modelBuilder.Configurations.Add(new CanidateConfiguration());
             modelBuilder.Configurations.Add(new JobConfiguration());
             modelBuilder.Configurations.Add(new JurisdictionConfiguration());
+            modelBuilder.Configurations.Add(new MultipleVoteConfiguration());
+            modelBuilder.Configurations.Add(new RankingVoteConfiguration());
+            modelBuilder.Configurations.Add(new SingleVoteConfiguration());
             modelBuilder.Configurations.Add(new VoteIssueConfiguration());
             modelBuilder.Configurations.Add(new VoteResultConfiguration());
         }
@@ -132,6 +141,9 @@ namespace VotingApp.DataManagement
             modelBuilder.Configurations.Add(new CanidateConfiguration(schema));
             modelBuilder.Configurations.Add(new JobConfiguration(schema));
             modelBuilder.Configurations.Add(new JurisdictionConfiguration(schema));
+            modelBuilder.Configurations.Add(new MultipleVoteConfiguration(schema));
+            modelBuilder.Configurations.Add(new RankingVoteConfiguration(schema));
+            modelBuilder.Configurations.Add(new SingleVoteConfiguration(schema));
             modelBuilder.Configurations.Add(new VoteIssueConfiguration(schema));
             modelBuilder.Configurations.Add(new VoteResultConfiguration(schema));
             return modelBuilder;
@@ -148,6 +160,9 @@ namespace VotingApp.DataManagement
         public System.Data.Entity.DbSet<Canidate> Canidates { get; set; }
         public System.Data.Entity.DbSet<Job> Jobs { get; set; }
         public System.Data.Entity.DbSet<Jurisdiction> Jurisdictions { get; set; }
+        public System.Data.Entity.DbSet<MultipleVote> MultipleVotes { get; set; }
+        public System.Data.Entity.DbSet<RankingVote> RankingVotes { get; set; }
+        public System.Data.Entity.DbSet<SingleVote> SingleVotes { get; set; }
         public System.Data.Entity.DbSet<VoteIssue> VoteIssues { get; set; }
         public System.Data.Entity.DbSet<VoteResult> VoteResults { get; set; }
 
@@ -157,6 +172,9 @@ namespace VotingApp.DataManagement
             Canidates = new FakeDbSet<Canidate>("CanidateId");
             Jobs = new FakeDbSet<Job>("JobId");
             Jurisdictions = new FakeDbSet<Jurisdiction>("JurisdictionId");
+            MultipleVotes = new FakeDbSet<MultipleVote>("MultipleVoteId");
+            RankingVotes = new FakeDbSet<RankingVote>("RankingVoteId");
+            SingleVotes = new FakeDbSet<SingleVote>("SingleVoteId");
             VoteIssues = new FakeDbSet<VoteIssue>("VoteIssueId");
             VoteResults = new FakeDbSet<VoteResult>("VoteResultsId");
         }
@@ -507,15 +525,25 @@ namespace VotingApp.DataManagement
         public string Name { get; set; } // Name
         public System.Guid JobId { get; set; } // JobId
         public string Party { get; set; } // Party (length: 50)
-        public bool VotedFor { get; set; } // VotedFor
-        public string Ranking { get; set; } // Ranking (length: 50)
 
         // Reverse navigation
 
         /// <summary>
-        /// Child VoteResults where [VoteResults].[CanindateId] point to this entity (FK_VoteResults_Canidate)
+        /// Child MultipleVotes where [MultipleVote].[CanindateId] point to this entity (FK_MultipleVote_Canidate)
         /// </summary>
-        public virtual System.Collections.Generic.ICollection<VoteResult> VoteResults { get; set; } // VoteResults.FK_VoteResults_Canidate
+        public virtual System.Collections.Generic.ICollection<MultipleVote> MultipleVotes { get; set; } // MultipleVote.FK_MultipleVote_Canidate
+        /// <summary>
+        /// Child RankingVotes where [RankingVote].[PrimeCanindateId] point to this entity (FK_RankingVote_PrimeCanindate)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<RankingVote> PrimeCanindate { get; set; } // RankingVote.FK_RankingVote_PrimeCanindate
+        /// <summary>
+        /// Child RankingVotes where [RankingVote].[SubCanindateId] point to this entity (FK_RankingVote_SubCanidate)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<RankingVote> SubCanindate { get; set; } // RankingVote.FK_RankingVote_SubCanidate
+        /// <summary>
+        /// Child SingleVotes where [SingleVote].[CanindateId] point to this entity (FK_SingleVote_Canidate)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<SingleVote> SingleVotes { get; set; } // SingleVote.FK_SingleVote_Canidate
 
         // Foreign keys
 
@@ -527,8 +555,10 @@ namespace VotingApp.DataManagement
         public Canidate()
         {
             CanidateId = System.Guid.NewGuid();
-            VotedFor = false;
-            VoteResults = new System.Collections.Generic.List<VoteResult>();
+            MultipleVotes = new System.Collections.Generic.List<MultipleVote>();
+            PrimeCanindate = new System.Collections.Generic.List<RankingVote>();
+            SubCanindate = new System.Collections.Generic.List<RankingVote>();
+            SingleVotes = new System.Collections.Generic.List<SingleVote>();
         }
     }
 
@@ -581,6 +611,100 @@ namespace VotingApp.DataManagement
         }
     }
 
+    // MultipleVote
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public class MultipleVote
+    {
+        public System.Guid MultipleVoteId { get; set; } // MultipleVoteId (Primary key)
+        public System.Guid CanindateId { get; set; } // CanindateId
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child VoteResults where [VoteResults].[MultipleVoteId] point to this entity (FK_VoteResults_MultipleVote)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<VoteResult> VoteResults { get; set; } // VoteResults.FK_VoteResults_MultipleVote
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Canidate pointed by [MultipleVote].([CanindateId]) (FK_MultipleVote_Canidate)
+        /// </summary>
+        public virtual Canidate Canidate { get; set; } // FK_MultipleVote_Canidate
+
+        public MultipleVote()
+        {
+            MultipleVoteId = System.Guid.NewGuid();
+            VoteResults = new System.Collections.Generic.List<VoteResult>();
+        }
+    }
+
+    // RankingVote
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public class RankingVote
+    {
+        public System.Guid RankingVoteId { get; set; } // RankingVoteId (Primary key)
+        public System.Guid PrimeCanindateId { get; set; } // PrimeCanindateId
+        public System.Guid SubCanindateId { get; set; } // SubCanindateId
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child VoteResults where [VoteResults].[RankingVoteId] point to this entity (FK_VoteResults_RankingVote)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<VoteResult> VoteResults { get; set; } // VoteResults.FK_VoteResults_RankingVote
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Canidate pointed by [RankingVote].([PrimeCanindateId]) (FK_RankingVote_PrimeCanindate)
+        /// </summary>
+        public virtual Canidate PrimeCanindate { get; set; } // FK_RankingVote_PrimeCanindate
+        /// <summary>
+        /// Parent Canidate pointed by [RankingVote].([SubCanindateId]) (FK_RankingVote_SubCanidate)
+        /// </summary>
+        public virtual Canidate SubCanindate { get; set; } // FK_RankingVote_SubCanidate
+
+        public RankingVote()
+        {
+            RankingVoteId = System.Guid.NewGuid();
+            VoteResults = new System.Collections.Generic.List<VoteResult>();
+        }
+    }
+
+    // SingleVote
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public class SingleVote
+    {
+        public System.Guid SingleVoteId { get; set; } // SingleVoteId (Primary key)
+        public System.Guid? CanindateId { get; set; } // CanindateId
+        public System.Guid? VoteIssueId { get; set; } // VoteIssueId
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child VoteResults where [VoteResults].[SingleVoteId] point to this entity (FK_VoteResults_SingleVote)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<VoteResult> VoteResults { get; set; } // VoteResults.FK_VoteResults_SingleVote
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Canidate pointed by [SingleVote].([CanindateId]) (FK_SingleVote_Canidate)
+        /// </summary>
+        public virtual Canidate Canidate { get; set; } // FK_SingleVote_Canidate
+        /// <summary>
+        /// Parent VoteIssue pointed by [SingleVote].([VoteIssueId]) (FK_SingleVote_VoteIssue)
+        /// </summary>
+        public virtual VoteIssue VoteIssue { get; set; } // FK_SingleVote_VoteIssue
+
+        public SingleVote()
+        {
+            SingleVoteId = System.Guid.NewGuid();
+            VoteResults = new System.Collections.Generic.List<VoteResult>();
+        }
+    }
+
     // VoteIssue
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
     public class VoteIssue
@@ -595,15 +719,15 @@ namespace VotingApp.DataManagement
         // Reverse navigation
 
         /// <summary>
-        /// Child VoteResults where [VoteResults].[VoteIssueId] point to this entity (FK_VoteResults_VoteIssue)
+        /// Child SingleVotes where [SingleVote].[VoteIssueId] point to this entity (FK_SingleVote_VoteIssue)
         /// </summary>
-        public virtual System.Collections.Generic.ICollection<VoteResult> VoteResults { get; set; } // VoteResults.FK_VoteResults_VoteIssue
+        public virtual System.Collections.Generic.ICollection<SingleVote> SingleVotes { get; set; } // SingleVote.FK_SingleVote_VoteIssue
 
         public VoteIssue()
         {
             VoteIssueId = System.Guid.NewGuid();
             VotedFor = false;
-            VoteResults = new System.Collections.Generic.List<VoteResult>();
+            SingleVotes = new System.Collections.Generic.List<SingleVote>();
         }
     }
 
@@ -613,10 +737,13 @@ namespace VotingApp.DataManagement
     {
         public System.Guid VoteResultsId { get; set; } // VoteResultsId (Primary key)
         public System.Guid BallotId { get; set; } // BallotId
-        public System.Guid? CanindateId { get; set; } // CanindateId
-        public System.Guid? VoteIssueId { get; set; } // VoteIssueId
-        public bool VotedFor { get; set; } // VotedFor
+        public System.Guid? RankingVoteId { get; set; } // RankingVoteId
         public int? Ranking { get; set; } // Ranking
+        public System.Guid? SingleVoteId { get; set; } // SingleVoteId
+        public bool? VoteYes { get; set; } // VoteYes
+        public bool? VoteNo { get; set; } // VoteNo
+        public System.Guid? MultipleVoteId { get; set; } // MultipleVoteId
+        public bool? VotedFor { get; set; } // VotedFor
 
         // Foreign keys
 
@@ -625,19 +752,17 @@ namespace VotingApp.DataManagement
         /// </summary>
         public virtual Ballot Ballot { get; set; } // FK_VoteResults_Ballot
         /// <summary>
-        /// Parent Canidate pointed by [VoteResults].([CanindateId]) (FK_VoteResults_Canidate)
+        /// Parent MultipleVote pointed by [VoteResults].([MultipleVoteId]) (FK_VoteResults_MultipleVote)
         /// </summary>
-        public virtual Canidate Canidate { get; set; } // FK_VoteResults_Canidate
+        public virtual MultipleVote MultipleVote { get; set; } // FK_VoteResults_MultipleVote
         /// <summary>
-        /// Parent VoteIssue pointed by [VoteResults].([VoteIssueId]) (FK_VoteResults_VoteIssue)
+        /// Parent RankingVote pointed by [VoteResults].([RankingVoteId]) (FK_VoteResults_RankingVote)
         /// </summary>
-        public virtual VoteIssue VoteIssue { get; set; } // FK_VoteResults_VoteIssue
-
-        public VoteResult()
-        {
-            VoteResultsId = System.Guid.NewGuid();
-            VotedFor = false;
-        }
+        public virtual RankingVote RankingVote { get; set; } // FK_VoteResults_RankingVote
+        /// <summary>
+        /// Parent SingleVote pointed by [VoteResults].([SingleVoteId]) (FK_VoteResults_SingleVote)
+        /// </summary>
+        public virtual SingleVote SingleVote { get; set; } // FK_VoteResults_SingleVote
     }
 
     #endregion
@@ -681,8 +806,6 @@ namespace VotingApp.DataManagement
             Property(x => x.Name).HasColumnName(@"Name").HasColumnType("varchar(max)").IsOptional().IsUnicode(false);
             Property(x => x.JobId).HasColumnName(@"JobId").HasColumnType("uniqueidentifier").IsRequired();
             Property(x => x.Party).HasColumnName(@"Party").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(50);
-            Property(x => x.VotedFor).HasColumnName(@"VotedFor").HasColumnType("bit").IsRequired();
-            Property(x => x.Ranking).HasColumnName(@"Ranking").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(50);
 
             // Foreign keys
             HasRequired(a => a.Job).WithMany(b => b.Canidates).HasForeignKey(c => c.JobId).WillCascadeOnDelete(false); // FK_Canidate_Job
@@ -731,6 +854,76 @@ namespace VotingApp.DataManagement
         }
     }
 
+    // MultipleVote
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public class MultipleVoteConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<MultipleVote>
+    {
+        public MultipleVoteConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public MultipleVoteConfiguration(string schema)
+        {
+            ToTable("MultipleVote", schema);
+            HasKey(x => x.MultipleVoteId);
+
+            Property(x => x.MultipleVoteId).HasColumnName(@"MultipleVoteId").HasColumnType("uniqueidentifier").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.CanindateId).HasColumnName(@"CanindateId").HasColumnType("uniqueidentifier").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Canidate).WithMany(b => b.MultipleVotes).HasForeignKey(c => c.CanindateId).WillCascadeOnDelete(false); // FK_MultipleVote_Canidate
+        }
+    }
+
+    // RankingVote
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public class RankingVoteConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<RankingVote>
+    {
+        public RankingVoteConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public RankingVoteConfiguration(string schema)
+        {
+            ToTable("RankingVote", schema);
+            HasKey(x => x.RankingVoteId);
+
+            Property(x => x.RankingVoteId).HasColumnName(@"RankingVoteId").HasColumnType("uniqueidentifier").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.PrimeCanindateId).HasColumnName(@"PrimeCanindateId").HasColumnType("uniqueidentifier").IsRequired();
+            Property(x => x.SubCanindateId).HasColumnName(@"SubCanindateId").HasColumnType("uniqueidentifier").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.PrimeCanindate).WithMany(b => b.PrimeCanindate).HasForeignKey(c => c.PrimeCanindateId).WillCascadeOnDelete(false); // FK_RankingVote_PrimeCanindate
+            HasRequired(a => a.SubCanindate).WithMany(b => b.SubCanindate).HasForeignKey(c => c.SubCanindateId).WillCascadeOnDelete(false); // FK_RankingVote_SubCanidate
+        }
+    }
+
+    // SingleVote
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
+    public class SingleVoteConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<SingleVote>
+    {
+        public SingleVoteConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public SingleVoteConfiguration(string schema)
+        {
+            ToTable("SingleVote", schema);
+            HasKey(x => x.SingleVoteId);
+
+            Property(x => x.SingleVoteId).HasColumnName(@"SingleVoteId").HasColumnType("uniqueidentifier").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.CanindateId).HasColumnName(@"CanindateId").HasColumnType("uniqueidentifier").IsOptional();
+            Property(x => x.VoteIssueId).HasColumnName(@"VoteIssueId").HasColumnType("uniqueidentifier").IsOptional();
+
+            // Foreign keys
+            HasOptional(a => a.Canidate).WithMany(b => b.SingleVotes).HasForeignKey(c => c.CanindateId).WillCascadeOnDelete(false); // FK_SingleVote_Canidate
+            HasOptional(a => a.VoteIssue).WithMany(b => b.SingleVotes).HasForeignKey(c => c.VoteIssueId).WillCascadeOnDelete(false); // FK_SingleVote_VoteIssue
+        }
+    }
+
     // VoteIssue
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.31.1.0")]
     public class VoteIssueConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<VoteIssue>
@@ -770,14 +963,18 @@ namespace VotingApp.DataManagement
 
             Property(x => x.VoteResultsId).HasColumnName(@"VoteResultsId").HasColumnType("uniqueidentifier").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
             Property(x => x.BallotId).HasColumnName(@"BallotId").HasColumnType("uniqueidentifier").IsRequired();
-            Property(x => x.CanindateId).HasColumnName(@"CanindateId").HasColumnType("uniqueidentifier").IsOptional();
-            Property(x => x.VoteIssueId).HasColumnName(@"VoteIssueId").HasColumnType("uniqueidentifier").IsOptional();
-            Property(x => x.VotedFor).HasColumnName(@"VotedFor").HasColumnType("bit").IsRequired();
+            Property(x => x.RankingVoteId).HasColumnName(@"RankingVoteId").HasColumnType("uniqueidentifier").IsOptional();
             Property(x => x.Ranking).HasColumnName(@"Ranking").HasColumnType("int").IsOptional();
+            Property(x => x.SingleVoteId).HasColumnName(@"SingleVoteId").HasColumnType("uniqueidentifier").IsOptional();
+            Property(x => x.VoteYes).HasColumnName(@"VoteYes").HasColumnType("bit").IsOptional();
+            Property(x => x.VoteNo).HasColumnName(@"VoteNo").HasColumnType("bit").IsOptional();
+            Property(x => x.MultipleVoteId).HasColumnName(@"MultipleVoteId").HasColumnType("uniqueidentifier").IsOptional();
+            Property(x => x.VotedFor).HasColumnName(@"VotedFor").HasColumnType("bit").IsOptional();
 
             // Foreign keys
-            HasOptional(a => a.Canidate).WithMany(b => b.VoteResults).HasForeignKey(c => c.CanindateId).WillCascadeOnDelete(false); // FK_VoteResults_Canidate
-            HasOptional(a => a.VoteIssue).WithMany(b => b.VoteResults).HasForeignKey(c => c.VoteIssueId).WillCascadeOnDelete(false); // FK_VoteResults_VoteIssue
+            HasOptional(a => a.MultipleVote).WithMany(b => b.VoteResults).HasForeignKey(c => c.MultipleVoteId).WillCascadeOnDelete(false); // FK_VoteResults_MultipleVote
+            HasOptional(a => a.RankingVote).WithMany(b => b.VoteResults).HasForeignKey(c => c.RankingVoteId).WillCascadeOnDelete(false); // FK_VoteResults_RankingVote
+            HasOptional(a => a.SingleVote).WithMany(b => b.VoteResults).HasForeignKey(c => c.SingleVoteId).WillCascadeOnDelete(false); // FK_VoteResults_SingleVote
             HasRequired(a => a.Ballot).WithMany(b => b.VoteResults).HasForeignKey(c => c.BallotId).WillCascadeOnDelete(false); // FK_VoteResults_Ballot
         }
     }

@@ -20,15 +20,88 @@ namespace VotingApp.DataManagement
         public List<VotingApp.Models.Canidate> GetCanidatesByJobId(Guid jobId)
         {
             var _builder = new CanidateBuilder();
-            var canidates = _context.Canidates.Where(x => x.JobId == jobId).Select(_builder.GetModel).ToList();
+            var canidates = _context.Canidates.Include("Job").Where(x => x.JobId == jobId).Select(_builder.GetModel).ToList();
             return canidates;
         }
         public List<VotingApp.Models.Canidate> GetCanidatesByParty(string partyName)
         {
             var _builder = new CanidateBuilder();
-            var canidates = _context.Canidates.Where(x => x.Party == partyName).Select(_builder.GetModel).ToList();
+            var canidates = _context.Canidates.Include("Job").Where(x => x.Party == partyName).Select(_builder.GetModel).ToList();
             return canidates;
         }
+
+        public List<VotingApp.Models.Canidate> GetAllCanidates()
+        {
+            var _builder = new CanidateBuilder();
+            var canidates = _context.Canidates
+                            .Include("Job").Select(_builder.GetModel).ToList();
+            return canidates;
+        }
+
+        public List<SingleVoteItem> GetSingleVoteItems()
+        {
+            var _builder = new SingleVoteTicketBuilder();
+            var items = _context.SingleVotes
+                .Include("VoteIssue")
+                .Include("Canidate").Include("Canidate.Job")
+                .Select(_builder.GetModel).ToList();
+            return items;
+        }
+
+        public List<MultipleVoteItem> GetMultiVoteItems()
+        {
+            var _builder = new MultiVoteTicketBuilder();
+            var items = _context.MultipleVotes
+                .Include("Canidate").Include("Canidate.Job")
+                .Select(_builder.GetModel).ToList();
+            return items;
+        }
+
+
+        public List<RankingVoteItem> GetRankedVoteItems()
+        {
+            var _builder = new RankingVoteTicketBuilder();
+            var items = _context.RankingVotes.Include("PrimeCanindate").Include("SubCanindate")
+                .Include("PrimeCanindate.Job").Include("SubCanindate.Job")
+                .Select(_builder.GetModel).ToList();
+            return items;
+        }
+
+
+        public List<SingleVoteItem> GetSingleVoteItemsByIds(List<Guid?> ids)
+        {
+            var _builder = new SingleVoteTicketBuilder();
+            var items = _context.SingleVotes
+                .Include("VoteIssue")
+                .Include("Canidate").Include("Canidate.Job")
+                .Select(_builder.GetModel).ToList();
+
+            items = items.Where(x => ids.Contains(x.SingleVoteTicketId)).ToList();
+            return items;
+        }
+
+        public List<MultipleVoteItem> GetMultiVoteItemsByIds(List<Guid?> ids)
+        {
+            var _builder = new MultiVoteTicketBuilder();
+            var items = _context.MultipleVotes
+                .Include("Canidate").Include("Canidate.Job")
+                .Select(_builder.GetModel).ToList();
+            items = items.Where(x => ids.Contains(x.MultipleVoteItemId)).ToList();
+            return items;
+        }
+
+
+        public List<RankingVoteItem> GetRankedVoteItemsByIds(List<Guid?> ids)
+        {
+            var _builder = new RankingVoteTicketBuilder();
+            var items = _context.RankingVotes.Include("PrimeCanindate").Include("SubCanindate")
+                .Include("PrimeCanindate.Job").Include("SubCanindate.Job")
+                .Select(_builder.GetModel).ToList();
+
+            items = items.Where(x => ids.Contains(x.RankingVoteItemId)).ToList();
+            return items;
+        }
+
 
         public Guid GetJobId(string jobName)
         {
@@ -94,21 +167,75 @@ namespace VotingApp.DataManagement
 
         }
 
-        public void CreateBallot(string BallotName)
+        public Models.Ballot CreateBallot(string BallotName)
         {
-            var _builder = new BallotBuilder();
-            _context.Ballots.Add(new Ballot
+            var builder = new BallotBuilder();
+            var ballot = _context.Ballots.FirstOrDefault(x => x.BallotName == BallotName);
+            if (ballot != null)
+            {
+                return builder.GetModel(ballot);
+            }
+            ballot = new Ballot()
             {
                 BallotId = Guid.NewGuid(),
                 BallotName = BallotName
-            });
+            };
+            _context.Ballots.Add(ballot);
             _context.SaveChanges();
+
+            return builder.GetModel(ballot);
         }
 
-        public List<VoteResults> GetVoteResults(Guid BallotId)
+        public List<VoteResults> GetVoteResults()
         {
             var _builder = new VoteResultsBuilder();
-            return _context.VoteResults.Where(x => x.BallotId == BallotId).Select(_builder.GetModel).ToList();
+            return _context.VoteResults
+                .Include("RankingVote.PrimeCanindate.Job")
+                .Include("RankingVote.SubCanindate.Job")
+                .Include("SingleVote.Canidate.Job")
+                .Include("SingleVote.VoteIssue")
+                .Include("MultipleVote.Canidate.Job")
+                .Select(_builder.GetModel).ToList();
+        }
+
+        public Dictionary<RankingVoteItem, Dictionary<int, int>> GetRankingResults(List<VoteResults> voteResults)
+        {
+
+            var electionResultsForPresidents = new Dictionary<RankingVoteItem, Dictionary<int, int>>();
+
+            var presidentialCandidates = voteResults.Where(x => x.RankingVoteId != null).ToList();
+
+            foreach (var presidentialCandidate in presidentialCandidates)
+            {
+                if (presidentialCandidate.RankingVoteId != null &&
+                    electionResultsForPresidents.ContainsKey(presidentialCandidate.RankingVoteItem))
+                {
+                    if (electionResultsForPresidents[presidentialCandidate.RankingVoteItem]
+                        .ContainsKey(presidentialCandidate.RankingVoteItem.Ranking))
+                    {
+                        var i = electionResultsForPresidents[presidentialCandidate.RankingVoteItem][
+                            (int)presidentialCandidate.Ranking];
+                        electionResultsForPresidents[presidentialCandidate.RankingVoteItem][
+                            (int)presidentialCandidate.Ranking] = i++;
+                        electionResultsForPresidents[presidentialCandidate.RankingVoteItem] = electionResultsForPresidents[presidentialCandidate.RankingVoteItem].OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value);
+                    }
+                    else
+                    {
+                        electionResultsForPresidents[presidentialCandidate.RankingVoteItem].Add((int)presidentialCandidate.Ranking, 1);
+                        electionResultsForPresidents[presidentialCandidate.RankingVoteItem] = electionResultsForPresidents[presidentialCandidate.RankingVoteItem].OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value);
+                    }
+                }
+                else
+                {
+                    if (presidentialCandidate.RankingVoteId == null) continue;
+                    var firstEntry = new Dictionary<int, int>();
+                    firstEntry.Add((int)presidentialCandidate.Ranking, 1);
+                    electionResultsForPresidents.Add(presidentialCandidate.RankingVoteItem, firstEntry);
+                    electionResultsForPresidents[presidentialCandidate.RankingVoteItem] = electionResultsForPresidents[presidentialCandidate.RankingVoteItem].OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value);
+                }
+
+            }
+            return electionResultsForPresidents;
         }
 
         public void SaveElectionResults(List<VoteResult> results)

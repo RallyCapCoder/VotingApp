@@ -18,13 +18,12 @@ namespace VotingWeb.Controllers
             var _manager = new VotingManager();
             var viewModel = new VotingViewModel();
 
-            _manager.CreateBallot("National Election");
-
-            viewModel.BallotIssue = _manager.GetIssueByOfficalName("Constitutional Initiative No. 116");
-            viewModel.DemocraticCanidates = _manager.FillCanindateParty("Democrat");
-            viewModel.RepublicanCanidates = _manager.FillCanindateParty("Republican");
-            viewModel.IndependentCanidates = _manager.FillCanindateParty("Independent");
-            viewModel.SupremeCourt = _manager.FillCanindateParty("Supreme Court");
+            var ballot = _manager.CreateBallot("National Election");
+            viewModel.BallotId = ballot.BallotId;
+            viewModel.PresidentAndVicePres = _manager.GetRankedVoteItems();
+            viewModel.SupremeCourt = _manager.GetSingleVoteItems().FirstOrDefault(x => x.Issue == null);
+            viewModel.StateRep = _manager.GetMultiVoteItems();
+            viewModel.BallotIssue = _manager.GetSingleVoteItems().FirstOrDefault(x => x.Canidate == null);
 
             return View(viewModel);
         }
@@ -35,73 +34,43 @@ namespace VotingWeb.Controllers
 
             var _manager = new VotingManager();
 
-            var ballotId = _manager.GetBallotByName("National Election");
-            List<VoteResult> electionResults = new List<VoteResult>();
+            var electionResults = new List<VoteResult>();
+            foreach (var presidentAndVice in viewModel.PresidentAndVicePres)
+            {
+                electionResults.Add(new VoteResult
+                {
+                    VoteResultsId = Guid.NewGuid(),
+                    BallotId = viewModel.BallotId,
+                    RankingVoteId = presidentAndVice.RankingVoteItemId,
+                    Ranking = presidentAndVice.Ranking,
+                });
+            }
+            foreach (var stateRep in viewModel.StateRep)
+            {
+                electionResults.Add(new VoteResult
+                {
+                    VoteResultsId = Guid.NewGuid(),
+                    BallotId = viewModel.BallotId,
+                    MultipleVoteId = stateRep.MultipleVoteItemId,
+                    VotedFor = stateRep.VotedFor,
+                });
+            }
             electionResults.Add(new VoteResult
             {
-                CanindateId = viewModel.DemocraticCanidates.President.CanidateId,
-                BallotId = ballotId,
-                Ranking = viewModel.DemocraticCanidates.President.Ranking
+                VoteResultsId = Guid.NewGuid(),
+                BallotId = viewModel.BallotId,
+                SingleVoteId = viewModel.SupremeCourt.SingleVoteTicketId,
+                VoteYes = viewModel.SupremeCourt.YesVote,
+                VoteNo = viewModel.SupremeCourt.NoVote,
             });
+
             electionResults.Add(new VoteResult
             {
-                CanindateId = viewModel.DemocraticCanidates.VicePresident.CanidateId,
-                BallotId = ballotId,
-                Ranking = viewModel.DemocraticCanidates.President.Ranking
-            });
-            electionResults.Add(new VoteResult
-            {
-                CanindateId = viewModel.RepublicanCanidates.President.CanidateId,
-                BallotId = ballotId,
-                Ranking = viewModel.RepublicanCanidates.President.Ranking
-            });
-            electionResults.Add(new VoteResult
-            {
-                CanindateId = viewModel.RepublicanCanidates.VicePresident.CanidateId,
-                BallotId = ballotId,
-                Ranking = viewModel.RepublicanCanidates.President.Ranking
-            });
-            electionResults.Add(new VoteResult
-            {
-                CanindateId = viewModel.IndependentCanidates.President.CanidateId,
-                BallotId = ballotId,
-                Ranking = viewModel.IndependentCanidates.President.Ranking
-            });
-            electionResults.Add(new VoteResult
-            {
-                CanindateId = viewModel.IndependentCanidates.VicePresident.CanidateId,
-                BallotId = ballotId,
-                Ranking = viewModel.IndependentCanidates.President.Ranking
-            });
-            electionResults.Add(new VoteResult
-            {
-                CanindateId = viewModel.SupremeCourt.SupremeCourtJustice.CanidateId,
-                BallotId = ballotId,
-                VotedFor = viewModel.SupremeCourt.SupremeCourtJustice.VotedFor
-            });
-            electionResults.Add(new VoteResult
-            {
-                CanindateId = viewModel.RepublicanCanidates.StateRep.CanidateId,
-                BallotId = ballotId,
-                VotedFor = viewModel.RepublicanCanidates.StateRep.VotedFor
-            });
-            electionResults.Add(new VoteResult
-            {
-                CanindateId = viewModel.DemocraticCanidates.StateRep.CanidateId,
-                BallotId = ballotId,
-                VotedFor = viewModel.DemocraticCanidates.StateRep.VotedFor
-            });
-            electionResults.Add(new VoteResult
-            {
-                CanindateId = viewModel.IndependentCanidates.StateRep.CanidateId,
-                BallotId = ballotId,
-                VotedFor = viewModel.IndependentCanidates.StateRep.VotedFor
-            });
-            electionResults.Add(new VoteResult
-            {
-                VoteIssueId = viewModel.BallotIssue.VoteIssueId,
-                BallotId = ballotId,
-                VotedFor = viewModel.BallotIssue.VotedFor
+                VoteResultsId = Guid.NewGuid(),
+                BallotId = viewModel.BallotId,
+                SingleVoteId = viewModel.BallotIssue.SingleVoteTicketId,
+                VoteYes = viewModel.BallotIssue.YesVote,
+                VoteNo = viewModel.BallotIssue.NoVote,
             });
 
             _manager.SaveElectionResults(electionResults);

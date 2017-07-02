@@ -8,18 +8,29 @@ namespace VotingWeb.Models
 {
     public class ElectionResultsViewModel
     {
-        public ElectionResultsViewModel()
-        {
-            PreseidentResult = new List<RankedResults>();
-            SupremeCourtResult = new SingleVoteResults();
-            StateRepResult = new List<MultipleVotesResult>();
-            BallotIssueResults = new SingleVoteResults();
-        }
 
-        public List<RankedResults> PreseidentResult { get; set; }
-        public SingleVoteResults SupremeCourtResult { get; set; }
-        public List<MultipleVotesResult> StateRepResult { get; set; }
-        public SingleVoteResults BallotIssueResults { get; set; }
+
+        public List<VoteResults> VoteResults { get; set; }
+
+        public Dictionary<RankingVoteItem, Dictionary<int, int>> PresidentResults { get; set; }
+
+        public int NumberOfRankings { get; set; }
+
+
+        public void GetNumberOfRankings()
+        {
+            NumberOfRankings = 0;
+            foreach (var presidentResult in PresidentResults)
+            {
+                foreach (var rankCount in presidentResult.Value)
+                {
+                    if (rankCount.Key > NumberOfRankings)
+                    {
+                        NumberOfRankings = rankCount.Key;
+                    }
+                }
+            }
+        }
 
     }
 }

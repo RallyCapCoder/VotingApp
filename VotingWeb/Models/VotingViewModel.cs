@@ -9,10 +9,9 @@ namespace VotingWeb.Models
     public class VotingViewModel 
     {
         public Guid BallotId { get; set; }
-        public CanindateParty DemocraticCanidates { get; set; }
-        public CanindateParty RepublicanCanidates { get; set; }
-        public CanindateParty IndependentCanidates { get; set; }
-        public CanindateParty SupremeCourt { get; set; }
-        public VoteIssue BallotIssue { get; set; }
+        public List<RankingVoteItem> PresidentAndVicePres { get; set; }
+        public SingleVoteItem SupremeCourt { get; set; }
+        public List<MultipleVoteItem> StateRep { get; set; }
+        public SingleVoteItem BallotIssue { get; set; }
     }
 }

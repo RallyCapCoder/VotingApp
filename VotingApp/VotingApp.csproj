@@ -53,6 +53,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataManagement\Builders\MultiVoteTicketBuilder.cs" />
+    <Compile Include="DataManagement\Builders\RankingVoteTicketBuilder.cs" />
+    <Compile Include="Models\MultipleVoteItem.cs" />
+    <Compile Include="DataManagement\Builders\SingleVoteTicketBuilder.cs" />
     <Compile Include="DataManagement\Builders\VoteIssueBuilder.cs" />
     <Compile Include="DataManagement\Builders\VoteResultsBuilder.cs" />
     <Compile Include="Models\Ballot.cs" />
@@ -70,6 +74,8 @@
     <Compile Include="Models\CanindateParty.cs" />
     <Compile Include="Models\Job.cs" />
     <Compile Include="Models\Jurisdiction .cs" />
+    <Compile Include="Models\RankingVoteItem.cs" />
+    <Compile Include="Models\SingleVoteItem.cs" />
     <Compile Include="Models\VoteIssue.cs" />
     <Compile Include="Models\VoteResults.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
