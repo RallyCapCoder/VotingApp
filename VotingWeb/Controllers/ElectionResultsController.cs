@@ -10,7 +10,6 @@ namespace VotingWeb.Controllers
 {
     public class ElectionResultsController : Controller
     {
-        // GET: ElectionResults
         public ActionResult Index()
         {
             var _manager = new VotingManager();
@@ -20,7 +19,10 @@ namespace VotingWeb.Controllers
 
             viewModel.PresidentResults = _manager.GetRankingResults(results);
             viewModel.GetNumberOfRankings();
-
+            var singleVoteItems = _manager.GetSingleVoteResults(results);
+            viewModel.SupremeCourtResult = singleVoteItems.Where(x => x.Key.Canidate != null).ToDictionary(x => x.Key, x => x.Value);
+            viewModel.BallotIssue = singleVoteItems.Where(x => x.Key.Issue != null).ToDictionary(x => x.Key, x => x.Value);
+            viewModel.StateReps = _manager.GetMultiVoteResults(results);
             return View(viewModel);
         }
 

@@ -14,6 +14,12 @@ namespace VotingWeb.Models
 
         public Dictionary<RankingVoteItem, Dictionary<int, int>> PresidentResults { get; set; }
 
+        public Dictionary<SingleVoteItem,Dictionary<bool,int>> SupremeCourtResult { get; set; }
+
+        public Dictionary<MultipleVoteItem,int> StateReps { get; set; }
+
+        public Dictionary<SingleVoteItem, Dictionary<bool, int>> BallotIssue { get; set; }
+
         public int NumberOfRankings { get; set; }
 
 

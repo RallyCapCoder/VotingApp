@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using VotingApp.DataManagement.Builders;
@@ -236,6 +237,83 @@ namespace VotingApp.DataManagement
 
             }
             return electionResultsForPresidents;
+        }
+
+
+        public Dictionary<SingleVoteItem, Dictionary<bool, int>> GetSingleVoteResults(List<VoteResults> voteResults)
+        {
+            
+            var electionResultsForSingleVoteItems = new Dictionary<SingleVoteItem, Dictionary<bool, int>>();
+
+            var singleVoteItems = voteResults.Where(x => x.SingleVoteId != null).ToList();
+
+            foreach (var singleVoteItem in singleVoteItems)
+            {
+
+                if (singleVoteItem.SingleVoteItem != null &&
+                    electionResultsForSingleVoteItems.ContainsKey(singleVoteItem.SingleVoteItem))
+                {
+                    if (singleVoteItem.VotedYes != null && singleVoteItem.VotedYes.Value)
+                    {
+                        electionResultsForSingleVoteItems[singleVoteItem.SingleVoteItem][true]++;
+                    }
+                    if (singleVoteItem.VotedNo != null && singleVoteItem.VotedNo.Value)
+                    {
+                        electionResultsForSingleVoteItems[singleVoteItem.SingleVoteItem][false]++;
+                    }
+                }
+                else
+                {
+                    var firstEntry = new Dictionary<bool, int> {{true, 0}, {false, 0}};
+                    if (singleVoteItem.VotedYes != null && singleVoteItem.VotedYes.Value)
+                    {
+                        firstEntry[true]++;
+                    }
+                    if (singleVoteItem.VotedNo != null && singleVoteItem.VotedNo.Value)
+                    {
+                        firstEntry[false]++;
+                    }
+                    if (singleVoteItem.SingleVoteItem != null)
+                        electionResultsForSingleVoteItems.Add(singleVoteItem.SingleVoteItem, firstEntry);
+                }
+            }
+            return electionResultsForSingleVoteItems;
+        }
+
+
+        public Dictionary<MultipleVoteItem,int> GetMultiVoteResults(List<VoteResults> voteResults)
+        {
+
+            var electionResultsForMultiVoteItems = new Dictionary<MultipleVoteItem,int>();
+
+            var multiVoteItems = voteResults.Where(x => x.MultipleVoteId != null).ToList();
+
+            foreach (var multiVoteItem in multiVoteItems)
+            {
+
+                if (multiVoteItem.MultipleVoteItem != null &&
+                    electionResultsForMultiVoteItems.ContainsKey(multiVoteItem.MultipleVoteItem))
+                {
+                    if (multiVoteItem.MultipleVoteItem.VotedFor)
+                    {
+                        electionResultsForMultiVoteItems[multiVoteItem.MultipleVoteItem]++;
+                    }
+                }
+                else
+                {
+                    if (multiVoteItem.MultipleVoteItem != null)
+                        if ((bool) multiVoteItem.VotedFor)
+                        {
+                            electionResultsForMultiVoteItems.Add(multiVoteItem.MultipleVoteItem, 1);
+                        }
+                        else
+                        {
+                            electionResultsForMultiVoteItems.Add(multiVoteItem.MultipleVoteItem, 0);
+                        }
+                       
+                }
+            }
+            return electionResultsForMultiVoteItems;
         }
 
         public void SaveElectionResults(List<VoteResult> results)

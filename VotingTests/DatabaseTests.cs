@@ -102,5 +102,58 @@ namespace VotingTests
 
         }
 
+        [TestMethod]
+        public void GetSingleVoteElectionResults()
+        {
+            var _context = new VotingBooth();
+            var _manager = new VotingManager();
+
+            var canidates = _manager.GetVoteResults();
+
+
+
+            var electionResultsForSingleVoteItems = new Dictionary<SingleVoteItem, Dictionary<bool, int>>();
+
+            var singleVoteItems = canidates.Where(x => x.SingleVoteId != null).ToList();
+
+            foreach (var singleVoteItem in singleVoteItems)
+            {
+
+                if (singleVoteItem.SingleVoteItem != null &&
+                    electionResultsForSingleVoteItems.ContainsKey(singleVoteItem.SingleVoteItem))
+                {
+                    if (singleVoteItem.VotedYes != null && singleVoteItem.VotedYes.Value)
+                    {
+                        electionResultsForSingleVoteItems[singleVoteItem.SingleVoteItem][true]++;
+                    }
+                    if (singleVoteItem.VotedNo != null && singleVoteItem.VotedNo.Value)
+                    {
+                        electionResultsForSingleVoteItems[singleVoteItem.SingleVoteItem][false]++;
+                    }
+                }
+                else
+                {
+                    var firstEntry = new Dictionary<bool, int>();
+                    firstEntry.Add(true, 0);
+                    firstEntry.Add(false, 0);
+                    if (singleVoteItem.VotedYes != null && singleVoteItem.VotedYes.Value)
+                    {
+                        firstEntry[true]++;
+                    }
+                    if (singleVoteItem.VotedNo != null && singleVoteItem.VotedNo.Value)
+                    {
+                        firstEntry[false]++;
+                    }
+                    if (singleVoteItem.SingleVoteItem != null)
+                        electionResultsForSingleVoteItems.Add(singleVoteItem.SingleVoteItem, firstEntry);
+                }
+            }
+
+
+            var test = electionResultsForSingleVoteItems;
+
+
+        }
+
     }
 }
