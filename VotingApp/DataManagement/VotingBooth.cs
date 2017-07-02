@@ -556,7 +556,7 @@ namespace VotingApp.DataManagement
         public bool LockoutEnabled { get; set; } // LockoutEnabled
         public int AccessFailedCount { get; set; } // AccessFailedCount
         public string UserName { get; set; } // UserName (length: 256)
-        public string DriversLicense { get; set; } // DriversLicense (length: 256)
+        public string DrivingLicense { get; set; } // DrivingLicense (length: 256)
 
         // Reverse navigation
 
@@ -572,11 +572,16 @@ namespace VotingApp.DataManagement
         /// Child AspNetUserLogins where [AspNetUserLogins].[UserId] point to this entity (FK_dbo.AspNetUserLogins_dbo.AspNetUsers_UserId)
         /// </summary>
         public virtual System.Collections.Generic.ICollection<AspNetUserLogin> AspNetUserLogins { get; set; } // AspNetUserLogins.FK_dbo.AspNetUserLogins_dbo.AspNetUsers_UserId
+        /// <summary>
+        /// Child Ballots where [Ballot].[AspNetUserId] point to this entity (FK_Ballot_AspNetUsers)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<Ballot> Ballots { get; set; } // Ballot.FK_Ballot_AspNetUsers
 
         public AspNetUser()
         {
             AspNetUserClaims = new System.Collections.Generic.List<AspNetUserClaim>();
             AspNetUserLogins = new System.Collections.Generic.List<AspNetUserLogin>();
+            Ballots = new System.Collections.Generic.List<Ballot>();
             AspNetRoles = new System.Collections.Generic.List<AspNetRole>();
         }
     }
@@ -620,18 +625,18 @@ namespace VotingApp.DataManagement
     {
         public System.Guid BallotId { get; set; } // BallotId (Primary key)
         public string BallotName { get; set; } // BallotName
+        public string AspNetUserId { get; set; } // AspNetUserId (length: 128)
 
-        // Reverse navigation
+        // Foreign keys
 
         /// <summary>
-        /// Child VoteResults where [VoteResults].[BallotId] point to this entity (FK_VoteResults_Ballot)
+        /// Parent AspNetUser pointed by [Ballot].([AspNetUserId]) (FK_Ballot_AspNetUsers)
         /// </summary>
-        public virtual System.Collections.Generic.ICollection<VoteResult> VoteResults { get; set; } // VoteResults.FK_VoteResults_Ballot
+        public virtual AspNetUser AspNetUser { get; set; } // FK_Ballot_AspNetUsers
 
         public Ballot()
         {
             BallotId = System.Guid.NewGuid();
-            VoteResults = new System.Collections.Generic.List<VoteResult>();
         }
     }
 
@@ -867,10 +872,6 @@ namespace VotingApp.DataManagement
         // Foreign keys
 
         /// <summary>
-        /// Parent Ballot pointed by [VoteResults].([BallotId]) (FK_VoteResults_Ballot)
-        /// </summary>
-        public virtual Ballot Ballot { get; set; } // FK_VoteResults_Ballot
-        /// <summary>
         /// Parent MultipleVote pointed by [VoteResults].([MultipleVoteId]) (FK_VoteResults_MultipleVote)
         /// </summary>
         public virtual MultipleVote MultipleVote { get; set; } // FK_VoteResults_MultipleVote
@@ -939,7 +940,7 @@ namespace VotingApp.DataManagement
             Property(x => x.LockoutEnabled).HasColumnName(@"LockoutEnabled").HasColumnType("bit").IsRequired();
             Property(x => x.AccessFailedCount).HasColumnName(@"AccessFailedCount").HasColumnType("int").IsRequired();
             Property(x => x.UserName).HasColumnName(@"UserName").HasColumnType("nvarchar").IsRequired().HasMaxLength(256);
-            Property(x => x.DriversLicense).HasColumnName(@"DriversLicense").HasColumnType("nvarchar").IsOptional().HasMaxLength(256);
+            Property(x => x.DrivingLicense).HasColumnName(@"DrivingLicense").HasColumnType("nvarchar").IsOptional().HasMaxLength(256);
         }
     }
 
@@ -1006,6 +1007,10 @@ namespace VotingApp.DataManagement
 
             Property(x => x.BallotId).HasColumnName(@"BallotId").HasColumnType("uniqueidentifier").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
             Property(x => x.BallotName).HasColumnName(@"BallotName").HasColumnType("varchar(max)").IsOptional().IsUnicode(false);
+            Property(x => x.AspNetUserId).HasColumnName(@"AspNetUserId").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+
+            // Foreign keys
+            HasRequired(a => a.AspNetUser).WithMany(b => b.Ballots).HasForeignKey(c => c.AspNetUserId).WillCascadeOnDelete(false); // FK_Ballot_AspNetUsers
         }
     }
 
@@ -1197,7 +1202,6 @@ namespace VotingApp.DataManagement
             HasOptional(a => a.MultipleVote).WithMany(b => b.VoteResults).HasForeignKey(c => c.MultipleVoteId).WillCascadeOnDelete(false); // FK_VoteResults_MultipleVote
             HasOptional(a => a.RankingVote).WithMany(b => b.VoteResults).HasForeignKey(c => c.RankingVoteId).WillCascadeOnDelete(false); // FK_VoteResults_RankingVote
             HasOptional(a => a.SingleVote).WithMany(b => b.VoteResults).HasForeignKey(c => c.SingleVoteId).WillCascadeOnDelete(false); // FK_VoteResults_SingleVote
-            HasRequired(a => a.Ballot).WithMany(b => b.VoteResults).HasForeignKey(c => c.BallotId).WillCascadeOnDelete(false); // FK_VoteResults_Ballot
         }
     }
 

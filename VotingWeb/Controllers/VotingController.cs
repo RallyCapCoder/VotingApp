@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using VotingApp.DataManagement;
 using VotingApp.Models;
 using VotingWeb.Models;
@@ -13,14 +15,19 @@ namespace VotingWeb.Controllers
     public class VotingController : Controller
     {
         private static Logger log = LogManager.GetLogger("VoteLog");
-        // GET: Voting
         public ActionResult Index()
         {
+            ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
             //When you go to page we should create a new ballot and save it to db
             var _manager = new VotingManager();
             var viewModel = new VotingViewModel();
             log.Info("Creating Ballot");
-            var ballot = _manager.CreateBallot("National Election" + DateTime.Now);
+            var ballot = _manager.CreateBallot("National Election" + DateTime.Now, user.Id);
+            if (ballot == null)
+            {
+                
+                return RedirectToAction("Index", "Home");
+            }
             viewModel.BallotId = ballot.BallotId;
             log.Info("Getting Presidential and Vice Presidential Canindates");
             viewModel.PresidentAndVicePres = _manager.GetRankedVoteItems();

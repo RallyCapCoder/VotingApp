@@ -168,18 +168,19 @@ namespace VotingApp.DataManagement
 
         }
 
-        public Models.Ballot CreateBallot(string BallotName)
+        public Models.Ballot CreateBallot(string BallotName, string userId)
         {
             var builder = new BallotBuilder();
-            var ballot = _context.Ballots.FirstOrDefault(x => x.BallotName == BallotName);
+            var ballot = _context.Ballots.FirstOrDefault(x => x.AspNetUserId == userId);
             if (ballot != null)
             {
-                return builder.GetModel(ballot);
+                return null;
             }
             ballot = new Ballot()
             {
                 BallotId = Guid.NewGuid(),
-                BallotName = BallotName
+                BallotName = BallotName,
+                AspNetUserId = userId
             };
             _context.Ballots.Add(ballot);
             _context.SaveChanges();
