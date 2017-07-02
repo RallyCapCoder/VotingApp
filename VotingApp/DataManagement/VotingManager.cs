@@ -202,28 +202,27 @@ namespace VotingApp.DataManagement
         public Dictionary<RankingVoteItem, Dictionary<int, int>> GetRankingResults(List<VoteResults> voteResults)
         {
 
-            var electionResultsForPresidents = new Dictionary<RankingVoteItem, Dictionary<int, int>>();
+            var electionResultsForPresidents = new Dictionary<Guid, RankingVoteResults>();
 
             var presidentialCandidates = voteResults.Where(x => x.RankingVoteId != null).ToList();
 
             foreach (var presidentialCandidate in presidentialCandidates)
             {
                 if (presidentialCandidate.RankingVoteId != null &&
-                    electionResultsForPresidents.ContainsKey(presidentialCandidate.RankingVoteItem))
+                    electionResultsForPresidents.ContainsKey((Guid) presidentialCandidate.RankingVoteId))
                 {
-                    if (electionResultsForPresidents[presidentialCandidate.RankingVoteItem]
-                        .ContainsKey(presidentialCandidate.RankingVoteItem.Ranking))
+                    if (electionResultsForPresidents[(Guid)presidentialCandidate.RankingVoteId].Rankings.ContainsKey((int)presidentialCandidate.Ranking))
                     {
-                        var i = electionResultsForPresidents[presidentialCandidate.RankingVoteItem][
-                            (int)presidentialCandidate.Ranking];
-                        electionResultsForPresidents[presidentialCandidate.RankingVoteItem][
-                            (int)presidentialCandidate.Ranking] = i++;
-                        electionResultsForPresidents[presidentialCandidate.RankingVoteItem] = electionResultsForPresidents[presidentialCandidate.RankingVoteItem].OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value);
+                        var i = electionResultsForPresidents[(Guid)presidentialCandidate.RankingVoteId].Rankings[
+                            (int)presidentialCandidate.Ranking] + 1;
+                        electionResultsForPresidents[(Guid)presidentialCandidate.RankingVoteId].Rankings[
+                            (int)presidentialCandidate.Ranking] = i;
+                        electionResultsForPresidents[(Guid)presidentialCandidate.RankingVoteId].Rankings = electionResultsForPresidents[(Guid)presidentialCandidate.RankingVoteId].Rankings.OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value);
                     }
                     else
                     {
-                        electionResultsForPresidents[presidentialCandidate.RankingVoteItem].Add((int)presidentialCandidate.Ranking, 1);
-                        electionResultsForPresidents[presidentialCandidate.RankingVoteItem] = electionResultsForPresidents[presidentialCandidate.RankingVoteItem].OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value);
+                        electionResultsForPresidents[(Guid)presidentialCandidate.RankingVoteId].Rankings.Add((int)presidentialCandidate.Ranking, 1);
+                        electionResultsForPresidents[(Guid)presidentialCandidate.RankingVoteId].Rankings = electionResultsForPresidents[(Guid)presidentialCandidate.RankingVoteId].Rankings.OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value);
                     }
                 }
                 else
@@ -231,19 +230,19 @@ namespace VotingApp.DataManagement
                     if (presidentialCandidate.RankingVoteId == null) continue;
                     var firstEntry = new Dictionary<int, int>();
                     firstEntry.Add((int)presidentialCandidate.Ranking, 1);
-                    electionResultsForPresidents.Add(presidentialCandidate.RankingVoteItem, firstEntry);
-                    electionResultsForPresidents[presidentialCandidate.RankingVoteItem] = electionResultsForPresidents[presidentialCandidate.RankingVoteItem].OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value);
+                    electionResultsForPresidents.Add((Guid)presidentialCandidate.RankingVoteId, new RankingVoteResults{RankingVoteItem = presidentialCandidate.RankingVoteItem,Rankings = firstEntry});
+                    electionResultsForPresidents[(Guid)presidentialCandidate.RankingVoteId].Rankings = electionResultsForPresidents[(Guid)presidentialCandidate.RankingVoteId].Rankings.OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value);
                 }
 
             }
-            return electionResultsForPresidents;
+            return electionResultsForPresidents.ToDictionary(x => x.Value.RankingVoteItem, x => x.Value.Rankings);
         }
 
 
         public Dictionary<SingleVoteItem, Dictionary<bool, int>> GetSingleVoteResults(List<VoteResults> voteResults)
         {
             
-            var electionResultsForSingleVoteItems = new Dictionary<SingleVoteItem, Dictionary<bool, int>>();
+            var electionResultsForSingleVoteItems = new Dictionary<Guid, SingleVoteResults>();
 
             var singleVoteItems = voteResults.Where(x => x.SingleVoteId != null).ToList();
 
@@ -251,15 +250,15 @@ namespace VotingApp.DataManagement
             {
 
                 if (singleVoteItem.SingleVoteItem != null &&
-                    electionResultsForSingleVoteItems.ContainsKey(singleVoteItem.SingleVoteItem))
+                    electionResultsForSingleVoteItems.ContainsKey((Guid)singleVoteItem.SingleVoteId))
                 {
                     if (singleVoteItem.VotedYes != null && singleVoteItem.VotedYes.Value)
                     {
-                        electionResultsForSingleVoteItems[singleVoteItem.SingleVoteItem][true]++;
+                        electionResultsForSingleVoteItems[(Guid)singleVoteItem.SingleVoteId].Votes[true]++;
                     }
                     if (singleVoteItem.VotedNo != null && singleVoteItem.VotedNo.Value)
                     {
-                        electionResultsForSingleVoteItems[singleVoteItem.SingleVoteItem][false]++;
+                        electionResultsForSingleVoteItems[(Guid)singleVoteItem.SingleVoteId].Votes[false]++;
                     }
                 }
                 else
@@ -274,17 +273,22 @@ namespace VotingApp.DataManagement
                         firstEntry[false]++;
                     }
                     if (singleVoteItem.SingleVoteItem != null)
-                        electionResultsForSingleVoteItems.Add(singleVoteItem.SingleVoteItem, firstEntry);
+                        electionResultsForSingleVoteItems.Add((Guid) singleVoteItem.SingleVoteId,
+                            new SingleVoteResults()
+                            {
+                                SingleVoteItem = singleVoteItem.SingleVoteItem,
+                                Votes = firstEntry
+                            });
                 }
             }
-            return electionResultsForSingleVoteItems;
+            return electionResultsForSingleVoteItems.ToDictionary(x => x.Value.SingleVoteItem, x => x.Value.Votes);
         }
 
 
         public Dictionary<MultipleVoteItem,int> GetMultiVoteResults(List<VoteResults> voteResults)
         {
 
-            var electionResultsForMultiVoteItems = new Dictionary<MultipleVoteItem,int>();
+            var electionResultsForMultiVoteItems = new Dictionary<Guid, MultiVoteResults>();
 
             var multiVoteItems = voteResults.Where(x => x.MultipleVoteId != null).ToList();
 
@@ -292,11 +296,11 @@ namespace VotingApp.DataManagement
             {
 
                 if (multiVoteItem.MultipleVoteItem != null &&
-                    electionResultsForMultiVoteItems.ContainsKey(multiVoteItem.MultipleVoteItem))
+                    electionResultsForMultiVoteItems.ContainsKey((Guid)multiVoteItem.MultipleVoteId))
                 {
-                    if (multiVoteItem.MultipleVoteItem.VotedFor)
+                    if ((bool)multiVoteItem.VotedFor)
                     {
-                        electionResultsForMultiVoteItems[multiVoteItem.MultipleVoteItem]++;
+                        electionResultsForMultiVoteItems[(Guid)multiVoteItem.MultipleVoteId].Votes = electionResultsForMultiVoteItems[(Guid)multiVoteItem.MultipleVoteId].Votes + 1;
                     }
                 }
                 else
@@ -304,16 +308,16 @@ namespace VotingApp.DataManagement
                     if (multiVoteItem.MultipleVoteItem != null)
                         if ((bool) multiVoteItem.VotedFor)
                         {
-                            electionResultsForMultiVoteItems.Add(multiVoteItem.MultipleVoteItem, 1);
+                            electionResultsForMultiVoteItems.Add((Guid)multiVoteItem.MultipleVoteId, new MultiVoteResults{MultipleVoteItem = multiVoteItem.MultipleVoteItem , Votes = 1});
                         }
                         else
                         {
-                            electionResultsForMultiVoteItems.Add(multiVoteItem.MultipleVoteItem, 0);
+                            electionResultsForMultiVoteItems.Add((Guid)multiVoteItem.MultipleVoteId, new MultiVoteResults { MultipleVoteItem = multiVoteItem.MultipleVoteItem, Votes = 0 });
                         }
                        
                 }
             }
-            return electionResultsForMultiVoteItems;
+            return electionResultsForMultiVoteItems.ToDictionary(x => x.Value.MultipleVoteItem, x => x.Value.Votes);
         }
 
         public void SaveElectionResults(List<VoteResult> results)

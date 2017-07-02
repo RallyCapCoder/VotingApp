@@ -18,7 +18,7 @@ namespace VotingWeb.Controllers
             var _manager = new VotingManager();
             var viewModel = new VotingViewModel();
 
-            var ballot = _manager.CreateBallot("National Election");
+            var ballot = _manager.CreateBallot("National Election" + DateTime.Now);
             viewModel.BallotId = ballot.BallotId;
             viewModel.PresidentAndVicePres = _manager.GetRankedVoteItems();
             viewModel.SupremeCourt = _manager.GetSingleVoteItems().FirstOrDefault(x => x.Issue == null);

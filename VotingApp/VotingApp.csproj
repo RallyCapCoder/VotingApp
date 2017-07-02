@@ -74,7 +74,9 @@
     <Compile Include="Models\CanindateParty.cs" />
     <Compile Include="Models\Job.cs" />
     <Compile Include="Models\Jurisdiction .cs" />
+    <Compile Include="Models\MultiVoteResults.cs" />
     <Compile Include="Models\RankingVoteItem.cs" />
+    <Compile Include="Models\RankingVoteResults.cs" />
     <Compile Include="Models\SingleVoteItem.cs" />
     <Compile Include="Models\SingleVoteResults.cs" />
     <Compile Include="Models\VoteIssue.cs" />

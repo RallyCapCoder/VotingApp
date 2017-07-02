@@ -32,11 +32,14 @@
                 </td>
                 @for (int i = 0; i <= Model.NumberOfRankings; i++)
                 {
-                    var defaultValue = 0;
+                    
                     <td>
                         @foreach (var totalOfRankings in result.Value)
                         {
-                            @(totalOfRankings.Key == i ? totalOfRankings.Value : defaultValue)
+                            if (@totalOfRankings.Key == i)
+                            {
+                                @totalOfRankings.Value
+                            }
                         }
                     </td>
                 }

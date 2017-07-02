@@ -149,8 +149,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ElectionResultsViewModel.cs" />
-    <Compile Include="Models\MultipleVotesResult.cs" />
-    <Compile Include="Models\RankedResults.cs" />
     <Compile Include="Models\VotingViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
