@@ -556,6 +556,7 @@ namespace VotingApp.DataManagement
         public bool LockoutEnabled { get; set; } // LockoutEnabled
         public int AccessFailedCount { get; set; } // AccessFailedCount
         public string UserName { get; set; } // UserName (length: 256)
+        public string DriversLicense { get; set; } // DriversLicense (length: 256)
 
         // Reverse navigation
 
@@ -938,6 +939,7 @@ namespace VotingApp.DataManagement
             Property(x => x.LockoutEnabled).HasColumnName(@"LockoutEnabled").HasColumnType("bit").IsRequired();
             Property(x => x.AccessFailedCount).HasColumnName(@"AccessFailedCount").HasColumnType("int").IsRequired();
             Property(x => x.UserName).HasColumnName(@"UserName").HasColumnType("nvarchar").IsRequired().HasMaxLength(256);
+            Property(x => x.DriversLicense).HasColumnName(@"DriversLicense").HasColumnType("nvarchar").IsOptional().HasMaxLength(256);
         }
     }
 
