@@ -4,77 +4,141 @@
     ViewBag.Title = "Index";
 }
 
+@section Scripts {
+    <script>
+        $(function() {
+            $("#SupremeCourtYes").click(function() {
+                if ($("#SupremeCourtYes").is(":checked")) {
+                    $("#SupremeCourtNo").prop("disabled", true);
+                } else {
+                    $("#SupremeCourtNo").prop("disabled", false);
+                }
+            });
+            $("#SupremeCourtNo").click(function() {
+                if ($("#SupremeCourtNo").is(":checked")) {
+                    $("#SupremeCourtYes").prop("disabled", true);
+                } else {
+                    $("#SupremeCourtYes").prop("disabled", false);
+                }
+            });
+
+            $("#BallotIssueYes").click(function() {
+                if ($("#BallotIssueYes").is(":checked")) {
+                    $("#BallotIssueNo").prop("disabled", true);
+                } else {
+                    $("#BallotIssueNo").prop("disabled", false);
+                }
+            });
+            $("#BallotIssueNo").click(function() {
+                if ($("#BallotIssueNo").is(":checked")) {
+                    $("#BallotIssueYes").prop("disabled", true);
+                } else {
+                    $("#BallotIssueYes").prop("disabled", false);
+                }
+            });
+            var count = 0;
+            $(".checkbox-inline").click(function() {
+                if ($(this).is(':checked')) {
+                    count++;
+                    if (count >= 2) {
+                        var unChecked = $('.checkbox-inline:checkbox').not(':checked');
+                        unChecked.each(function() {
+                            $(this).prop("disabled", true);
+                        });
+                    }
+
+                }
+                if (!$(this).is(':checked')) {
+                    count--;
+                    if (count <= 2) {
+                        $(".checkbox-inline").each(function() {
+                            $(this).prop("disabled", false);
+                        });
+                        count = 0;
+                    }
+                }
+            });
+        });
+    </script>
+}
 
 @using (Html.BeginForm("Vote", "Voting"))
 {
     @Html.HiddenFor(m => m.BallotId)
     <h1>Federal and State</h1>
     <h2>For Commander in Cream and Vice Ice</h2>
-    <p>(Ranked Choice Voting (Instant Runoff))</p>
-    <p>Rank candidates in order of choice. Mark your favorite candidate as first choice and then indicate your second and additional back-up choices in order of choice. You may rank as many candidates as you want.</p>
+    <h3>(Ranked Choice Voting (Instant Runoff))</h3>
+    <p>
+        <em>Rank candidates in order of choice. Mark your favorite candidate as first choice and then indicate your second and additional back-up choices in order of choice. You may rank as many candidates as you want.</em>
+    </p>
     <form>
         <div class="form-group">
             @for (int i = 0; i < Model.PresidentAndVicePres.Count; i++)
             {
-                @Html.DisplayFor(m => m.PresidentAndVicePres[i].PrimeCanidate.Name, new {@class = "form-control",@name = "PresidentAndVicePres["+ i + "].PrimeCanidate.Name" })
+                <label class="control-label">@Model.PresidentAndVicePres[i].PrimeCanidate.Name - @Model.PresidentAndVicePres[i].PrimeCanidate.Party for @Model.PresidentAndVicePres[i].PrimeCanidate.JobName</label>
                 <br/>
-                @Html.DisplayFor(m => m.PresidentAndVicePres[i].SubCanidate.Name, new {@class = "form-control", @name = "PresidentAndVicePres[" + i + "].SubCanidate.Name" })
+                <label class="control-label">@Model.PresidentAndVicePres[i].SubCanidate.Name - @Model.PresidentAndVicePres[i].SubCanidate.Party for @Model.PresidentAndVicePres[i].SubCanidate.JobName</label>
                 <br/>
-                @Html.TextBoxFor(m => m.PresidentAndVicePres[i].Ranking, new {@class = "form-control", @name = "PresidentAndVicePres[" + i + "].Ranking" })
-                @Html.HiddenFor(m => m.PresidentAndVicePres[i].PrimeCanidate.CanidateId,new { @name = "PresidentAndVicePres[" + i + "].PrimeCanidate.CanidateId" })
-                @Html.HiddenFor(m => m.PresidentAndVicePres[i].SubCanidate.CanidateId, new { @name = "PresidentAndVicePres[" + i + "].SubCanidate.CanidateId" })
-                @Html.HiddenFor(m => m.PresidentAndVicePres[i].RankingVoteItemId, new { @name = "PresidentAndVicePres[" + i + "].RankingVoteItemId" })
+                @Html.TextBoxFor(m => m.PresidentAndVicePres[i].Ranking, new {@class = "form-control", @name = "PresidentAndVicePres[" + i + "].Ranking"})
+                @Html.HiddenFor(m => m.PresidentAndVicePres[i].PrimeCanidate.CanidateId, new {@name = "PresidentAndVicePres[" + i + "].PrimeCanidate.CanidateId"})
+                @Html.HiddenFor(m => m.PresidentAndVicePres[i].SubCanidate.CanidateId, new {@name = "PresidentAndVicePres[" + i + "].SubCanidate.CanidateId"})
+                @Html.HiddenFor(m => m.PresidentAndVicePres[i].RankingVoteItemId, new {@name = "PresidentAndVicePres[" + i + "].RankingVoteItemId"})
             }
         </div>
-        
+
         <div class="form-group">
             <h2>For Chief Dairy Queen</h2>
-            <p>UnExpired Term (Vote in One Oval)</p>
-            <p>Shall Justice Mint C. Chip of the Supreme Court of the State of Ice Cream be retained in office for another term</p>
-            <p>Fill in the oval before the word "YES" if you wish the offical to remain in office</p>
-            <p>Fill in the oval before the word "NO" if you do not wish the offical to remain in the office</p>
-            @Html.DisplayFor(m => m.SupremeCourt.Canidate.Name, new {@class = "form-control"})
+            <h3>Unexpired Term (Vote in One Oval)</h3>
+            <p>Shall @Model.SupremeCourt.Canidate.Name of the Supreme Court of the State of Ice Cream be retained in office for another term</p>
+            <p>
+                <em>Fill in the oval before the word "YES" if you wish the offical to remain in office</em>
+            </p>
+            <p>
+                <em>Fill in the oval before the word "NO" if you do not wish the offical to remain in the office</em>
+            </p>
             <br/>
-            <label>Yes</label>
-            @Html.CheckBoxFor(m => m.SupremeCourt.YesVote)
-            <label>No</label>
-            @Html.CheckBoxFor(m => m.SupremeCourt.NoVote)
+            <label class="control-label">Yes</label>
+            @Html.CheckBoxFor(m => m.SupremeCourt.YesVote, new {@id = "SupremeCourtYes"})
+            <label class="control-label">No</label>
+            @Html.CheckBoxFor(m => m.SupremeCourt.NoVote, new {@id = "SupremeCourtNo"})
             @Html.HiddenFor(m => m.SupremeCourt.SingleVoteTicketId)
         </div>
-        
-        
-        
+
+
+
         <h2>For State Rep.District M & M</h2>
-        <p>(Vote For Two)</p>
-        <div class="form-group">
+        <h3>(Vote For Two)</h3>
+        <div class="form-group" id="testingThis">
             @for (int i = 0; i < Model.StateRep.Count; i++)
             {
-                @Html.DisplayFor(m => m.StateRep[i].Canidate.Name, new {@class = "form-control", @name = "StateRep[" + i + "].Canidate.Name" })
-                @Html.CheckBoxFor(m => m.StateRep[i].VotedFor, new {@class = "checkbox", @name = "StateRep[" + i + "].VotedFor" })
-                @Html.HiddenFor(m => m.StateRep[i].Canidate.CanidateId, new {@class = "form-control", @name = "StateRep[" + i + "].Canidate.CanidateId" })
-                @Html.HiddenFor(m => m.StateRep[i].MultipleVoteItemId, new { @class = "form-control", @name = "StateRep[" + i + "].MultipleVoteItemId" })
+                <label class="control-label">@Model.StateRep[i].Canidate.Name (@Model.StateRep[i].Canidate.Party)</label>
+                @Html.CheckBoxFor(m => m.StateRep[i].VotedFor, new {@class = "checkbox-inline", @name = "StateRep[" + i + "].VotedFor"})
+                <br/>
+                @Html.HiddenFor(m => m.StateRep[i].Canidate.CanidateId, new {@class = "form-control", @name = "StateRep[" + i + "].Canidate.CanidateId"})
+                @Html.HiddenFor(m => m.StateRep[i].MultipleVoteItemId, new {@class = "form-control", @name = "StateRep[" + i + "].MultipleVoteItemId"})
             }
 
         </div>
- 
+
         <h1>County</h1>
         <h2>Ballot Issue</h2>
         <h3>@Model.BallotIssue.Issue.OfficalName</h3>
         <h3>(Vote in one oval)</h3>
         <p>@Model.BallotIssue.Issue.Description</p>
-        <p>@Model.BallotIssue.Issue.Subtext</p>
+        <p>
+            <em>@Model.BallotIssue.Issue.Subtext</em>
+        </p>
         <div class="form-group">
             <label>Yes</label>
-            @Html.CheckBoxFor(m => m.BallotIssue.YesVote)
+            @Html.CheckBoxFor(m => m.BallotIssue.YesVote, new {@id = "BalloIssueYes"})
             <label>
                 No
             </label>
-            @Html.CheckBoxFor(m => m.BallotIssue.NoVote)
+            @Html.CheckBoxFor(m => m.BallotIssue.NoVote, new {@id = "BalloIssueNo"})
             @Html.HiddenFor(m => m.BallotIssue.Issue.VoteIssueId)
             @Html.HiddenFor(m => m.BallotIssue.SingleVoteTicketId)
         </div>
-                   
-        <button type="submit" class="btn-primary">Vote!</button>
+        <br/>
+        <button type="submit" class="btn-primary">Submit your ballot!</button>
     </form>
-  
 }
