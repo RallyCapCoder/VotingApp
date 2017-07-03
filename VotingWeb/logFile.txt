@@ -1,0 +1,5 @@
+2017-07-03 15:37:18.6268|INFO|VoteLog|Creating Ballot
+2017-07-03 15:37:18.7344|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 15:37:18.7922|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 15:37:18.8353|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 15:37:18.8643|INFO|VoteLog|Getting Ballot Issues
