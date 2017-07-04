@@ -1,7 +1,7 @@
-﻿using System;
+﻿using VotingApp.Context;
 using VotingApp.Models;
 
-namespace VotingApp.DataManagement.Builders
+namespace VotingApp.Builders
 {
     public class VoteResultsBuilder
     {

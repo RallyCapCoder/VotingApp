@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using VotingApp.DataManagement;
+using VotingApp.Managers;
 using VotingWeb.Models;
 
 namespace VotingWeb.Controllers
@@ -20,12 +20,12 @@ namespace VotingWeb.Controllers
 
                 var results = _manager.GetVoteResults();
 
-                viewModel.PresidentResults = _manager.GetRankingResults(results);
+                viewModel.PresidentResults = _manager.RankedVotingManager.GetRankingResults(results);
                 viewModel.GetNumberOfRankings();
-                var singleVoteItems = _manager.GetSingleVoteResults(results);
-                viewModel.SupremeCourtResult = singleVoteItems.Where(x => x.Key.Canidate != null).ToDictionary(x => x.Key, x => x.Value);
+                var singleVoteItems = _manager.SingleVoteManager.GetSingleVoteResults(results);
+                viewModel.SupremeCourtResult = singleVoteItems.Where(x => x.Key.CandidateItem != null).ToDictionary(x => x.Key, x => x.Value);
                 viewModel.BallotIssue = singleVoteItems.Where(x => x.Key.Issue != null).ToDictionary(x => x.Key, x => x.Value);
-                viewModel.StateReps = _manager.GetMultiVoteResults(results);
+                viewModel.StateReps = _manager.MultiVoteManager.GetMultiVoteResults(results);
                 return View(viewModel);
             }
             return RedirectToAction("Index", "Home");

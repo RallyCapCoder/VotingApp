@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using VotingApp.DataManagement;
-using VotingApp.DataManagement.Builders;
+using VotingApp.Builders;
+using VotingApp.Context;
+using VotingApp.Managers;
 using VotingApp.Models;
 
 namespace VotingTests
@@ -15,7 +16,7 @@ namespace VotingTests
         public void GetBallot()
         {
          
-            var _context = new VotingBooth();
+            var _context = new VotingContext();
             var ballot = _context.Ballots.FirstOrDefault();
             Assert.IsNotNull(ballot);
 
@@ -24,34 +25,25 @@ namespace VotingTests
         [TestMethod]
         public void GetJurisdiction()
         {
-            var _context = new VotingBooth();
+            var _context = new VotingContext();
             var jurisdiction = _context.Jurisdictions.FirstOrDefault();
             Assert.IsNotNull(jurisdiction);
 
         }
 
         [TestMethod]
-        public void GetCanindates()
-        {
-            var _context = new VotingBooth();
-            var _manager = new VotingManager();
-
-            var canidates = _manager.GetAllCanidates();
-        }
-
-        [TestMethod]
         public void GetSingleVoteItems()
         {
-            var _context = new VotingBooth();
+            var _context = new VotingContext();
             var _manager = new VotingManager();
 
-            var canidates = _manager.GetSingleVoteItems();
+            var canidates = _manager.SingleVoteManager.GetSingleVoteItems();
         }
 
         [TestMethod]
         public void GetElectionResults()
         {
-            var _context = new VotingBooth();
+            var _context = new VotingContext();
             var _manager = new VotingManager();
 
             var canidates = _manager.GetVoteResults();
@@ -105,7 +97,7 @@ namespace VotingTests
         [TestMethod]
         public void GetSingleVoteElectionResults()
         {
-            var _context = new VotingBooth();
+            var _context = new VotingContext();
             var _manager = new VotingManager();
 
             var canidates = _manager.GetVoteResults();
@@ -158,7 +150,7 @@ namespace VotingTests
         [TestMethod]
         public void AddAWriteInCanididate()
         {
-            var _context = new VotingBooth();
+            var _context = new VotingContext();
             var _manager = new VotingManager();
 
             var builder = new RankingVoteTicketBuilder();
@@ -166,23 +158,23 @@ namespace VotingTests
             var RankingVoteItem = new RankingVoteItem
             {
                 RankingVoteItemId = Guid.NewGuid(),
-                PrimeCanidate = new VotingApp.Models.Canidate()
+                PrimeCandidateItem = new VotingApp.Models.CandidateItem()
                 {
-                   CanidateId = Guid.NewGuid(),
+                   CandidateId = Guid.NewGuid(),
                    Name = "Test",
                    JobId = Guid.Parse("521C573E-91E8-47CA-ACBC-BF3D63706F29")
                 },
-                SubCanidate = new VotingApp.Models.Canidate()
+                SubCandidateItem = new VotingApp.Models.CandidateItem()
                 {
-                    CanidateId = Guid.NewGuid(),
+                    CandidateId = Guid.NewGuid(),
                     Name = "Vice Test",
                     JobId = Guid.Parse("057A2ED5-CDE9-44DB-9697-041B0F09555F")
                 },
                 Ranking = 1
             };
 
-            _manager._context.RankingVotes.Add(builder.GetEntity(RankingVoteItem));
-            _manager._context.SaveChanges();
+            _manager.Context.RankingVotes.Add(builder.GetEntity(RankingVoteItem));
+            _manager.Context.SaveChanges();
              
 
 

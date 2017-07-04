@@ -2,9 +2,9 @@
 
 namespace VotingApp.Models
 {
-    public class Canidate
+    public class CandidateItem
     {
-        public Guid CanidateId { get; set; }
+        public Guid CandidateId { get; set; }
         public string Name { get; set; }
         public Guid JobId { get; set; }
         public string JobName { get; set; }

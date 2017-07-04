@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using VotingApp.Context;
 using VotingApp.Models;
 
-namespace VotingApp.DataManagement.Builders
+namespace VotingApp.Builders
 {
     public class MultiVoteTicketBuilder
     {
-        public CanidateBuilder CanidateBuilder { get; set; }
+        public CandidateBuilder CandidateBuilder { get; set; }
 
         public MultiVoteTicketBuilder()
         {
-            CanidateBuilder = new CanidateBuilder();
+            CandidateBuilder = new CandidateBuilder();
         }
 
         public MultipleVoteItem GetModel(MultipleVote multipleVote)
@@ -21,7 +17,7 @@ namespace VotingApp.DataManagement.Builders
             return new MultipleVoteItem
             {
                 MultipleVoteItemId = multipleVote.MultipleVoteId,
-                Canidate = CanidateBuilder.GetModel(multipleVote.Canidate),
+                CandidateItem = CandidateBuilder.GetModel(multipleVote.Candidate),
                 IsWriteIn = multipleVote.IsWriteIn
             };
         }
@@ -31,7 +27,7 @@ namespace VotingApp.DataManagement.Builders
             return new MultipleVote
             {
                 MultipleVoteId = multipleVote.MultipleVoteItemId,
-                Canidate = CanidateBuilder.GetEntity(multipleVote.Canidate),
+                Candidate = CandidateBuilder.GetEntity(multipleVote.CandidateItem),
                 IsWriteIn = multipleVote.IsWriteIn
             };
         }

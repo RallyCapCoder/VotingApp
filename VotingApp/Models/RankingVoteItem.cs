@@ -10,8 +10,8 @@ namespace VotingApp.Models
     public class RankingVoteItem
     {
         public Guid RankingVoteItemId { get; set; }
-        public Canidate PrimeCanidate { get; set; }
-        public Canidate SubCanidate { get; set; }
+        public CandidateItem PrimeCandidateItem { get; set; }
+        public CandidateItem SubCandidateItem { get; set; }
         [Range(0, int.MaxValue, ErrorMessage = "Please enter valid integer Number")]
         public int Ranking { get; set; }
         public bool IsWriteIn { get; set; }

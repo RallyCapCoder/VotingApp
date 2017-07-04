@@ -6,5 +6,6 @@ namespace VotingApp.Models
     {
         public Guid BallotId { get; set; }
         public string BallotName { get; set; }
+        public string AspNetUserId { get; set; }
     }
 }

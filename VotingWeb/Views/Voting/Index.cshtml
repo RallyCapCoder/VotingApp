@@ -71,20 +71,20 @@
         <div class="form-group">
             @for (int i = 0; i < Model.PresidentAndVicePres.Count; i++)
             {
-                <label class="control-label">@Model.PresidentAndVicePres[i].PrimeCanidate.Name - @Model.PresidentAndVicePres[i].PrimeCanidate.Party for @Model.PresidentAndVicePres[i].PrimeCanidate.JobName</label>
+                <label class="control-label">@Model.PresidentAndVicePres[i].PrimeCandidateItem.Name - @Model.PresidentAndVicePres[i].PrimeCandidateItem.Party for @Model.PresidentAndVicePres[i].PrimeCandidateItem.JobName</label>
                 <br />
-                <label class="control-label">@Model.PresidentAndVicePres[i].SubCanidate.Name - @Model.PresidentAndVicePres[i].SubCanidate.Party for @Model.PresidentAndVicePres[i].SubCanidate.JobName</label>
+                <label class="control-label">@Model.PresidentAndVicePres[i].SubCandidateItem.Name - @Model.PresidentAndVicePres[i].SubCandidateItem.Party for @Model.PresidentAndVicePres[i].SubCandidateItem.JobName</label>
                 <br />
                 @Html.TextBoxFor(m => m.PresidentAndVicePres[i].Ranking, new { @class = "form-control", @name = "PresidentAndVicePres[" + i + "].Ranking", @type = "number" })
-                @Html.HiddenFor(m => m.PresidentAndVicePres[i].PrimeCanidate.CanidateId, new { @name = "PresidentAndVicePres[" + i + "].PrimeCanidate.CanidateId" })
-                @Html.HiddenFor(m => m.PresidentAndVicePres[i].SubCanidate.CanidateId, new { @name = "PresidentAndVicePres[" + i + "].SubCanidate.CanidateId" })
+                @Html.HiddenFor(m => m.PresidentAndVicePres[i].PrimeCandidateItem.CandidateId, new { @name = "PresidentAndVicePres[" + i + "].PrimeCandidateItem.CandidateItemId" })
+                @Html.HiddenFor(m => m.PresidentAndVicePres[i].SubCandidateItem.CandidateId, new { @name = "PresidentAndVicePres[" + i + "].SubCandidateItem.CandidateItemId" })
                 @Html.HiddenFor(m => m.PresidentAndVicePres[i].RankingVoteItemId, new { @name = "PresidentAndVicePres[" + i + "].RankingVoteItemId" })
-                @Html.HiddenFor(m => m.PresidentAndVicePres[i].PrimeCanidate.JobId, new { @name = "PresidentAndVicePres[" + i + "].PrimeCanidate.CanidateId.JobId" })
-                @Html.HiddenFor(m => m.PresidentAndVicePres[i].SubCanidate.JobId, new { @name = "PresidentAndVicePres[" + i + "].SubCanidate.JobId" })
+                @Html.HiddenFor(m => m.PresidentAndVicePres[i].PrimeCandidateItem.JobId, new { @name = "PresidentAndVicePres[" + i + "].PrimeCandidateItem.CandidateItemId.JobId" })
+                @Html.HiddenFor(m => m.PresidentAndVicePres[i].SubCandidateItem.JobId, new { @name = "PresidentAndVicePres[" + i + "].SubCandidateItem.JobId" })
             }
             <label class="control-label">Commander and Cream And Vice Ice Write In:</label>
-            @Html.TextBoxFor(m => m.PresidentWriteIn.PrimeCanidate.Name, new { @class = "form-control" })
-            @Html.TextBoxFor(m => m.PresidentWriteIn.SubCanidate.Name, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.PresidentWriteIn.PrimeCandidateItem.Name, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.PresidentWriteIn.SubCandidateItem.Name, new { @class = "form-control" })
             <label class="control-label">Ranking:</label>
             @Html.TextBoxFor(m => m.PresidentWriteIn.Ranking, new { @class = "form-control", @type = "number" })
         </div>
@@ -92,7 +92,7 @@
         <div class="form-group">
             <h2>For Chief Dairy Queen</h2>
             <h3>Unexpired Term (Vote in One Oval)</h3>
-            <p>Shall @Model.SupremeCourt.Canidate.Name of the Supreme Court of the State of Ice Cream be retained in office for another term</p>
+            <p>Shall @Model.SupremeCourt.CandidateItem.Name of the Supreme Court of the State of Ice Cream be retained in office for another term</p>
             <p>
                 <em>Fill in the oval before the word "YES" if you wish the offical to remain in office</em>
             </p>
@@ -114,17 +114,17 @@
         <div class="form-group" id="testingThis">
             @for (int i = 0; i < Model.StateRep.Count; i++)
             {
-                <label class="control-label">@Model.StateRep[i].Canidate.Name (@Model.StateRep[i].Canidate.Party)</label>
+                <label class="control-label">@Model.StateRep[i].CandidateItem.Name (@Model.StateRep[i].CandidateItem.Party)</label>
                 @Html.CheckBoxFor(m => m.StateRep[i].VotedFor, new { @class = "checkbox-inline", @name = "StateRep[" + i + "].VotedFor" })
                 <br />
-                @Html.HiddenFor(m => m.StateRep[i].Canidate.CanidateId, new { @class = "form-control", @name = "StateRep[" + i + "].Canidate.CanidateId" })
+                @Html.HiddenFor(m => m.StateRep[i].CandidateItem.CandidateId, new { @class = "form-control", @name = "StateRep[" + i + "].CandidateItem.CandidateItemId" })
                 @Html.HiddenFor(m => m.StateRep[i].MultipleVoteItemId, new { @class = "form-control", @name = "StateRep[" + i + "].MultipleVoteItemId" })
-                @Html.HiddenFor(m => m.StateRep[i].Canidate.JobId, new { @class = "form-control", @name = "StateRep[" + i + "].Canidate.JobId" })
+                @Html.HiddenFor(m => m.StateRep[i].CandidateItem.JobId, new { @class = "form-control", @name = "StateRep[" + i + "].CandidateItem.JobId" })
             }
 
             <label class="control-label">State Rep.District M & M Write In:</label>
             <div class="form-group">
-                @Html.TextBoxFor(m => m.StateRepWriteIn.Canidate.Name, new { @class = "form-control col-xs-4" })
+                @Html.TextBoxFor(m => m.StateRepWriteIn.CandidateItem.Name, new { @class = "form-control col-xs-4" })
                 &nbsp;
                 @Html.CheckBoxFor(m => m.StateRepWriteIn.VotedFor, new { @class = "checkbox-inline" })
             </div>

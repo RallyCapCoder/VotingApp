@@ -23,7 +23,7 @@ namespace VotingWeb.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("VotingBooth", throwIfV1Schema: false)
+            : base("VotingContext", throwIfV1Schema: false)
         {
         }
 

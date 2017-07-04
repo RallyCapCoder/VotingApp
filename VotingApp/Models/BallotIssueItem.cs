@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VotingApp.Models
 {
-    public class VoteIssue
+    public class BallotIssueItem
     {
         public Guid VoteIssueId { get; set; }
         public string Name { get; set; }

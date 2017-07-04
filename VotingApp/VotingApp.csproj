@@ -56,26 +56,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataManagement\Builders\MultiVoteTicketBuilder.cs" />
-    <Compile Include="DataManagement\Builders\RankingVoteTicketBuilder.cs" />
+    <Compile Include="Builders\MultiVoteTicketBuilder.cs" />
+    <Compile Include="Builders\RankingVoteTicketBuilder.cs" />
     <Compile Include="LogHandler.cs" />
+    <Compile Include="Managers\MultiVoteManager.cs" />
+    <Compile Include="Managers\RankedVotingManager.cs" />
+    <Compile Include="Managers\SingleVoteManager.cs" />
     <Compile Include="Models\MultipleVoteItem.cs" />
-    <Compile Include="DataManagement\Builders\SingleVoteTicketBuilder.cs" />
-    <Compile Include="DataManagement\Builders\VoteIssueBuilder.cs" />
-    <Compile Include="DataManagement\Builders\VoteResultsBuilder.cs" />
+    <Compile Include="Builders\SingleVoteTicketBuilder.cs" />
+    <Compile Include="Builders\BallotIssueBuilder.cs" />
+    <Compile Include="Builders\VoteResultsBuilder.cs" />
     <Compile Include="Models\Ballot.cs" />
-    <Compile Include="Models\Canidate.cs" />
-    <Compile Include="DataManagement\Builders\BallotBuilder.cs" />
-    <Compile Include="DataManagement\Builders\CanidateBuilder.cs" />
-    <Compile Include="DataManagement\Builders\JobBuilder.cs" />
-    <Compile Include="DataManagement\Builders\JurisdictionBuilder.cs" />
-    <Compile Include="DataManagement\VotingBooth.cs">
+    <Compile Include="Models\CandidateItem.cs" />
+    <Compile Include="Builders\BallotBuilder.cs" />
+    <Compile Include="Builders\CandidateBuilder.cs" />
+    <Compile Include="Builders\JobBuilder.cs" />
+    <Compile Include="Builders\JurisdictionBuilder.cs" />
+    <Compile Include="Context\VotingBooth.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>VotingBooth.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataManagement\VotingManager.cs" />
-    <Compile Include="Models\CanindateParty.cs" />
+    <Compile Include="Managers\VotingManager.cs" />
     <Compile Include="Models\Job.cs" />
     <Compile Include="Models\Jurisdiction .cs" />
     <Compile Include="Models\MultiVoteResults.cs" />
@@ -83,14 +85,14 @@
     <Compile Include="Models\RankingVoteResults.cs" />
     <Compile Include="Models\SingleVoteItem.cs" />
     <Compile Include="Models\SingleVoteResults.cs" />
-    <Compile Include="Models\VoteIssue.cs" />
+    <Compile Include="Models\BallotIssueItem.cs" />
     <Compile Include="Models\VoteResults.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="DataManagement\EF.Reverse.POCO.Core.ttinclude" />
-    <None Include="DataManagement\EF.Reverse.POCO.ttinclude" />
+    <None Include="Context\EF.Reverse.POCO.Core.ttinclude" />
+    <None Include="Context\EF.Reverse.POCO.ttinclude" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -101,7 +103,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="DataManagement\VotingBooth.tt">
+    <Content Include="Context\VotingBooth.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>VotingBooth.cs</LastGenOutput>
     </Content>

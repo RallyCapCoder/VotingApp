@@ -6,14 +6,14 @@
     // A course for this generator is available on Pluralsight at https://www.pluralsight.com/courses/code-first-entity-framework-legacy-databases
 
     // Main settings **********************************************************************************************************************
-    ConnectionStringName = "VotingBooth";   // Searches for this connection string in config files listed below in the ConfigFilenameSearchOrder setting
+    ConnectionStringName = "VotingContext";   // Searches for this connection string in config files listed below in the ConfigFilenameSearchOrder setting
     // ConnectionStringName is the only required setting.
     // As an alternative to ConnectionStringName above, which must match your app/web.config connection string name, you can override them below
     //ConnectionString = "Data Source=(local);Initial Catalog=Northwind;Integrated Security=True;Application Name=EntityFramework Reverse POCO Generator";
     //ProviderName = "System.Data.SqlClient";
 
     // Namespace = ""; // Override the default namespace here
-    DbContextName = "VotingBooth";
+    DbContextName = "VotingContext";
     //DbContextInterfaceName = "IMyDbContext"; // Defaults to "I" + DbContextName or set string empty to not implement any interface.
     DbContextInterfaceBaseClasses = "System.IDisposable";    // Specify what the base classes are for your database context interface
     DbContextBaseClass = "System.Data.Entity.DbContext";   // Specify what the base class is for your DbContext. For ASP.NET Identity use "IdentityDbContext<ApplicationUser>"

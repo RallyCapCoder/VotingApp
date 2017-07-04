@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using VotingApp.Context;
 
-namespace VotingApp.DataManagement.Builders
+namespace VotingApp.Builders
 {
-    public class VoteIssueBuilder
+    public class BallotIssueBuilder
     {
-        public Models.VoteIssue GetModel(VoteIssue issue)
+        public Models.BallotIssueItem GetModel(BallotIssue issue)
         {
-            return new Models.VoteIssue()
+            return new Models.BallotIssueItem()
             {
-                VoteIssueId = issue.VoteIssueId,
+                VoteIssueId = issue.BallotIssueId,
                 Name = issue.Name,
                 OfficalName = issue.OfficalName,
                 Description = issue.Description,
@@ -21,11 +17,11 @@ namespace VotingApp.DataManagement.Builders
             };
         }
 
-        public VoteIssue GetEntity(Models.VoteIssue issue)
+        public BallotIssue GetEntity(Models.BallotIssueItem issue)
         {
-            return new VoteIssue()
+            return new BallotIssue()
             {
-                VoteIssueId = issue.VoteIssueId,
+                BallotIssueId = issue.VoteIssueId,
                 Name = issue.Name,
                 OfficalName = issue.Name,
                 Description = issue.Description,

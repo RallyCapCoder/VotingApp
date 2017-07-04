@@ -609,3 +609,18 @@
 2017-07-04 07:19:12.2566|INFO|VoteLog|Attempting To Find Existing Ballot
 2017-07-04 07:19:33.0667|INFO|VoteLog|Attempting To Find Existing Ballot
 2017-07-04 07:19:56.2742|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-04 08:48:09.2786|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-04 08:56:52.0105|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-04 08:56:58.2062|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-04 08:56:58.2172|INFO|VoteLog|User has not already voted!
+2017-07-04 08:56:58.2172|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-04 08:56:58.2653|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-04 08:57:29.0253|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-04 08:57:29.1417|INFO|VoteLog|User has not already voted!
+2017-07-04 08:57:29.1417|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-04 08:57:29.1988|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-04 08:57:29.2393|INFO|VoteLog|Getting State Representative Canindates
+2017-07-04 08:57:29.2674|INFO|VoteLog|Getting Ballot Issues
+2017-07-04 08:57:43.9280|INFO|VoteLog|User Has Voted!
+2017-07-04 08:57:43.9450|INFO|VoteLog|Saving Results
+2017-07-04 08:57:43.9666|INFO|VoteLog|Sending User to Home Screen

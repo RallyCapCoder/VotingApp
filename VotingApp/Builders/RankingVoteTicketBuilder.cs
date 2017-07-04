@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using VotingApp.Context;
 using VotingApp.Models;
 
-namespace VotingApp.DataManagement.Builders
+namespace VotingApp.Builders
 {
     public class RankingVoteTicketBuilder
     {
-        public CanidateBuilder CanidateBuilder { get; set; }
+        public CandidateBuilder CandidateBuilder { get; set; }
 
         public RankingVoteTicketBuilder()
         {
-            CanidateBuilder = new CanidateBuilder();
+            CandidateBuilder = new CandidateBuilder();
         }
 
         public RankingVoteItem GetModel(RankingVote rankingVote)
@@ -21,8 +17,8 @@ namespace VotingApp.DataManagement.Builders
             return new RankingVoteItem()
             {
                 RankingVoteItemId = rankingVote.RankingVoteId,
-                PrimeCanidate = CanidateBuilder.GetModel(rankingVote.PrimeCanindate),
-                SubCanidate = CanidateBuilder.GetModel(rankingVote.SubCanindate),
+                PrimeCandidateItem = CandidateBuilder.GetModel(rankingVote.PrimeCandidate),
+                SubCandidateItem = CandidateBuilder.GetModel(rankingVote.SubCandidate),
                 IsWriteIn = rankingVote.IsWriteIn
             };
         }
@@ -32,8 +28,8 @@ namespace VotingApp.DataManagement.Builders
             return new RankingVote()
             {
                 RankingVoteId = rankingVote.RankingVoteItemId,
-                PrimeCanindate = CanidateBuilder.GetEntity(rankingVote.PrimeCanidate),
-                SubCanindate = CanidateBuilder.GetEntity(rankingVote.SubCanidate),
+                PrimeCandidate = CandidateBuilder.GetEntity(rankingVote.PrimeCandidateItem),
+                SubCandidate = CandidateBuilder.GetEntity(rankingVote.SubCandidateItem),
                 IsWriteIn = rankingVote.IsWriteIn
             };
         }

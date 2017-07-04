@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using VotingApp.DataManagement;
-using VotingApp.DataManagement.Builders;
+using VotingApp.Builders;
+using VotingApp.Context;
 using Ballot = VotingApp.Models.Ballot;
 using Jurisdiction = VotingApp.Models.Jurisdiction;
 
@@ -34,19 +34,19 @@ namespace VotingTests
             return juris;
         }
 
-        public List<VotingApp.Models.Canidate> GetCanidates()
+        public List<VotingApp.Models.CandidateItem> GetCanidates()
         {
-            var _context = new VotingBooth();
-            var _builder = new CanidateBuilder();
+            var _context = new VotingContext();
+            var _builder = new CandidateBuilder();
 
-            var canindates = _context.Canidates.AsNoTracking().Include("Job");
+            var canindates = _context.Candidates.AsNoTracking().Include("Job");
 
             return canindates.Select(_builder.GetModel).ToList();
         }
 
         public VotingApp.Models.Job GetJob(string jobName)
         {
-            var _context = new VotingBooth();
+            var _context = new VotingContext();
             var _builder = new JobBuilder();
             var job = _builder.GetModel(_context.Jobs.First(x => x.Name == jobName));
 
@@ -55,7 +55,7 @@ namespace VotingTests
 
         public List<VoteResult> CreateElectionResult(List<VotingApp.Models.VoteResults> voteResults)
         {
-            var _context = new VotingBooth();
+            var _context = new VotingContext();
             var _builder = new VoteResultsBuilder();
 
             return voteResults.Select(_builder.GetEntity).ToList();

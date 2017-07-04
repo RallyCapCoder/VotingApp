@@ -5,40 +5,48 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using VotingApp.DataManagement;
 using VotingApp.Models;
 using VotingWeb.Models;
 using NLog;
+using VotingApp.Context;
+using VotingApp.Managers;
 
 namespace VotingWeb.Controllers
 {
     public class VotingController : Controller
     {
-        private static Logger log = LogManager.GetLogger("VoteLog");
-        public ActionResult Index()
+        private VotingManager Manager { get; set; }
+        private new ApplicationUser User { get; set; }
+        private VotingViewModel ViewModel { get; set; }
+        private static readonly Logger Log = LogManager.GetLogger("VoteLog");
+
+        public VotingController()
         {
-            ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
-            //When you go to page we should create a new ballot and save it to db
-            var _manager = new VotingManager();
-            var viewModel = new VotingViewModel();
-            log.Info("Attempting To Find Existing Ballot");
-            var ballot = _manager.FindExistingBallot(user.Id);
+            Manager = new VotingManager();
+            ViewModel = new VotingViewModel();
+            User = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+        }
+       
+        public ActionResult Index()
+        { 
+            Log.Info("Attempting To Find Existing Ballot");
+            var ballot = Manager.FindExistingBallot(User.Id);
             if (ballot != null)
             {
                 TempData["AlreadyVoted"] = "You have already voted!";
                 return RedirectToAction("Index", "Home");
             }
-            log.Info("User has not already voted!");
-            log.Info("Getting Presidential and Vice Presidential Canindates");
-            viewModel.PresidentAndVicePres = _manager.GetRankedVoteItems();
-            log.Info("Getting Supreme Court Canindate");
-            viewModel.SupremeCourt = _manager.GetSingleVoteItems().FirstOrDefault(x => x.Issue == null);
-            log.Info("Getting State Representative Canindates");
-            viewModel.StateRep = _manager.GetMultiVoteItems();
-            log.Info("Getting Ballot Issues");
-            viewModel.BallotIssue = _manager.GetSingleVoteItems().FirstOrDefault(x => x.Canidate == null);
+            Log.Info("User has not already voted!");
+            Log.Info("Getting Presidential and Vice Presidential Canindates");
+            ViewModel.PresidentAndVicePres = Manager.RankedVotingManager.GetRankedVoteItems();
+            Log.Info("Getting Supreme Court Canindate");
+            ViewModel.SupremeCourt = Manager.SingleVoteManager.GetSingleVoteItems().FirstOrDefault(x => x.Issue == null);
+            Log.Info("Getting State Representative Canindates");
+            ViewModel.StateRep = Manager.MultiVoteManager.GetMultiVoteItems();
+            Log.Info("Getting Ballot Issues");
+            ViewModel.BallotIssue = Manager.SingleVoteManager.GetSingleVoteItems().FirstOrDefault(x => x.CandidateItem == null);
 
-            return View(viewModel);
+            return View(ViewModel);
         }
 
         [HttpPost]
@@ -46,24 +54,24 @@ namespace VotingWeb.Controllers
         {
 
             ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
-            log.Info("User Has Voted!");
+            Log.Info("User Has Voted!");
             var _manager = new VotingManager();
 
             var ballot = _manager.CreateBallot("National Election" + DateTime.Now, user.Id);
 
-            log.Info("Saving Results");
+            Log.Info("Saving Results");
             var electionResults = new List<VoteResult>();
 
-            if (viewModel.PresidentWriteIn.PrimeCanidate.Name != null)
+            if (viewModel.PresidentWriteIn.PrimeCandidateItem.Name != null)
             {
                 electionResults =
-                    _manager.AddRankingWriteInToElection(electionResults, viewModel.PresidentWriteIn, ballot.BallotId, viewModel.PresidentAndVicePres.First());
+                    _manager.RankedVotingManager.AddRankingWriteInToElection(electionResults, viewModel.PresidentWriteIn, ballot.BallotId, viewModel.PresidentAndVicePres.First());
             }
 
-            if (viewModel.StateRepWriteIn.Canidate.Name != null)
+            if (viewModel.StateRepWriteIn.CandidateItem.Name != null)
             {
                 electionResults =
-                    _manager.AddMultiVoteWriteInToElection(electionResults, viewModel.StateRepWriteIn, ballot.BallotId, viewModel.StateRep.First());
+                    _manager.MultiVoteManager.AddMultiVoteWriteInToElection(electionResults, viewModel.StateRepWriteIn, ballot.BallotId, viewModel.StateRep.First());
             }
 
             foreach (var presidentAndVice in viewModel.PresidentAndVicePres)
@@ -105,7 +113,7 @@ namespace VotingWeb.Controllers
             });
 
             _manager.SaveElectionResults(electionResults);
-            log.Info("Sending User to Home Screen");
+            Log.Info("Sending User to Home Screen");
             TempData["Success"] = "You Successfully Voted!";
             return RedirectToAction("Index", "Home");
         }

@@ -9,8 +9,8 @@ namespace VotingApp.Models
     public class SingleVoteItem
     {
         public Guid SingleVoteTicketId { get; set; }
-        public VoteIssue Issue { get; set; }
-        public Canidate Canidate { get; set; }
+        public BallotIssueItem Issue { get; set; }
+        public CandidateItem CandidateItem { get; set; }
         public bool YesVote { get; set; }
         public bool NoVote { get; set; }
     }
