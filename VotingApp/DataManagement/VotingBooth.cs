@@ -741,6 +741,7 @@ namespace VotingApp.DataManagement
     {
         public System.Guid MultipleVoteId { get; set; } // MultipleVoteId (Primary key)
         public System.Guid CanindateId { get; set; } // CanindateId
+        public bool IsWriteIn { get; set; } // IsWriteIn
 
         // Reverse navigation
 
@@ -759,6 +760,7 @@ namespace VotingApp.DataManagement
         public MultipleVote()
         {
             MultipleVoteId = System.Guid.NewGuid();
+            IsWriteIn = false;
             VoteResults = new System.Collections.Generic.List<VoteResult>();
         }
     }
@@ -1099,6 +1101,7 @@ namespace VotingApp.DataManagement
 
             Property(x => x.MultipleVoteId).HasColumnName(@"MultipleVoteId").HasColumnType("uniqueidentifier").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
             Property(x => x.CanindateId).HasColumnName(@"CanindateId").HasColumnType("uniqueidentifier").IsRequired();
+            Property(x => x.IsWriteIn).HasColumnName(@"IsWriteIn").HasColumnType("bit").IsRequired();
 
             // Foreign keys
             HasRequired(a => a.Canidate).WithMany(b => b.MultipleVotes).HasForeignKey(c => c.CanindateId).WillCascadeOnDelete(false); // FK_MultipleVote_Canidate

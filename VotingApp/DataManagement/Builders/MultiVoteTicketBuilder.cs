@@ -21,7 +21,18 @@ namespace VotingApp.DataManagement.Builders
             return new MultipleVoteItem
             {
                 MultipleVoteItemId = multipleVote.MultipleVoteId,
-                Canidate = CanidateBuilder.GetModel(multipleVote.Canidate)
+                Canidate = CanidateBuilder.GetModel(multipleVote.Canidate),
+                IsWriteIn = multipleVote.IsWriteIn
+            };
+        }
+
+        public MultipleVote GetEntity(MultipleVoteItem multipleVote)
+        {
+            return new MultipleVote
+            {
+                MultipleVoteId = multipleVote.MultipleVoteItemId,
+                Canidate = CanidateBuilder.GetEntity(multipleVote.Canidate),
+                IsWriteIn = multipleVote.IsWriteIn
             };
         }
     }

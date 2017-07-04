@@ -54,10 +54,16 @@ namespace VotingWeb.Controllers
             log.Info("Saving Results");
             var electionResults = new List<VoteResult>();
 
-            if (viewModel.PresidentWriteIn != null)
+            if (viewModel.PresidentWriteIn.PrimeCanidate.Name != null)
             {
                 electionResults =
                     _manager.AddRankingWriteInToElection(electionResults, viewModel.PresidentWriteIn, ballot.BallotId, viewModel.PresidentAndVicePres.First());
+            }
+
+            if (viewModel.StateRepWriteIn.Canidate.Name != null)
+            {
+                electionResults =
+                    _manager.AddMultiVoteWriteInToElection(electionResults, viewModel.StateRepWriteIn, ballot.BallotId, viewModel.StateRep.First());
             }
 
             foreach (var presidentAndVice in viewModel.PresidentAndVicePres)

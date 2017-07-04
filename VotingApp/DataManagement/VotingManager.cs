@@ -54,7 +54,7 @@ namespace VotingApp.DataManagement
             var _builder = new MultiVoteTicketBuilder();
             var items = _context.MultipleVotes
                 .Include("Canidate").Include("Canidate.Job")
-                .Select(_builder.GetModel).ToList();
+                .Select(_builder.GetModel).Where(x => !x.IsWriteIn).ToList();
             return items;
         }
 
@@ -354,6 +354,37 @@ namespace VotingApp.DataManagement
                 BallotId = ballotId,
                 RankingVoteId = RankingVoteItem.RankingVoteItemId,
                 Ranking = voteItem.Ranking,
+            });
+
+
+            return electionResults;
+        }
+
+
+        public List<VoteResult> AddMultiVoteWriteInToElection(List<VoteResult> electionResults, MultipleVoteItem voteItem, Guid ballotId, MultipleVoteItem existingVoteItem)
+        {
+            var builder = new MultiVoteTicketBuilder();
+            var MultiVoteItem = new MultipleVoteItem()
+            {
+                MultipleVoteItemId = Guid.NewGuid(),
+                Canidate = new VotingApp.Models.Canidate()
+                {
+                    CanidateId = Guid.NewGuid(),
+                    Name = voteItem.Canidate.Name,
+                    JobId = existingVoteItem.Canidate.JobId
+                },
+                IsWriteIn = true
+            };
+
+            _context.MultipleVotes.Add(builder.GetEntity(MultiVoteItem));
+            _context.SaveChanges();
+
+            electionResults.Add(new VoteResult
+            {
+                VoteResultsId = Guid.NewGuid(),
+                BallotId = ballotId,
+                MultipleVoteId = MultiVoteItem.MultipleVoteItemId,
+                VotedFor = voteItem.VotedFor,
             });
 
 

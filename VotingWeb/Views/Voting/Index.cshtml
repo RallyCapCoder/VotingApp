@@ -127,6 +127,7 @@
                 <br/>
                 @Html.HiddenFor(m => m.StateRep[i].Canidate.CanidateId, new {@class = "form-control", @name = "StateRep[" + i + "].Canidate.CanidateId"})
                 @Html.HiddenFor(m => m.StateRep[i].MultipleVoteItemId, new {@class = "form-control", @name = "StateRep[" + i + "].MultipleVoteItemId"})
+                @Html.HiddenFor(m => m.StateRep[i].Canidate.JobId, new {@class = "form-control", @name = "StateRep[" + i + "].Canidate.JobId" })
             }
           
             <label class="control-label">State Rep.District M & M Write In:</label>
