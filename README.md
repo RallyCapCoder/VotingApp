@@ -38,16 +38,36 @@ _In order to use the App besides the Home page and Voting Information page, you 
 **Registering A New Admin User**  
 1. Repeat Steps for Registering A New User
 2. Once Registered, go into your database and find AspNetRoles, you should see one row in there if you used the backup provided if not execute `INSERT INTO AspNetRoles(Id,Name)VALUES(NEWID(),'CanSeeElectionResults') `
-3. Find your AspNetUserId in the AspNetUserTable by searching for your email then Add a row in AspNetUserRoles with your UserId and the RoleId that you created/found in step 2
+3. Find your AspNetUserId in the AspNetUserTable by searching for your email then Add a row in AspNetUserRoles with your UserId and the RoleId that you created/found in step two
 
 **Rules for Voting and Ballot Information**  
 _You must be a registered voter to able to use this functionality_ 
-* For the ranking the candidates section, you must use integers page will not allow for text
-* You can Write in a rankable candidate
-* Vote in one oval sections only allow one of the check boxes to be selected, you cant double vote!
-* Vote for two section allows for a write in but only allows two choices including the write in
+_Once you vote you can not vote again on same account, no double voting!_
+
+Ranking Canindates (For President and Vice President)
+* You must use integers in the textboxes page will not allow for text, since you cant rank by apples and oranages
+* Ranking you give is for both President and Vice President
+* You can write in a rankable candidate
+  * First Input is for Presidential Canindate you want to write in
+  * Second Input is for Vice President Canindate you want to write in
+  * Third Input is for the ranking  
+  
+Multi Vote Candidates (State Representatives)
+* Can pick Multiple candidates (up to two) by selecting each appropriate checkbox 
+* Can write in a multi vote candidate
+  * Input allows for a name of candidate you wish to write in
+  * Checkbox input still follows rules of only two choices total
+
+Single Vote Issue/Candidate  
+  * Can only pick either Yes or No for these ballot items
+  * Can not write in for these items
 
 **Seeing the Election Results**  
-_Must be logged in as an admin to use this functionality_
+_Must be logged in as an admin to use this functionality_  
 1. Log in as an Admin 
 2. Click Election Results tab
+3. Results Should be listed in the following order  
+  * President and Vice President
+  * Supreme Court Judge
+  * State Representative
+  * Ballot Issue
