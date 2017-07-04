@@ -8,7 +8,7 @@
 
 **Setting up the application**  
 
-1. Clone the repository or download the zip file from master branch and save it to your local disk
+1. Clone the repository from master branch and save it to your local disk
 2. Un-Zip the VotingBox.zip file and restore the database to SQL server
 3. Open the VotingApp.sln in Visual Studio from where you saved the code from step 1
 4. Build the solution and allow nuget to restore all the packages
