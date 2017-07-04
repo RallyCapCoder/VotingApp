@@ -10,15 +10,15 @@
 
 @section Scripts {
     <script>
-        $(function() {
-            $("#SupremeCourtYes").click(function() {
+        $(function () {
+            $("#SupremeCourtYes").click(function () {
                 if ($("#SupremeCourtYes").is(":checked")) {
                     $("#SupremeCourtNo").prop("disabled", true);
                 } else {
                     $("#SupremeCourtNo").prop("disabled", false);
                 }
             });
-            $("#SupremeCourtNo").click(function() {
+            $("#SupremeCourtNo").click(function () {
                 if ($("#SupremeCourtNo").is(":checked")) {
                     $("#SupremeCourtYes").prop("disabled", true);
                 } else {
@@ -26,42 +26,62 @@
                 }
             });
 
-            $("#BallotIssueYes").click(function() {
+            $("#BallotIssueYes").click(function () {
                 if ($("#BallotIssueYes").is(":checked")) {
                     $("#BallotIssueNo").prop("disabled", true);
                 } else {
                     $("#BallotIssueNo").prop("disabled", false);
                 }
             });
-            $("#BallotIssueNo").click(function() {
+            $("#BallotIssueNo").click(function () {
                 if ($("#BallotIssueNo").is(":checked")) {
                     $("#BallotIssueYes").prop("disabled", true);
                 } else {
                     $("#BallotIssueYes").prop("disabled", false);
                 }
             });
-            var count = 0;
-            $(".checkbox-inline").click(function() {
-                if ($(this).is(':checked')) {
-                    count++;
-                    if (count >= 2) {
-                        var unChecked = $('.checkbox-inline:checkbox').not(':checked');
-                        unChecked.each(function() {
-                            $(this).prop("disabled", true);
-                        });
-                    }
-
+            $(".checkbox-inline").click(function () {
+                var totalChecked = $('.checkbox-inline:checked').size();
+                if (totalChecked >= 2) {
+                    var unChecked = $('.checkbox-inline:checkbox').not(':checked');
+                    unChecked.each(function () {
+                        $(this).prop("disabled", true);
+                    });
                 }
-                if (!$(this).is(':checked')) {
-                    count--;
-                    if (count <= 2) {
-                        $(".checkbox-inline").each(function() {
-                            $(this).prop("disabled", false);
-                        });
-                        count = 0;
-                    }
+                if (totalChecked < 2) {
+                    $(".checkbox-inline").each(function () {
+                        $(this).prop("disabled", false);
+                    });
                 }
             });
+
+
+            //$(".checkbox-inline").click(function() {
+            //    if ($(this).is(':checked')) {
+            //        var totalChecked = $('.checkbox-inline:checkbox').is(":checked").length
+            //        alert(totalChecked);
+            //        if (count >= 2) {
+            //            var unChecked = $('.checkbox-inline:checkbox').not(':checked');
+            //            unChecked.each(function() {
+            //                $(this).prop("disabled", true);
+            //            });
+            //        }
+
+            //    }
+            //    if (!$(this).is(':checked')) {
+            //        count--;
+            //        if (count < 0) {
+            //            count = 0;
+            //        }
+            //        alert(count + "unchecked");
+            //        if (count <= 2) {
+            //            $(".checkbox-inline").each(function() {
+            //                $(this).prop("disabled", false);
+            //            });
+            //            count = 0;
+            //        }
+            //    }
+            //});
         });
     </script>
 }
@@ -80,22 +100,22 @@
             @for (int i = 0; i < Model.PresidentAndVicePres.Count; i++)
             {
                 <label class="control-label">@Model.PresidentAndVicePres[i].PrimeCanidate.Name - @Model.PresidentAndVicePres[i].PrimeCanidate.Party for @Model.PresidentAndVicePres[i].PrimeCanidate.JobName</label>
-                <br/>
+                <br />
                 <label class="control-label">@Model.PresidentAndVicePres[i].SubCanidate.Name - @Model.PresidentAndVicePres[i].SubCanidate.Party for @Model.PresidentAndVicePres[i].SubCanidate.JobName</label>
-                <br/>
-                @Html.TextBoxFor(m => m.PresidentAndVicePres[i].Ranking, new {@class = "form-control", @name = "PresidentAndVicePres[" + i + "].Ranking", @type = "number"})
-                @Html.HiddenFor(m => m.PresidentAndVicePres[i].PrimeCanidate.CanidateId, new {@name = "PresidentAndVicePres[" + i + "].PrimeCanidate.CanidateId"})
-                @Html.HiddenFor(m => m.PresidentAndVicePres[i].SubCanidate.CanidateId, new {@name = "PresidentAndVicePres[" + i + "].SubCanidate.CanidateId"})
-                @Html.HiddenFor(m => m.PresidentAndVicePres[i].RankingVoteItemId, new {@name = "PresidentAndVicePres[" + i + "].RankingVoteItemId"})
-                @Html.HiddenFor(m => m.PresidentAndVicePres[i].PrimeCanidate.JobId, new {@name = "PresidentAndVicePres[" + i + "].PrimeCanidate.CanidateId.JobId" })
-                @Html.HiddenFor(m => m.PresidentAndVicePres[i].SubCanidate.JobId, new {@name = "PresidentAndVicePres[" + i + "].SubCanidate.JobId" })
+                <br />
+                @Html.TextBoxFor(m => m.PresidentAndVicePres[i].Ranking, new { @class = "form-control", @name = "PresidentAndVicePres[" + i + "].Ranking", @type = "number" })
+                @Html.HiddenFor(m => m.PresidentAndVicePres[i].PrimeCanidate.CanidateId, new { @name = "PresidentAndVicePres[" + i + "].PrimeCanidate.CanidateId" })
+                @Html.HiddenFor(m => m.PresidentAndVicePres[i].SubCanidate.CanidateId, new { @name = "PresidentAndVicePres[" + i + "].SubCanidate.CanidateId" })
+                @Html.HiddenFor(m => m.PresidentAndVicePres[i].RankingVoteItemId, new { @name = "PresidentAndVicePres[" + i + "].RankingVoteItemId" })
+                @Html.HiddenFor(m => m.PresidentAndVicePres[i].PrimeCanidate.JobId, new { @name = "PresidentAndVicePres[" + i + "].PrimeCanidate.CanidateId.JobId" })
+                @Html.HiddenFor(m => m.PresidentAndVicePres[i].SubCanidate.JobId, new { @name = "PresidentAndVicePres[" + i + "].SubCanidate.JobId" })
             }
             <label class="control-label">Commander and Cream And Vice Ice Write In:</label>
-            @Html.TextBoxFor(m => m.PresidentWriteIn.PrimeCanidate.Name, new { @class = "form-control"})
-            @Html.TextBoxFor(m => m.PresidentWriteIn.SubCanidate.Name, new { @class = "form-control"})
+            @Html.TextBoxFor(m => m.PresidentWriteIn.PrimeCanidate.Name, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.PresidentWriteIn.SubCanidate.Name, new { @class = "form-control" })
             <label class="control-label">Ranking:</label>
-            @Html.TextBoxFor(m => m.PresidentWriteIn.Ranking, new { @class = "form-control", @type ="number" })
-</div>
+            @Html.TextBoxFor(m => m.PresidentWriteIn.Ranking, new { @class = "form-control", @type = "number" })
+        </div>
 
         <div class="form-group">
             <h2>For Chief Dairy Queen</h2>
@@ -107,11 +127,11 @@
             <p>
                 <em>Fill in the oval before the word "NO" if you do not wish the offical to remain in the office</em>
             </p>
-            <br/>
+            <br />
             <label class="control-label">Yes</label>
-            @Html.CheckBoxFor(m => m.SupremeCourt.YesVote, new {@id = "SupremeCourtYes"})
+            @Html.CheckBoxFor(m => m.SupremeCourt.YesVote, new { @id = "SupremeCourtYes" })
             <label class="control-label">No</label>
-            @Html.CheckBoxFor(m => m.SupremeCourt.NoVote, new {@id = "SupremeCourtNo"})
+            @Html.CheckBoxFor(m => m.SupremeCourt.NoVote, new { @id = "SupremeCourtNo" })
             @Html.HiddenFor(m => m.SupremeCourt.SingleVoteTicketId)
         </div>
 
@@ -123,20 +143,20 @@
             @for (int i = 0; i < Model.StateRep.Count; i++)
             {
                 <label class="control-label">@Model.StateRep[i].Canidate.Name (@Model.StateRep[i].Canidate.Party)</label>
-                @Html.CheckBoxFor(m => m.StateRep[i].VotedFor, new {@class = "checkbox-inline", @name = "StateRep[" + i + "].VotedFor"})
-                <br/>
-                @Html.HiddenFor(m => m.StateRep[i].Canidate.CanidateId, new {@class = "form-control", @name = "StateRep[" + i + "].Canidate.CanidateId"})
-                @Html.HiddenFor(m => m.StateRep[i].MultipleVoteItemId, new {@class = "form-control", @name = "StateRep[" + i + "].MultipleVoteItemId"})
-                @Html.HiddenFor(m => m.StateRep[i].Canidate.JobId, new {@class = "form-control", @name = "StateRep[" + i + "].Canidate.JobId" })
+                @Html.CheckBoxFor(m => m.StateRep[i].VotedFor, new { @class = "checkbox-inline", @name = "StateRep[" + i + "].VotedFor" })
+                <br />
+                @Html.HiddenFor(m => m.StateRep[i].Canidate.CanidateId, new { @class = "form-control", @name = "StateRep[" + i + "].Canidate.CanidateId" })
+                @Html.HiddenFor(m => m.StateRep[i].MultipleVoteItemId, new { @class = "form-control", @name = "StateRep[" + i + "].MultipleVoteItemId" })
+                @Html.HiddenFor(m => m.StateRep[i].Canidate.JobId, new { @class = "form-control", @name = "StateRep[" + i + "].Canidate.JobId" })
             }
-          
+
             <label class="control-label">State Rep.District M & M Write In:</label>
             <div class="form-group">
-                @Html.TextBoxFor(m => m.StateRepWriteIn.Canidate.Name, new { @class = "form-control col-xs-4"})
+                @Html.TextBoxFor(m => m.StateRepWriteIn.Canidate.Name, new { @class = "form-control col-xs-4" })
                 &nbsp;
-                @Html.CheckBoxFor(m => m.StateRepWriteIn.VotedFor )
+                @Html.CheckBoxFor(m => m.StateRepWriteIn.VotedFor, new { @class = "checkbox-inline" })
             </div>
-        <br/>
+            <br />
 
         </div>
 
@@ -150,15 +170,15 @@
         </p>
         <div class="form-group">
             <label>Yes</label>
-            @Html.CheckBoxFor(m => m.BallotIssue.YesVote, new {@id = "BallotIssueYes"})
+            @Html.CheckBoxFor(m => m.BallotIssue.YesVote, new { @id = "BallotIssueYes" })
             <label>
                 No
             </label>
-            @Html.CheckBoxFor(m => m.BallotIssue.NoVote, new {@id = "BallotIssueNo"})
+            @Html.CheckBoxFor(m => m.BallotIssue.NoVote, new { @id = "BallotIssueNo" })
             @Html.HiddenFor(m => m.BallotIssue.Issue.VoteIssueId)
             @Html.HiddenFor(m => m.BallotIssue.SingleVoteTicketId)
         </div>
-        <br/>
+        <br />
         <button type="submit" class="btn-primary">Submit your ballot!</button>
     </form>
 }
