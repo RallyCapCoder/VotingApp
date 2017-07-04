@@ -155,5 +155,39 @@ namespace VotingTests
 
         }
 
+        [TestMethod]
+        public void AddAWriteInCanididate()
+        {
+            var _context = new VotingBooth();
+            var _manager = new VotingManager();
+
+            var builder = new RankingVoteTicketBuilder();
+
+            var RankingVoteItem = new RankingVoteItem
+            {
+                RankingVoteItemId = Guid.NewGuid(),
+                PrimeCanidate = new VotingApp.Models.Canidate()
+                {
+                   CanidateId = Guid.NewGuid(),
+                   Name = "Test",
+                   JobId = Guid.Parse("521C573E-91E8-47CA-ACBC-BF3D63706F29")
+                },
+                SubCanidate = new VotingApp.Models.Canidate()
+                {
+                    CanidateId = Guid.NewGuid(),
+                    Name = "Vice Test",
+                    JobId = Guid.Parse("057A2ED5-CDE9-44DB-9697-041B0F09555F")
+                },
+                Ranking = 1
+            };
+
+            _manager._context.RankingVotes.Add(builder.GetEntity(RankingVoteItem));
+            _manager._context.SaveChanges();
+             
+
+
+
+        }
+
     }
 }

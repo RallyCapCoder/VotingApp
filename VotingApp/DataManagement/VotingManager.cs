@@ -64,7 +64,7 @@ namespace VotingApp.DataManagement
             var _builder = new RankingVoteTicketBuilder();
             var items = _context.RankingVotes.Include("PrimeCanindate").Include("SubCanindate")
                 .Include("PrimeCanindate.Job").Include("SubCanindate.Job")
-                .Select(_builder.GetModel).ToList();
+                .Select(_builder.GetModel).Where(x => !x.IsWriteIn).ToList();
             return items;
         }
 
@@ -172,10 +172,6 @@ namespace VotingApp.DataManagement
         {
             var builder = new BallotBuilder();
             var ballot = _context.Ballots.FirstOrDefault(x => x.AspNetUserId == userId);
-            if (ballot != null)
-            {
-                return null;
-            }
             ballot = new Ballot()
             {
                 BallotId = Guid.NewGuid(),
@@ -186,6 +182,13 @@ namespace VotingApp.DataManagement
             _context.SaveChanges();
 
             return builder.GetModel(ballot);
+        }
+
+        public Models.Ballot FindExistingBallot(string userId)
+        {
+            var builder = new BallotBuilder();
+            var ballot = _context.Ballots.FirstOrDefault(x => x.AspNetUserId == userId);
+            return ballot == null ? null : builder.GetModel(ballot);
         }
 
         public List<VoteResults> GetVoteResults()
@@ -319,6 +322,42 @@ namespace VotingApp.DataManagement
                 }
             }
             return electionResultsForMultiVoteItems.ToDictionary(x => x.Value.MultipleVoteItem, x => x.Value.Votes);
+        }
+
+        public List<VoteResult> AddRankingWriteInToElection(List<VoteResult> electionResults, RankingVoteItem voteItem, Guid ballotId, RankingVoteItem existingVoteItem)
+        {
+            var builder = new RankingVoteTicketBuilder();
+            var RankingVoteItem = new RankingVoteItem
+            {
+                RankingVoteItemId = Guid.NewGuid(),
+                PrimeCanidate = new VotingApp.Models.Canidate()
+                {
+                    CanidateId = Guid.NewGuid(),
+                    Name = voteItem.PrimeCanidate.Name,
+                    JobId = existingVoteItem.PrimeCanidate.JobId
+                },
+                SubCanidate = new VotingApp.Models.Canidate()
+                {
+                    CanidateId = Guid.NewGuid(),
+                    Name = voteItem.SubCanidate.Name,
+                    JobId = existingVoteItem.SubCanidate.JobId
+                },
+                IsWriteIn = true
+            };
+
+            _context.RankingVotes.Add(builder.GetEntity(RankingVoteItem));
+            _context.SaveChanges();
+
+            electionResults.Add(new VoteResult
+            {
+                VoteResultsId = Guid.NewGuid(),
+                BallotId = ballotId,
+                RankingVoteId = RankingVoteItem.RankingVoteItemId,
+                Ranking = voteItem.Ranking,
+            });
+
+
+            return electionResults;
         }
 
         public void SaveElectionResults(List<VoteResult> results)

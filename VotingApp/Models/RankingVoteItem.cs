@@ -12,6 +12,8 @@ namespace VotingApp.Models
         public Guid RankingVoteItemId { get; set; }
         public Canidate PrimeCanidate { get; set; }
         public Canidate SubCanidate { get; set; }
+        [Range(0, int.MaxValue, ErrorMessage = "Please enter valid integer Number")]
         public int Ranking { get; set; }
+        public bool IsWriteIn { get; set; }
     }
 }

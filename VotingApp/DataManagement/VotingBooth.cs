@@ -770,6 +770,7 @@ namespace VotingApp.DataManagement
         public System.Guid RankingVoteId { get; set; } // RankingVoteId (Primary key)
         public System.Guid PrimeCanindateId { get; set; } // PrimeCanindateId
         public System.Guid SubCanindateId { get; set; } // SubCanindateId
+        public bool IsWriteIn { get; set; } // IsWriteIn
 
         // Reverse navigation
 
@@ -792,6 +793,7 @@ namespace VotingApp.DataManagement
         public RankingVote()
         {
             RankingVoteId = System.Guid.NewGuid();
+            IsWriteIn = false;
             VoteResults = new System.Collections.Generic.List<VoteResult>();
         }
     }
@@ -1120,6 +1122,7 @@ namespace VotingApp.DataManagement
             Property(x => x.RankingVoteId).HasColumnName(@"RankingVoteId").HasColumnType("uniqueidentifier").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
             Property(x => x.PrimeCanindateId).HasColumnName(@"PrimeCanindateId").HasColumnType("uniqueidentifier").IsRequired();
             Property(x => x.SubCanindateId).HasColumnName(@"SubCanindateId").HasColumnType("uniqueidentifier").IsRequired();
+            Property(x => x.IsWriteIn).HasColumnName(@"IsWriteIn").HasColumnType("bit").IsRequired();
 
             // Foreign keys
             HasRequired(a => a.PrimeCanindate).WithMany(b => b.PrimeCanindate).HasForeignKey(c => c.PrimeCanindateId).WillCascadeOnDelete(false); // FK_RankingVote_PrimeCanindate

@@ -21,14 +21,14 @@ namespace VotingWeb.Controllers
             //When you go to page we should create a new ballot and save it to db
             var _manager = new VotingManager();
             var viewModel = new VotingViewModel();
-            log.Info("Creating Ballot");
-            var ballot = _manager.CreateBallot("National Election" + DateTime.Now, user.Id);
-            if (ballot == null)
+            log.Info("Attempting To Find Existing Ballot");
+            var ballot = _manager.FindExistingBallot(user.Id);
+            if (ballot != null)
             {
                 
                 return RedirectToAction("Index", "Home");
             }
-            viewModel.BallotId = ballot.BallotId;
+            log.Info("User has not already voted!");
             log.Info("Getting Presidential and Vice Presidential Canindates");
             viewModel.PresidentAndVicePres = _manager.GetRankedVoteItems();
             log.Info("Getting Supreme Court Canindate");
@@ -44,17 +44,28 @@ namespace VotingWeb.Controllers
         [HttpPost]
         public ActionResult Vote(VotingViewModel viewModel)
         {
+
+            ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
             log.Info("User Has Voted!");
             var _manager = new VotingManager();
+
+            var ballot = _manager.CreateBallot("National Election" + DateTime.Now, user.Id);
+
             log.Info("Saving Results");
             var electionResults = new List<VoteResult>();
+
+            if (viewModel.PresidentWriteIn != null)
+            {
+                electionResults =
+                    _manager.AddRankingWriteInToElection(electionResults, viewModel.PresidentWriteIn, ballot.BallotId, viewModel.PresidentAndVicePres.First());
+            }
 
             foreach (var presidentAndVice in viewModel.PresidentAndVicePres)
             {
                 electionResults.Add(new VoteResult
                 {
                     VoteResultsId = Guid.NewGuid(),
-                    BallotId = viewModel.BallotId,
+                    BallotId = ballot.BallotId,
                     RankingVoteId = presidentAndVice.RankingVoteItemId,
                     Ranking = presidentAndVice.Ranking,
                 });
@@ -64,7 +75,7 @@ namespace VotingWeb.Controllers
                 electionResults.Add(new VoteResult
                 {
                     VoteResultsId = Guid.NewGuid(),
-                    BallotId = viewModel.BallotId,
+                    BallotId = ballot.BallotId,
                     MultipleVoteId = stateRep.MultipleVoteItemId,
                     VotedFor = stateRep.VotedFor,
                 });
@@ -72,7 +83,7 @@ namespace VotingWeb.Controllers
             electionResults.Add(new VoteResult
             {
                 VoteResultsId = Guid.NewGuid(),
-                BallotId = viewModel.BallotId,
+                BallotId = ballot.BallotId,
                 SingleVoteId = viewModel.SupremeCourt.SingleVoteTicketId,
                 VoteYes = viewModel.SupremeCourt.YesVote,
                 VoteNo = viewModel.SupremeCourt.NoVote,
@@ -81,7 +92,7 @@ namespace VotingWeb.Controllers
             electionResults.Add(new VoteResult
             {
                 VoteResultsId = Guid.NewGuid(),
-                BallotId = viewModel.BallotId,
+                BallotId = ballot.BallotId,
                 SingleVoteId = viewModel.BallotIssue.SingleVoteTicketId,
                 VoteYes = viewModel.BallotIssue.YesVote,
                 VoteNo = viewModel.BallotIssue.NoVote,

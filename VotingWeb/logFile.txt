@@ -3,3 +3,515 @@
 2017-07-03 15:37:18.7922|INFO|VoteLog|Getting Supreme Court Canindate
 2017-07-03 15:37:18.8353|INFO|VoteLog|Getting State Representative Canindates
 2017-07-03 15:37:18.8643|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 16:04:54.9564|INFO|VoteLog|Creating Ballot
+2017-07-03 16:05:37.2733|INFO|VoteLog|Creating Ballot
+2017-07-03 16:05:37.2888|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 16:05:37.3464|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 16:05:37.3879|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 16:05:37.4143|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 16:05:42.4323|INFO|VoteLog|Creating Ballot
+2017-07-03 16:06:08.2369|INFO|VoteLog|Creating Ballot
+2017-07-03 16:06:09.7076|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 16:06:09.7196|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 16:06:09.7196|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 16:06:09.7196|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 16:09:09.8754|INFO|VoteLog|Creating Ballot
+2017-07-03 16:09:09.9710|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 16:09:10.0173|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 16:09:10.0514|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 16:09:10.0757|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 16:11:19.4319|INFO|VoteLog|Creating Ballot
+2017-07-03 16:11:21.0985|INFO|VoteLog|Creating Ballot
+2017-07-03 16:11:22.3095|INFO|VoteLog|Creating Ballot
+2017-07-03 16:11:26.9776|INFO|VoteLog|Creating Ballot
+2017-07-03 16:11:26.9776|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 16:11:26.9876|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 16:11:26.9876|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 16:11:26.9876|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 16:11:48.3276|INFO|VoteLog|Creating Ballot
+2017-07-03 16:11:48.3326|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 16:11:48.3326|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 16:11:48.3326|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 16:11:48.3451|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 16:11:52.1411|INFO|VoteLog|Creating Ballot
+2017-07-03 16:11:53.3852|INFO|VoteLog|Creating Ballot
+2017-07-03 16:11:57.4382|INFO|VoteLog|Creating Ballot
+2017-07-03 16:11:57.4382|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 16:11:57.4382|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 16:11:57.4382|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 16:11:57.4563|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 16:12:07.1314|INFO|VoteLog|Creating Ballot
+2017-07-03 16:12:07.1314|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 16:12:07.1314|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 16:12:07.1444|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 16:12:07.1444|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 16:12:29.1521|INFO|VoteLog|Creating Ballot
+2017-07-03 16:12:29.1521|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 16:12:29.1611|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 16:12:29.1611|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 16:12:29.1611|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 16:13:18.3856|INFO|VoteLog|Creating Ballot
+2017-07-03 16:13:26.1419|INFO|VoteLog|Creating Ballot
+2017-07-03 16:13:26.1419|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 16:13:26.1419|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 16:13:26.1569|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 16:13:26.1569|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 16:13:59.6053|INFO|VoteLog|Creating Ballot
+2017-07-03 16:13:59.6098|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 16:13:59.6098|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 16:13:59.6098|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 16:13:59.6098|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 16:14:21.0871|INFO|VoteLog|Creating Ballot
+2017-07-03 16:14:21.0871|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 16:14:21.0961|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 16:14:21.0961|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 16:14:21.0961|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 16:18:31.6723|INFO|VoteLog|Creating Ballot
+2017-07-03 16:18:31.6723|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 16:18:31.6723|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 16:18:31.6723|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 16:18:31.6903|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 16:24:55.1815|INFO|VoteLog|Creating Ballot
+2017-07-03 16:24:55.1815|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 16:24:55.1905|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 16:24:55.1905|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 16:24:55.1905|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 16:25:02.3846|INFO|VoteLog|Creating Ballot
+2017-07-03 16:25:03.8830|INFO|VoteLog|Creating Ballot
+2017-07-03 16:25:13.3485|INFO|VoteLog|Creating Ballot
+2017-07-03 16:25:13.3485|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 16:25:13.3485|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 16:25:13.3620|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 16:25:13.3620|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 16:25:29.7473|INFO|VoteLog|Creating Ballot
+2017-07-03 16:25:35.2609|INFO|VoteLog|Creating Ballot
+2017-07-03 16:25:35.2609|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 16:25:35.2709|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 16:25:35.2709|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 16:25:35.2709|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 16:27:14.0298|INFO|VoteLog|Creating Ballot
+2017-07-03 16:27:14.1354|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 16:27:14.1890|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 16:27:14.2300|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 16:27:14.2596|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 16:28:38.0957|INFO|VoteLog|Creating Ballot
+2017-07-03 16:28:38.2187|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 16:28:38.2728|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 16:28:38.3108|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 16:28:38.3369|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 16:29:27.7149|INFO|VoteLog|Creating Ballot
+2017-07-03 16:29:36.2018|INFO|VoteLog|Creating Ballot
+2017-07-03 16:29:36.2153|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 16:29:36.2739|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 16:29:36.3139|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 16:29:36.3559|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 16:30:18.9532|INFO|VoteLog|Creating Ballot
+2017-07-03 16:30:24.3607|INFO|VoteLog|Creating Ballot
+2017-07-03 16:30:24.3607|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 16:30:24.3607|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 16:30:24.3787|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 16:30:24.3787|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 16:31:29.5325|INFO|VoteLog|Creating Ballot
+2017-07-03 16:31:54.8845|INFO|VoteLog|Creating Ballot
+2017-07-03 16:31:54.8975|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 16:31:54.9726|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 16:31:55.0100|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 16:31:55.0360|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 16:33:24.3877|INFO|VoteLog|Creating Ballot
+2017-07-03 16:33:27.6769|INFO|VoteLog|Creating Ballot
+2017-07-03 16:33:27.7625|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 16:33:27.8144|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 16:33:27.8529|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 16:33:27.8804|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 16:34:47.9245|INFO|VoteLog|Creating Ballot
+2017-07-03 16:34:48.0481|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 16:34:48.1002|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 16:34:48.1381|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 16:34:48.1661|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 16:36:12.8690|INFO|VoteLog|Creating Ballot
+2017-07-03 16:36:17.0857|INFO|VoteLog|Creating Ballot
+2017-07-03 16:36:17.0998|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 16:36:17.1698|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 16:36:17.2089|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 16:36:17.2354|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 16:39:25.1295|INFO|VoteLog|Creating Ballot
+2017-07-03 16:39:27.9956|INFO|VoteLog|Creating Ballot
+2017-07-03 16:39:28.0096|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 16:39:28.0662|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 16:39:28.1062|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 16:39:28.1333|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 16:40:13.2849|INFO|VoteLog|Creating Ballot
+2017-07-03 16:40:13.3870|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 16:40:13.4371|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 16:40:13.4751|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 16:40:13.5017|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 16:40:57.5970|INFO|VoteLog|Creating Ballot
+2017-07-03 16:40:57.6979|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 16:40:57.7489|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 16:40:57.7889|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 16:40:57.8149|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 16:56:41.1574|INFO|VoteLog|Creating Ballot
+2017-07-03 16:56:41.2590|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 16:56:41.3139|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 16:56:41.3559|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 16:56:41.3850|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 16:59:04.1624|INFO|VoteLog|Creating Ballot
+2017-07-03 16:59:11.2601|INFO|VoteLog|Creating Ballot
+2017-07-03 16:59:11.2681|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 16:59:11.2681|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 16:59:11.2681|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 16:59:11.2866|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 17:00:16.3661|INFO|VoteLog|Creating Ballot
+2017-07-03 17:00:23.0721|INFO|VoteLog|Creating Ballot
+2017-07-03 17:00:23.0791|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 17:00:23.0791|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 17:00:23.0791|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 17:00:23.0972|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 17:01:24.2824|INFO|VoteLog|Creating Ballot
+2017-07-03 17:01:28.4036|INFO|VoteLog|Creating Ballot
+2017-07-03 17:01:28.4237|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 17:01:28.4237|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 17:01:28.4407|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 17:01:28.4407|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 17:02:20.4868|INFO|VoteLog|Creating Ballot
+2017-07-03 17:02:24.0320|INFO|VoteLog|Creating Ballot
+2017-07-03 17:02:40.6919|INFO|VoteLog|Creating Ballot
+2017-07-03 17:02:40.7046|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 17:02:40.7726|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 17:02:40.8137|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 17:02:40.8397|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 17:13:12.2603|INFO|VoteLog|Creating Ballot
+2017-07-03 17:13:17.3787|INFO|VoteLog|Creating Ballot
+2017-07-03 17:13:17.3927|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 17:13:17.4474|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 17:13:17.4864|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 17:13:17.5129|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 17:14:15.9048|INFO|VoteLog|Creating Ballot
+2017-07-03 17:14:19.9140|INFO|VoteLog|Creating Ballot
+2017-07-03 17:14:23.7495|INFO|VoteLog|Creating Ballot
+2017-07-03 17:14:23.7625|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 17:14:23.8166|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 17:14:23.8566|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 17:14:23.8828|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 17:16:12.5045|INFO|VoteLog|Creating Ballot
+2017-07-03 17:16:16.8266|INFO|VoteLog|Creating Ballot
+2017-07-03 17:16:20.0945|INFO|VoteLog|Creating Ballot
+2017-07-03 17:16:20.0945|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 17:16:20.1636|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 17:16:20.2036|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 17:16:20.2296|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 17:16:40.4709|INFO|VoteLog|Creating Ballot
+2017-07-03 17:18:31.7411|INFO|VoteLog|Creating Ballot
+2017-07-03 17:18:31.8478|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 17:18:31.9229|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 17:18:31.9625|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 17:18:31.9905|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 17:19:53.4316|INFO|VoteLog|Creating Ballot
+2017-07-03 17:19:56.9678|INFO|VoteLog|Creating Ballot
+2017-07-03 17:19:56.9763|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 17:19:56.9763|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 17:19:56.9873|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 17:19:56.9873|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 17:22:46.5714|INFO|VoteLog|Creating Ballot
+2017-07-03 17:23:10.8457|INFO|VoteLog|Creating Ballot
+2017-07-03 17:23:10.8615|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 17:23:10.9185|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 17:23:10.9581|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 17:23:10.9861|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 17:24:30.4388|INFO|VoteLog|Creating Ballot
+2017-07-03 17:24:40.9930|INFO|VoteLog|Creating Ballot
+2017-07-03 17:24:41.0060|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 17:24:41.0060|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 17:24:41.0180|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 17:24:41.0180|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 17:25:49.5971|INFO|VoteLog|Creating Ballot
+2017-07-03 17:25:49.6987|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 17:25:49.7547|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 17:25:49.7945|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 17:25:49.8222|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 17:27:51.6793|INFO|VoteLog|Creating Ballot
+2017-07-03 17:27:55.3156|INFO|VoteLog|Creating Ballot
+2017-07-03 17:27:55.3307|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 17:27:55.3887|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 17:27:55.4293|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 17:27:55.4553|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 17:31:24.7588|INFO|VoteLog|Creating Ballot
+2017-07-03 17:31:28.3102|INFO|VoteLog|Creating Ballot
+2017-07-03 17:31:28.3227|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 17:31:28.3813|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 17:31:28.4203|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 17:31:28.4460|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 17:32:16.5355|INFO|VoteLog|Creating Ballot
+2017-07-03 17:32:16.6566|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 17:32:16.7087|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 17:32:16.7497|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 17:32:16.7780|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 17:34:22.1203|INFO|VoteLog|Creating Ballot
+2017-07-03 17:34:22.2410|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 17:34:22.2930|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 17:34:22.3312|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 17:34:22.3585|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 17:35:38.5631|INFO|VoteLog|Creating Ballot
+2017-07-03 17:35:45.7343|INFO|VoteLog|Creating Ballot
+2017-07-03 17:35:45.7484|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 17:35:45.8049|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 17:35:45.8429|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 17:35:45.8700|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 17:37:19.1050|INFO|VoteLog|Creating Ballot
+2017-07-03 17:37:19.2295|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 17:37:19.2811|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 17:37:19.3201|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 17:37:19.3488|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 17:38:33.1912|INFO|VoteLog|Creating Ballot
+2017-07-03 17:38:33.3134|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 17:38:33.3634|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 17:38:33.4025|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 17:38:33.4295|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 17:38:37.7526|INFO|VoteLog|Creating Ballot
+2017-07-03 17:38:42.3938|INFO|VoteLog|Creating Ballot
+2017-07-03 17:38:45.8473|INFO|VoteLog|Creating Ballot
+2017-07-03 17:38:45.9204|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 17:38:45.9254|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 17:38:45.9254|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 17:38:45.9254|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 17:41:30.0118|INFO|VoteLog|Creating Ballot
+2017-07-03 17:41:35.0547|INFO|VoteLog|Creating Ballot
+2017-07-03 17:41:35.0697|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 17:41:35.1262|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 17:41:35.1683|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 17:41:35.1948|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 17:46:47.8143|INFO|VoteLog|Creating Ballot
+2017-07-03 17:46:50.7736|INFO|VoteLog|Creating Ballot
+2017-07-03 17:46:50.7872|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 17:46:50.8423|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 17:46:50.8988|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 17:46:50.9257|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 18:03:17.6193|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-03 18:03:55.1328|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-03 18:04:52.0796|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-03 18:04:54.2832|INFO|VoteLog|User has not already voted!
+2017-07-03 18:04:54.2832|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 18:04:54.3693|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 18:04:54.4093|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 18:04:54.4363|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 18:07:27.9467|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-03 18:07:30.5009|INFO|VoteLog|User has not already voted!
+2017-07-03 18:07:30.5009|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 18:07:30.5690|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 18:07:30.6090|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 18:07:30.6351|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 18:08:35.2062|INFO|VoteLog|User Has Voted!
+2017-07-03 18:08:35.2232|INFO|VoteLog|Saving Results
+2017-07-03 18:08:35.2453|INFO|VoteLog|Sending User to Home Screen
+2017-07-03 18:10:44.1701|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-03 18:11:00.0038|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-03 18:11:01.3118|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-03 18:11:10.1372|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-03 18:11:10.1422|INFO|VoteLog|User has not already voted!
+2017-07-03 18:11:10.1422|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 18:11:10.2038|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 18:11:10.2438|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 18:11:10.2706|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 18:11:16.2900|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-03 18:11:16.2900|INFO|VoteLog|User has not already voted!
+2017-07-03 18:11:16.2980|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 18:11:16.2980|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 18:11:16.2980|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 18:11:16.3170|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 18:11:28.1689|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-03 18:11:28.1739|INFO|VoteLog|User has not already voted!
+2017-07-03 18:11:28.1739|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 18:11:28.1739|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 18:11:28.1909|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 18:11:28.1909|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 18:11:37.1565|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-03 18:11:37.1565|INFO|VoteLog|User has not already voted!
+2017-07-03 18:11:37.1565|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 18:11:37.1565|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 18:11:37.1776|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 18:11:37.1776|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 18:12:06.9962|INFO|VoteLog|User Has Voted!
+2017-07-03 18:12:07.0092|INFO|VoteLog|Saving Results
+2017-07-03 18:12:07.0302|INFO|VoteLog|Sending User to Home Screen
+2017-07-03 18:12:49.9155|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-03 18:12:49.9155|INFO|VoteLog|User has not already voted!
+2017-07-03 18:12:49.9265|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 18:12:49.9538|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 18:12:49.9538|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 18:12:49.9538|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 18:12:57.2956|INFO|VoteLog|User Has Voted!
+2017-07-03 18:12:57.3036|INFO|VoteLog|Saving Results
+2017-07-03 18:12:57.3167|INFO|VoteLog|Sending User to Home Screen
+2017-07-03 19:05:43.4021|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-03 19:05:43.4081|INFO|VoteLog|User has not already voted!
+2017-07-03 19:05:43.4081|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 19:05:43.4081|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 19:05:43.4256|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 19:05:43.4256|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 19:07:46.0083|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-03 19:07:46.0083|INFO|VoteLog|User has not already voted!
+2017-07-03 19:07:46.0173|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 19:07:46.0618|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 19:07:46.0618|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 19:07:46.0618|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 19:09:08.5712|INFO|VoteLog|User Has Voted!
+2017-07-03 19:09:08.5832|INFO|VoteLog|Saving Results
+2017-07-03 19:09:08.6022|INFO|VoteLog|Sending User to Home Screen
+2017-07-03 19:10:44.9284|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-03 19:10:44.9284|INFO|VoteLog|User has not already voted!
+2017-07-03 19:10:44.9384|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 19:10:44.9840|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 19:10:44.9840|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 19:10:44.9990|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 19:20:44.8840|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-03 19:20:45.0010|INFO|VoteLog|User has not already voted!
+2017-07-03 19:20:45.0010|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 19:20:45.0578|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 19:20:45.0994|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 19:20:45.1265|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 19:21:59.2637|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-03 19:21:59.3588|INFO|VoteLog|User has not already voted!
+2017-07-03 19:21:59.3588|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 19:21:59.4159|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 19:21:59.4559|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 19:21:59.4839|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 19:25:12.2325|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-03 19:25:12.3386|INFO|VoteLog|User has not already voted!
+2017-07-03 19:25:12.3426|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 19:25:12.3977|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 19:25:12.4367|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 19:25:12.4640|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 19:25:52.5491|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-03 19:25:52.5491|INFO|VoteLog|User has not already voted!
+2017-07-03 19:25:52.5491|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 19:25:52.5661|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 19:25:52.5661|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 19:25:52.5661|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 19:28:14.1181|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-03 19:28:14.1241|INFO|VoteLog|User has not already voted!
+2017-07-03 19:28:14.1241|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 19:28:14.1241|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 19:28:14.1411|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 19:28:14.1411|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 19:28:37.5455|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-03 19:28:37.5455|INFO|VoteLog|User has not already voted!
+2017-07-03 19:28:37.5455|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 19:28:37.5620|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 19:28:37.5620|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 19:28:37.5620|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 19:28:53.8550|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-03 19:28:53.8610|INFO|VoteLog|User has not already voted!
+2017-07-03 19:28:53.8610|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 19:28:53.8610|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 19:28:53.8764|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 19:28:53.8764|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 19:29:34.3783|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-03 19:29:34.3783|INFO|VoteLog|User has not already voted!
+2017-07-03 19:29:34.3893|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 19:29:34.3893|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 19:29:34.3893|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 19:29:34.4119|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 19:30:05.3039|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-03 19:30:05.3039|INFO|VoteLog|User has not already voted!
+2017-07-03 19:30:05.3139|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 19:30:05.3139|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 19:30:05.3139|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 19:30:05.3339|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 19:32:18.9027|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-03 19:32:18.9078|INFO|VoteLog|User has not already voted!
+2017-07-03 19:32:18.9078|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 19:32:18.9078|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 19:32:18.9258|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 19:32:18.9258|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 19:32:40.4175|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-03 19:32:40.4235|INFO|VoteLog|User has not already voted!
+2017-07-03 19:32:40.4235|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 19:32:40.4235|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 19:32:40.4405|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 19:32:40.4405|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 19:32:58.4161|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-03 19:32:58.4221|INFO|VoteLog|User has not already voted!
+2017-07-03 19:32:58.4221|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 19:32:58.4221|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 19:32:58.4381|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 19:32:58.4381|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 19:33:13.2366|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-03 19:33:13.2366|INFO|VoteLog|User has not already voted!
+2017-07-03 19:33:13.2366|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 19:33:13.2546|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 19:33:13.2546|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 19:33:13.2706|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 19:33:31.1272|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-03 19:33:31.1272|INFO|VoteLog|User has not already voted!
+2017-07-03 19:33:31.1272|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 19:33:31.1430|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 19:33:31.1430|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 19:33:31.1430|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 19:40:04.5718|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-03 19:40:04.6679|INFO|VoteLog|User has not already voted!
+2017-07-03 19:40:04.6719|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 19:40:04.7292|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 19:40:04.7702|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 19:40:04.7972|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 19:41:11.5126|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-03 19:41:11.6057|INFO|VoteLog|User has not already voted!
+2017-07-03 19:41:11.6094|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 19:41:11.6624|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 19:41:11.7190|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 19:41:11.7470|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 20:13:17.3427|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-03 20:13:17.4447|INFO|VoteLog|User has not already voted!
+2017-07-03 20:13:17.4447|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 20:13:17.5017|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 20:13:17.5414|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 20:13:17.5684|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 20:14:04.2008|INFO|VoteLog|User Has Voted!
+2017-07-03 20:14:04.2168|INFO|VoteLog|Saving Results
+2017-07-03 20:18:06.8585|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-03 20:18:38.9358|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-03 20:18:38.9413|INFO|VoteLog|User has not already voted!
+2017-07-03 20:18:38.9413|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 20:18:39.0043|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 20:18:39.0358|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 20:18:39.0584|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 20:20:05.7777|INFO|VoteLog|User Has Voted!
+2017-07-03 20:20:05.7988|INFO|VoteLog|Saving Results
+2017-07-03 20:20:34.0642|INFO|VoteLog|User Has Voted!
+2017-07-03 20:21:07.9814|INFO|VoteLog|User Has Voted!
+2017-07-03 20:21:09.5073|INFO|VoteLog|Saving Results
+2017-07-03 20:28:05.6135|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-03 20:28:12.6498|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-03 20:28:12.6562|INFO|VoteLog|User has not already voted!
+2017-07-03 20:28:12.6562|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 20:28:12.7343|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 20:28:12.7733|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 20:28:12.8003|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 20:28:45.7570|INFO|VoteLog|User Has Voted!
+2017-07-03 20:28:45.7721|INFO|VoteLog|Saving Results
+2017-07-03 20:30:42.1004|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-03 20:30:42.2130|INFO|VoteLog|User has not already voted!
+2017-07-03 20:30:42.2185|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 20:30:42.2766|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 20:30:42.3194|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 20:30:42.3474|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 20:31:07.7476|INFO|VoteLog|User Has Voted!
+2017-07-03 20:31:07.7706|INFO|VoteLog|Saving Results
+2017-07-03 20:31:47.5052|INFO|VoteLog|User Has Voted!
+2017-07-03 20:31:48.1586|INFO|VoteLog|Saving Results
+2017-07-03 20:32:27.8637|INFO|VoteLog|User Has Voted!
+2017-07-03 20:32:29.0737|INFO|VoteLog|Saving Results
+2017-07-03 20:33:52.1625|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-03 20:33:52.2696|INFO|VoteLog|User has not already voted!
+2017-07-03 20:33:52.2696|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 20:33:52.3446|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 20:33:52.3847|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 20:33:52.4127|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 20:37:43.5600|INFO|VoteLog|Attempting To Find Existing Ballot
+2017-07-03 20:37:43.6624|INFO|VoteLog|User has not already voted!
+2017-07-03 20:37:43.6624|INFO|VoteLog|Getting Presidential and Vice Presidential Canindates
+2017-07-03 20:37:43.7201|INFO|VoteLog|Getting Supreme Court Canindate
+2017-07-03 20:37:43.7597|INFO|VoteLog|Getting State Representative Canindates
+2017-07-03 20:37:43.7881|INFO|VoteLog|Getting Ballot Issues
+2017-07-03 20:38:56.2350|INFO|VoteLog|User Has Voted!
+2017-07-03 20:38:56.2580|INFO|VoteLog|Saving Results
+2017-07-03 20:38:56.9663|INFO|VoteLog|Sending User to Home Screen

@@ -23,15 +23,6 @@
             <ul class="nav navbar-nav">
                 <li>@Html.ActionLink("Home", "Index", "Home")</li>
                 <li>@Html.ActionLink("Voting Information", "About", "Home")</li>
-                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                @if (User.Identity.IsAuthenticated)
-                {
-                    <li>@Html.ActionLink("Vote!", "Index", "Voting")</li>
-                }
-                 @if (User.IsInRole("CanSeeElectionResults"))
-                 {
-                     <li>@Html.ActionLink("Election Results", "Index", "ElectionResults")</li>
-                 }
             </ul>
             @Html.Partial("_LoginPartial")
         </div>

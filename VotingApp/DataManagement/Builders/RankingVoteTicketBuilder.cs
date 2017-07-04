@@ -23,6 +23,18 @@ namespace VotingApp.DataManagement.Builders
                 RankingVoteItemId = rankingVote.RankingVoteId,
                 PrimeCanidate = CanidateBuilder.GetModel(rankingVote.PrimeCanindate),
                 SubCanidate = CanidateBuilder.GetModel(rankingVote.SubCanindate),
+                IsWriteIn = rankingVote.IsWriteIn
+            };
+        }
+
+        public RankingVote GetEntity(RankingVoteItem rankingVote)
+        {
+            return new RankingVote()
+            {
+                RankingVoteId = rankingVote.RankingVoteItemId,
+                PrimeCanindate = CanidateBuilder.GetEntity(rankingVote.PrimeCanidate),
+                SubCanindate = CanidateBuilder.GetEntity(rankingVote.SubCanidate),
+                IsWriteIn = rankingVote.IsWriteIn
             };
         }
     }
