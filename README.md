@@ -66,8 +66,8 @@ Single Vote Ballot Issue/Candidate
 _Must be logged in as an Admin, to use this functionality._  
 1. Log in as an Admin.
 2. Click the Election Results tab.
-3. Results will be listed in the following order: 
-  * President and Vice-President
-  * Supreme Court Judge
-  * State Representative
-  * Ballot Issue
+3. Results will be listed in the following order:   
+     * President and Vice-President
+     * Supreme Court Judge
+     * State Representative
+     * Ballot Issue
