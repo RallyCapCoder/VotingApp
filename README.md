@@ -48,6 +48,6 @@ _You must be a registered voter to able to use this functionality_
 * Vote for two section allows for a write in but only allows two choices including the write in
 
 **Seeing the Election Results**  
-_Must be logged in as an admin to use this functionality _
+_Must be logged in as an admin to use this functionality_
 1. Log in as an Admin 
 2. Click Election Results tab
