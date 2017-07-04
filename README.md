@@ -27,7 +27,7 @@ Start Debugging the App! Configuration and Setup are complete!
 
 **Registering A New User**  
 
-_In order to use the App other than the Home Page and Voting Information Page, you must be registered as a user._
+_In order to use the App, other than the Home Page and Voting Information Page, you must be registered as a user._
 
 1. Click the Register Button in the top right corner of the page.
 2. Fill out the Form.  
