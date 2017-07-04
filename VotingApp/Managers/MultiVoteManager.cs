@@ -78,7 +78,7 @@ namespace VotingApp.Managers
                     }
                 }
             }
-            return electionResultsForMultiVoteItems.ToDictionary(x => x.Value.MultipleVoteItem, x => x.Value.Votes);
+            return electionResultsForMultiVoteItems.OrderBy(x => x.Value.Votes).ToDictionary(x => x.Value.MultipleVoteItem, x => x.Value.Votes);
         }
 
         public List<VoteResult> AddMultiVoteWriteInToElection(List<VoteResult> electionResults, MultipleVoteItem voteItem, Guid ballotId, MultipleVoteItem existingVoteItem)
