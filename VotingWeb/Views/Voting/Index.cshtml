@@ -81,6 +81,7 @@
                 @Html.HiddenFor(m => m.PresidentAndVicePres[i].RankingVoteItemId, new { @name = "PresidentAndVicePres[" + i + "].RankingVoteItemId" })
                 @Html.HiddenFor(m => m.PresidentAndVicePres[i].PrimeCandidateItem.JobId, new { @name = "PresidentAndVicePres[" + i + "].PrimeCandidateItem.CandidateItemId.JobId" })
                 @Html.HiddenFor(m => m.PresidentAndVicePres[i].SubCandidateItem.JobId, new { @name = "PresidentAndVicePres[" + i + "].SubCandidateItem.JobId" })
+                <br/>
             }
             <label class="control-label">Commander and Cream And Vice Ice Write In:</label>
             @Html.TextBoxFor(m => m.PresidentWriteIn.PrimeCandidateItem.Name, new { @class = "form-control" })

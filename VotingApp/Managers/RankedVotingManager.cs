@@ -83,38 +83,99 @@ namespace VotingApp.Managers
 
         public List<VoteResult> AddRankingWriteInToElection(List<VoteResult> electionResults, RankingVoteItem voteItem, Guid ballotId, RankingVoteItem existingVoteItem)
         {
-            var builder = new RankingVoteTicketBuilder();
-            var RankingVoteItem = new RankingVoteItem
+
+          
+            var primeCandidateItem = CheckForExistingPrimeCandidate(voteItem, existingVoteItem);
+            var subCandidateItem = CheckForExistingSubCandidate(voteItem, existingVoteItem);
+
+            var rankingVoteId =
+                Context.RankingVotes.FirstOrDefault(x => x.PrimeCandidateId == primeCandidateItem.CandidateId ||
+                                                x.SubCandidateId == subCandidateItem.CandidateId);
+            if (rankingVoteId == null)
             {
-                RankingVoteItemId = Guid.NewGuid(),
-                PrimeCandidateItem = new VotingApp.Models.CandidateItem()
+                var rankingVoteItem = new RankingVoteItem
                 {
-                    CandidateId = Guid.NewGuid(),
-                    Name = voteItem.PrimeCandidateItem.Name,
-                    JobId = existingVoteItem.PrimeCandidateItem.JobId
-                },
-                SubCandidateItem = new VotingApp.Models.CandidateItem()
+                    RankingVoteItemId = Guid.NewGuid(),
+                    PrimeCandidateItem = primeCandidateItem,
+                    SubCandidateItem = subCandidateItem,
+                    IsWriteIn = true
+                };
+                var builder = new RankingVoteTicketBuilder();
+                Context.RankingVotes.Add(builder.GetEntity(rankingVoteItem));
+                Context.SaveChanges();
+                electionResults.Add(new VoteResult
+                {
+                    VoteResultsId = Guid.NewGuid(),
+                    BallotId = ballotId,
+                    RankingVoteId = rankingVoteItem.RankingVoteItemId,
+                    Ranking = voteItem.Ranking,
+                });
+            }
+            else
+            {
+                electionResults.Add(new VoteResult
+                {
+                    VoteResultsId = Guid.NewGuid(),
+                    BallotId = ballotId,
+                    RankingVoteId = rankingVoteId.RankingVoteId,
+                    Ranking = voteItem.Ranking,
+                });
+            }
+
+        
+
+
+            return electionResults;
+        }
+
+        private CandidateItem CheckForExistingSubCandidate(RankingVoteItem voteItem, RankingVoteItem existingVoteItem)
+        {
+            var builder = new CandidateBuilder();
+            var existingSubWriteIn =
+                Context.Candidates.FirstOrDefault(x => x.Name == voteItem.SubCandidateItem.Name &&
+                                                       x.JobId == existingVoteItem.SubCandidateItem.JobId);
+            CandidateItem subCandidateItem;
+            if (existingSubWriteIn != null)
+            {
+                subCandidateItem = builder.GetModel(existingSubWriteIn);
+            }
+            else
+            {
+                subCandidateItem = new VotingApp.Models.CandidateItem()
                 {
                     CandidateId = Guid.NewGuid(),
                     Name = voteItem.SubCandidateItem.Name,
                     JobId = existingVoteItem.SubCandidateItem.JobId
-                },
-                IsWriteIn = true
-            };
+                };
+            }
+            return subCandidateItem;
+        }
 
-            Context.RankingVotes.Add(builder.GetEntity(RankingVoteItem));
-            Context.SaveChanges();
+        private CandidateItem CheckForExistingPrimeCandidate(RankingVoteItem voteItem, RankingVoteItem existingVoteItem)
+        {
+            var existingPrimeWriteIn =
+                Context.Candidates.FirstOrDefault(x => x.Name == voteItem.PrimeCandidateItem.Name &&
+                                                       x.JobId == existingVoteItem.PrimeCandidateItem.JobId);
 
-            electionResults.Add(new VoteResult
+            var builder = new CandidateBuilder();
+
+            CandidateItem primeCandidateItem;
+
+
+            if (existingPrimeWriteIn != null)
             {
-                VoteResultsId = Guid.NewGuid(),
-                BallotId = ballotId,
-                RankingVoteId = RankingVoteItem.RankingVoteItemId,
-                Ranking = voteItem.Ranking,
-            });
-
-
-            return electionResults;
+                primeCandidateItem = builder.GetModel(existingPrimeWriteIn);
+            }
+            else
+            {
+                primeCandidateItem = new CandidateItem()
+                {
+                    CandidateId = Guid.NewGuid(),
+                    Name = voteItem.PrimeCandidateItem.Name,
+                    JobId = existingVoteItem.PrimeCandidateItem.JobId
+                };
+            }
+            return primeCandidateItem;
         }
     }
 }

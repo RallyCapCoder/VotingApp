@@ -8,7 +8,14 @@ namespace VotingWeb.Models
 {
     public class ElectionResultsViewModel
     {
-
+        public ElectionResultsViewModel()
+        {
+            VoteResults = new List<VoteResults>();
+            PresidentResults = new Dictionary<RankingVoteItem, Dictionary<int, int>>();
+            SupremeCourtResult = new Dictionary<SingleVoteItem, Dictionary<bool, int>>();
+            StateReps = new Dictionary<MultipleVoteItem, int>();
+            BallotIssue = new Dictionary<SingleVoteItem, Dictionary<bool, int>>();
+        }
 
         public List<VoteResults> VoteResults { get; set; }
 

@@ -78,37 +78,80 @@ namespace VotingApp.Managers
                     }
                 }
             }
-            return electionResultsForMultiVoteItems.OrderBy(x => x.Value.Votes).ToDictionary(x => x.Value.MultipleVoteItem, x => x.Value.Votes);
+            return electionResultsForMultiVoteItems.OrderByDescending(x => x.Value.Votes).ToDictionary(x => x.Value.MultipleVoteItem, x => x.Value.Votes);
         }
 
         public List<VoteResult> AddMultiVoteWriteInToElection(List<VoteResult> electionResults, MultipleVoteItem voteItem, Guid ballotId, MultipleVoteItem existingVoteItem)
         {
-            var builder = new MultiVoteTicketBuilder();
-            var multiVoteItem = new MultipleVoteItem()
+
+
+            var multiVote = CheckForExistingCandidate(voteItem, existingVoteItem);
+
+            var multiVoteId = Context.MultipleVotes.FirstOrDefault(x => x.CandidateId == multiVote.CandidateId);
+            if (multiVoteId == null)
             {
-                MultipleVoteItemId = Guid.NewGuid(),
-                CandidateItem = new CandidateItem()
+                var builder = new MultiVoteTicketBuilder();
+                var multiVoteItem = new MultipleVoteItem()
+                {
+                    MultipleVoteItemId = Guid.NewGuid(),
+                    CandidateItem = new CandidateItem()
+                    {
+                        CandidateId = Guid.NewGuid(),
+                        Name = voteItem.CandidateItem.Name,
+                        JobId = existingVoteItem.CandidateItem.JobId
+                    },
+                    IsWriteIn = true
+                };
+
+                Context.MultipleVotes.Add(builder.GetEntity(multiVoteItem));
+                Context.SaveChanges();
+
+                electionResults.Add(new VoteResult
+                {
+                    VoteResultsId = Guid.NewGuid(),
+                    BallotId = ballotId,
+                    MultipleVoteId = multiVoteItem.MultipleVoteItemId,
+                    VotedFor = voteItem.VotedFor,
+                });
+            }
+            else
+            {
+
+                electionResults.Add(new VoteResult
+                {
+                    VoteResultsId = Guid.NewGuid(),
+                    BallotId = ballotId,
+                    MultipleVoteId = multiVoteId.MultipleVoteId,
+                    VotedFor = voteItem.VotedFor,
+                });
+            }
+        
+
+
+            return electionResults;
+        }
+
+        private CandidateItem CheckForExistingCandidate(MultipleVoteItem voteItem, MultipleVoteItem existingVoteItem)
+        {
+            var builder = new CandidateBuilder();
+            var existingWriteIn =
+                Context.Candidates.FirstOrDefault(x => x.Name == voteItem.CandidateItem.Name &&
+                                                       x.JobId == existingVoteItem.CandidateItem.JobId);
+            CandidateItem subCandidateItem;
+            if (existingWriteIn != null)
+            {
+                subCandidateItem = builder.GetModel(existingWriteIn);
+            }
+            else
+            {
+                subCandidateItem = new VotingApp.Models.CandidateItem()
                 {
                     CandidateId = Guid.NewGuid(),
                     Name = voteItem.CandidateItem.Name,
                     JobId = existingVoteItem.CandidateItem.JobId
-                },
-                IsWriteIn = true
-            };
-
-            Context.MultipleVotes.Add(builder.GetEntity(multiVoteItem));
-            Context.SaveChanges();
-
-            electionResults.Add(new VoteResult
-            {
-                VoteResultsId = Guid.NewGuid(),
-                BallotId = ballotId,
-                MultipleVoteId = multiVoteItem.MultipleVoteItemId,
-                VotedFor = voteItem.VotedFor,
-            });
-
-
-            return electionResults;
+                };
+            }
+            return subCandidateItem;
         }
 
 

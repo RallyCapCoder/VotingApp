@@ -58,7 +58,9 @@
 
             </tr>
         </thead>
-            <tr>
+        <tr>
+            @if (Model.SupremeCourtResult.Count > 0)
+            {
                 <td>
                     @Model.SupremeCourtResult.First().Key.CandidateItem.Name
                 </td>
@@ -68,7 +70,8 @@
                 <td>
                     @Model.SupremeCourtResult.First().Value[false]
                 </td>
-            </tr>
+            }
+        </tr>
     </table>
 </div>
 <div class="panel panel-default">
@@ -110,12 +113,15 @@
         </thead>
         <tbody>
         <tr>
+        @if (Model.BallotIssue.Count > 0)
+        {
             <td>
                 @Model.BallotIssue.First().Value[true]
             </td>
             <td>
                 @Model.BallotIssue.First().Value[false]
             </td>
+        }
         </tr>
         </tbody>
     </table>
