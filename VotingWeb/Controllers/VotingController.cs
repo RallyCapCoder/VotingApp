@@ -10,6 +10,7 @@ using VotingWeb.Models;
 using NLog;
 using VotingApp.Context;
 using VotingApp.Managers;
+using Ballot = VotingApp.Models.Ballot;
 
 namespace VotingWeb.Controllers
 {
@@ -33,10 +34,11 @@ namespace VotingWeb.Controllers
             var ballot = Manager.FindExistingBallot(User.Id);
             if (ballot != null)
             {
+                Log.Info("User has already voted returning to home screen");
                 TempData["AlreadyVoted"] = "You have already voted!";
                 return RedirectToAction("Index", "Home");
             }
-            Log.Info("User has not already voted!");
+
             Log.Info("Getting Presidential and Vice Presidential Canindates");
             ViewModel.PresidentAndVicePres = Manager.RankedVotingManager.GetRankedVoteItems();
             Log.Info("Getting Supreme Court Canindate");
@@ -52,48 +54,40 @@ namespace VotingWeb.Controllers
         [HttpPost]
         public ActionResult Vote(VotingViewModel viewModel)
         {
-
-            ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
             Log.Info("User Has Voted!");
-            var _manager = new VotingManager();
 
-            var ballot = _manager.CreateBallot("National Election" + DateTime.Now, user.Id);
+            var ballot = Manager.CreateBallot("National Election" + DateTime.Now, User.Id);
 
             Log.Info("Saving Results");
             var electionResults = new List<VoteResult>();
 
-            if (viewModel.PresidentWriteIn.PrimeCandidateItem.Name != null)
-            {
-                electionResults =
-                    _manager.RankedVotingManager.AddRankingWriteInToElection(electionResults, viewModel.PresidentWriteIn, ballot.BallotId, viewModel.PresidentAndVicePres.First());
-            }
+            electionResults = CheckForElectionWriteIns(viewModel, electionResults, ballot);
+            TallyBallotVotes(viewModel, electionResults, ballot);
 
-            if (viewModel.StateRepWriteIn.CandidateItem.Name != null)
-            {
-                electionResults =
-                    _manager.MultiVoteManager.AddMultiVoteWriteInToElection(electionResults, viewModel.StateRepWriteIn, ballot.BallotId, viewModel.StateRep.First());
-            }
+            Manager.SaveElectionResults(electionResults);
+            Log.Info("Sending User to Home Screen");
+            TempData["Success"] = "You Successfully Voted!";
+            return RedirectToAction("Index", "Home");
+        }
 
-            foreach (var presidentAndVice in viewModel.PresidentAndVicePres)
+        private static void TallyBallotVotes(VotingViewModel viewModel, List<VoteResult> electionResults, Ballot ballot)
+        {
+            Log.Info("Tallying Votes");
+            electionResults.AddRange(viewModel.PresidentAndVicePres.Select(presidentAndVice => new VoteResult
             {
-                electionResults.Add(new VoteResult
-                {
-                    VoteResultsId = Guid.NewGuid(),
-                    BallotId = ballot.BallotId,
-                    RankingVoteId = presidentAndVice.RankingVoteItemId,
-                    Ranking = presidentAndVice.Ranking,
-                });
-            }
-            foreach (var stateRep in viewModel.StateRep)
+                VoteResultsId = Guid.NewGuid(),
+                BallotId = ballot.BallotId,
+                RankingVoteId = presidentAndVice.RankingVoteItemId,
+                Ranking = presidentAndVice.Ranking,
+            }));
+
+            electionResults.AddRange(viewModel.StateRep.Select(stateRep => new VoteResult
             {
-                electionResults.Add(new VoteResult
-                {
-                    VoteResultsId = Guid.NewGuid(),
-                    BallotId = ballot.BallotId,
-                    MultipleVoteId = stateRep.MultipleVoteItemId,
-                    VotedFor = stateRep.VotedFor,
-                });
-            }
+                VoteResultsId = Guid.NewGuid(),
+                BallotId = ballot.BallotId,
+                MultipleVoteId = stateRep.MultipleVoteItemId,
+                VotedFor = stateRep.VotedFor,
+            }));
             electionResults.Add(new VoteResult
             {
                 VoteResultsId = Guid.NewGuid(),
@@ -111,11 +105,24 @@ namespace VotingWeb.Controllers
                 VoteYes = viewModel.BallotIssue.YesVote,
                 VoteNo = viewModel.BallotIssue.NoVote,
             });
+        }
 
-            _manager.SaveElectionResults(electionResults);
-            Log.Info("Sending User to Home Screen");
-            TempData["Success"] = "You Successfully Voted!";
-            return RedirectToAction("Index", "Home");
+        private List<VoteResult> CheckForElectionWriteIns(VotingViewModel viewModel, List<VoteResult> electionResults, Ballot ballot)
+        {
+            if (viewModel.PresidentWriteIn.PrimeCandidateItem.Name != null)
+            {
+                electionResults =
+                    Manager.RankedVotingManager.AddRankingWriteInToElection(electionResults, viewModel.PresidentWriteIn,
+                        ballot.BallotId, viewModel.PresidentAndVicePres.First());
+            }
+
+            if (viewModel.StateRepWriteIn.CandidateItem.Name != null)
+            {
+                electionResults =
+                    Manager.MultiVoteManager.AddMultiVoteWriteInToElection(electionResults, viewModel.StateRepWriteIn,
+                        ballot.BallotId, viewModel.StateRep.First());
+            }
+            return electionResults;
         }
     }
 }

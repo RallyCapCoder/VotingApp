@@ -19,22 +19,22 @@ namespace VotingApp.Managers
 
         public List<SingleVoteItem> GetSingleVoteItems()
         {
-            var _builder = new SingleVoteTicketBuilder();
+            var builder = new SingleVoteTicketBuilder();
             var items = Context.SingleVotes
                 .Include("BallotIssue")
                 .Include("Candidate").Include("Candidate.Job")
-                .Select(_builder.GetModel).ToList();
+                .Select(builder.GetModel).ToList();
             return items;
         }
 
 
         public List<SingleVoteItem> GetSingleVoteItemsByIds(List<Guid?> ids)
         {
-            var _builder = new SingleVoteTicketBuilder();
+            var builder = new SingleVoteTicketBuilder();
             var items = Context.SingleVotes
                 .Include("BallotIssue")
                 .Include("Candidate").Include("Candidate.Job")
-                .Select(_builder.GetModel).ToList();
+                .Select(builder.GetModel).ToList();
 
             items = items.Where(x => ids.Contains(x.SingleVoteTicketId)).ToList();
             return items;

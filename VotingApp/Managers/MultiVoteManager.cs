@@ -18,19 +18,19 @@ namespace VotingApp.Managers
 
         public List<MultipleVoteItem> GetMultiVoteItems()
         {
-            var _builder = new MultiVoteTicketBuilder();
+            var builder = new MultiVoteTicketBuilder();
             var items = Context.MultipleVotes
                 .Include("Candidate").Include("Candidate.Job")
-                .Select(_builder.GetModel).Where(x => !x.IsWriteIn).ToList();
+                .Select(builder.GetModel).Where(x => !x.IsWriteIn).ToList();
             return items;
         }
 
         public List<MultipleVoteItem> GetMultiVoteItemsByIds(List<Guid?> ids)
         {
-            var _builder = new MultiVoteTicketBuilder();
+            var builder = new MultiVoteTicketBuilder();
             var items = Context.MultipleVotes
                 .Include("Candidate").Include("Candidate.Job")
-                .Select(_builder.GetModel).ToList();
+                .Select(builder.GetModel).ToList();
             items = items.Where(x => ids.Contains(x.MultipleVoteItemId)).ToList();
             return items;
         }

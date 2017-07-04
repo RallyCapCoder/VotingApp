@@ -20,19 +20,19 @@ namespace VotingApp.Managers
 
         public List<RankingVoteItem> GetRankedVoteItems()
         {
-            var _builder = new RankingVoteTicketBuilder();
+            var builder = new RankingVoteTicketBuilder();
             var items = Context.RankingVotes.Include("PrimeCandidate").Include("SubCandidate")
                 .Include("PrimeCandidate.Job").Include("SubCandidate.Job")
-                .Select(_builder.GetModel).Where(x => !x.IsWriteIn).ToList();
+                .Select(builder.GetModel).Where(x => !x.IsWriteIn).ToList();
             return items;
         }
 
         public List<RankingVoteItem> GetRankedVoteItemsByIds(List<Guid?> ids)
         {
-            var _builder = new RankingVoteTicketBuilder();
+            var builder = new RankingVoteTicketBuilder();
             var items = Context.RankingVotes.Include("PrimeCandidate").Include("SubCandidate")
                 .Include("PrimeCandidate.Job").Include("SubCandidate.Job")
-                .Select(_builder.GetModel).ToList();
+                .Select(builder.GetModel).ToList();
 
             items = items.Where(x => ids.Contains(x.RankingVoteItemId)).ToList();
             return items;
