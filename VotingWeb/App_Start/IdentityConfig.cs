@@ -7,7 +7,6 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using VotingWeb.Models;
-
 namespace VotingWeb
 {
     public class EmailService : IIdentityMessageService
@@ -72,6 +71,8 @@ namespace VotingWeb
                 Subject = "Security Code",
                 BodyFormat = "Your security code is {0}"
             });
+
+            // Register Authy as 2FA provider 
             manager.EmailService = new EmailService();
             manager.SmsService = new SmsService();
             var dataProtectionProvider = options.DataProtectionProvider;

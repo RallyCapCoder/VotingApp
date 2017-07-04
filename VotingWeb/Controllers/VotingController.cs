@@ -25,7 +25,7 @@ namespace VotingWeb.Controllers
             var ballot = _manager.FindExistingBallot(user.Id);
             if (ballot != null)
             {
-                
+                TempData["AlreadyVoted"] = "You have already voted!";
                 return RedirectToAction("Index", "Home");
             }
             log.Info("User has not already voted!");
@@ -106,6 +106,7 @@ namespace VotingWeb.Controllers
 
             _manager.SaveElectionResults(electionResults);
             log.Info("Sending User to Home Screen");
+            TempData["Success"] = "You Successfully Voted!";
             return RedirectToAction("Index", "Home");
         }
     }
