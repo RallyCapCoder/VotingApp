@@ -43,7 +43,7 @@ _In order to use the App, other than the Home Page and Voting Information Page, 
 
 **Rules for Voting and Ballot Information**  
 _You must be a registered voter to able to use this functionality._ 
-_Once you vote, you can not vote again on the same account. No Double Voting!_
+_Once you vote, you cannot vote again on the same account. No Double Voting!_
 
 Ranking Candidates (For President and Vice-President)
 * Integers must be used in this sections inputs.  Text is invalid.
