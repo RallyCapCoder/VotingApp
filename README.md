@@ -20,6 +20,13 @@ There are two connection strings to set up in order to use the Voting App.
 1. Find the App.config in the VotingApp project and Set the DataSource and Intial Catalog to what is set up in the local sql server.
 2. Find the App.config in the VotingWeb project and Set the DataSource and Intial Catalog to what is set up in the local sql server.
 
+**Configuring the Log File**
+1. Open up NLog.Config in the VotingWeb project and find the line  
+`<target name ="logfile" xsi:type="File" fileName="../logs/logfile.txt"/>`
+2. Change the fileName to any valid directory path, to change the location of the log file location  
+
+More Information for the log libary can be found here: http://nlog-project.org/
+
 Start Debugging the App! Configuration and Setup are complete!
 
 
