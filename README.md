@@ -4,7 +4,7 @@
 
 1. Visual Studio 2015 or Visual Studio 2017.  
 
-2. SQL Server 2017 or SQL Server Express local-db.
+2. SQL Server 2017 or SQL Server 2016 SP1.
 
 **Setting up the application**  
 
