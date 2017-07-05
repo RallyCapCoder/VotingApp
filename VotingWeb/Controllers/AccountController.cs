@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using NLog;
 using VotingWeb.Models;
 
 namespace VotingWeb.Controllers
@@ -15,7 +16,7 @@ namespace VotingWeb.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        private static readonly Logger Log = LogManager.GetLogger("VoteLog");
         public AccountController()
         {
         }
@@ -55,6 +56,7 @@ namespace VotingWeb.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+           
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -66,6 +68,7 @@ namespace VotingWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+            Log.Info("User is logging in");
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -77,8 +80,10 @@ namespace VotingWeb.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    Log.Info("User successfully logged in");
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
+                    Log.Info("User is locked out");
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
@@ -147,6 +152,7 @@ namespace VotingWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+            Log.Info("New User is Registering");
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email};
@@ -396,6 +402,7 @@ namespace VotingWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
+            Log.Info("User successfully logged off");
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Home");
         }

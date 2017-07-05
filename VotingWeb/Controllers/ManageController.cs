@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using NLog;
 using VotingWeb.Models;
 
 namespace VotingWeb.Controllers
@@ -14,7 +15,7 @@ namespace VotingWeb.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        private static readonly Logger Log = LogManager.GetLogger("VoteLog");
         public ManageController()
         {
         }
@@ -111,6 +112,7 @@ namespace VotingWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> AddPhoneNumber(AddPhoneNumberViewModel model)
         {
+            Log.Info("Adding User Phone Number");
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -225,6 +227,7 @@ namespace VotingWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
         {
+            Log.Info("User is changing password");
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -256,6 +259,7 @@ namespace VotingWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> SetPassword(SetPasswordViewModel model)
         {
+            Log.Info("User is setting password");
             if (ModelState.IsValid)
             {
                 var result = await UserManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
